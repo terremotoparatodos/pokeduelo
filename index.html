@@ -107,14 +107,16 @@ body.clean .virtual span, body.clean .virtual::after{display:none}
 .sw{width:52px; height:52px; flex:none; border:4px solid var(--ink); border-radius:6px; box-shadow:inset -6px -6px 0 rgba(0,0,0,.18)}
 .cname{font-size:18px}
 
-.anim-pop{animation:pop .35s both}
-.anim-flip{animation:flip .45s both}
+.anim-pop{animation:pop .48s both}
+.anim-flip{animation:flip .62s both}
 @keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.12)}100%{transform:none}}
 @keyframes flip{0%{transform:perspective(500px) rotateX(-90deg)}65%{transform:perspective(500px) rotateX(14deg)}100%{transform:none}}
 
 .half.win .tile{box-shadow:0 0 0 6px var(--gold), 6px 6px 0 6px rgba(0,0,0,.35)}
-.winbanner{position:absolute; left:0; right:0; top:300px; text-align:center; font-size:40px; color:var(--gold); z-index:3}
-.winbanner.anim{animation:bannerIn .6s both}
+.resultbanner{position:absolute; left:0; right:0; top:300px; text-align:center; font-size:40px; z-index:3}
+.resultbanner.win{color:var(--gold)}
+.resultbanner.try{color:#fff; font-size:30px}
+.resultbanner.anim{animation:bannerIn .72s both}
 @keyframes bannerIn{0%{transform:scale(0) rotate(-8deg)}70%{transform:scale(1.15) rotate(2deg)}100%{transform:none}}
 
 /* ── PANEL DE CONTROL (fuera del reel, no se graba) ── */
@@ -182,6 +184,7 @@ body.panel-only #panel section{margin:0}
   <header>
     <h2>⚙ Panel · Poké-Duelo</h2>
     <div class="line">
+      <button id="btn-sound" title="Activar o silenciar efectos">🔊</button>
       <button id="btn-popout" title="Abrir el panel en otra pestaña">↗ Pestaña</button>
       <button id="btn-reset" class="danger">Nuevo juego</button>
     </div>
@@ -265,6 +268,40 @@ function commit(){
 }
 function receive(ns){ if(!ns || ns.v <= S.v) return; S = ns; renderAll(); }
 
+/* ─────────── SONIDO ─────────── */
+let audioCtx = null;
+let soundMuted = localStorage.getItem('pokeduelo-muted') === '1';
+function tone(freq, start, duration, volume=.045, type='square'){
+  if(soundMuted) return;
+  try{
+    audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
+    audioCtx.resume();
+    const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+    osc.type = type; osc.frequency.setValueAtTime(freq, start);
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(volume, start+.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start+duration);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(start); osc.stop(start+duration+.02);
+  }catch(_){}
+}
+function playReveal(win){
+  if(soundMuted) return;
+  try{
+    audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
+    const now = audioCtx.currentTime + .015;
+    tone(392, now, .10, .055); // aparición del Pokémon
+    [523, 659, 784, 659].forEach((note, i)=>tone(note, now+((i+1)*CELL_DELAY/1000), .07, .035));
+    const end = now + (6*CELL_DELAY+520)/1000;
+    if(win){ [523,659,784,1047].forEach((note,i)=>tone(note,end+i*.07,.20,.055,'triangle')); }
+    else { tone(294,end,.16,.045,'triangle'); tone(220,end+.13,.25,.04,'triangle'); }
+  }catch(_){}
+}
+function updateSoundButton(){
+  const button = document.getElementById('btn-sound');
+  if(button) { button.textContent = soundMuted ? '🔇' : '🔊'; button.title = soundMuted ? 'Activar efectos' : 'Silenciar efectos'; }
+}
+
 function onlineReady(){ return !!(SUPABASE_CONFIG.url && SUPABASE_CONFIG.anonKey && window.supabase); }
 function saveOnline(){
   if(!db || !gameId) return;
@@ -314,14 +351,16 @@ async function initOnline(){
 
 /* ─────────── JUEGO ─────────── */
 const LABELS = ['TIPOS','GEN','FASE','COLOR'];
-const CELL_DELAY = 260;
+const CELL_DELAY = 330;
 const lastShown = [undefined, undefined]; // undefined = primer render, sin animación
+const lastAnimatedGuess = [null, null];
 const halves = [...document.querySelectorAll('.half')];
 
 /* La tabla original sólo trae 1/2/3. La cadena oficial permite distinguir
    correctamente una especie sin evoluciones (ÚNICA) de una de FASE 1. */
 const phaseCache = new Map();
 const phaseLoading = new Map();
+let phaseRefreshTimer = null;
 const fallbackPhase = p => `FASE ${p.ph}`;
 const phaseFor = p => phaseCache.get(p.id) || fallbackPhase(p);
 function loadPhase(p){
@@ -345,8 +384,12 @@ function loadPhase(p){
     .then(value=>{
       phaseCache.set(p.id, value);
       phaseLoading.delete(p.id);
-      lastShown[0] = lastShown[1] = undefined;
-      renderAll();
+      /* No redibujar durante un reveal: hacerlo antes cancelaba la animación. */
+      clearTimeout(phaseRefreshTimer);
+      phaseRefreshTimer = setTimeout(()=>{
+        lastShown[0] = lastShown[1] = undefined;
+        renderAll();
+      }, 3300);
     });
   phaseLoading.set(p.id, job);
 }
@@ -372,13 +415,20 @@ function renderSide(i){
   const t = BY[S.secret[1-i]];
   const p = t && g.length ? BY[g[g.length-1]] : null;
   const key = p ? `${g.length}:${p.id}:${t.id}` : null;
+  const guessKey = p ? `${g.length}:${p.id}` : null;
   if(key === lastShown[i]) return;
-  const animate = lastShown[i] !== undefined && p;
+  /* Cada intento nuevo —incluido el primero— revela el Pokémon y las casillas. */
+  const animate = !!p && guessKey !== lastAnimatedGuess[i];
   lastShown[i] = key;
+  if(p) lastAnimatedGuess[i] = guessKey;
+  else lastAnimatedGuess[i] = null;
 
-  const a = (cls, d) => animate ? ` ${cls}" style="animation-delay:${d}ms` : '';
   const win = p && p.id === t.id;
+  /* Acierto y error comparten exactamente el mismo ritmo de revelación. */
+  const revealRate = 1;
+  const a = (cls, d) => animate ? ` ${cls}" style="animation-delay:${d * revealRate}ms;animation-duration:620ms` : '';
   h.classList.toggle('win', !!win);
+  if(animate) playReveal(win);
 
   if(!p){
     h.innerHTML = `<div class="tile sprite empty"><div class="q outline">?</div></div>
@@ -387,10 +437,10 @@ function renderSide(i){
   }
   loadPhase(p); loadPhase(t);
   const result = evaluate(p,t);
-  h.innerHTML = `<div class="tile sprite${animate?' anim-pop':''}" style="background:color-mix(in srgb, ${TYPES[p.ty[0]].c} 40%, #fff)"><img src="${sprite(p.id)}" alt=""></div>
+  h.innerHTML = `<div class="tile sprite${animate?' anim-pop':''}" style="background:color-mix(in srgb, ${TYPES[p.ty[0]].c} 40%, #fff);${animate?'animation-duration:480ms':''}"><img src="${sprite(p.id)}" alt=""></div>
     <div class="checks"><div class="check types"><div class="lbl outline">TIPOS</div><div class="type-tiles">${result.types.map((c,k)=>`<div class="tile ${c.ok===null?'empty':c.ok?'ok':'no'}${a('anim-flip',(k+1)*CELL_DELAY)}">${c.html}</div>`).join('')}</div></div>${result.cells.map((c,k)=>`<div class="check"><div class="lbl outline">${LABELS[k+1]}</div>
       <div class="tile ${c.ok?'ok':'no'}${a('anim-flip',(k+3)*CELL_DELAY)}">${c.html}</div></div>`).join('')}</div>
-    ${win ? `<div class="winbanner outline${animate?' anim':''}" style="animation-delay:${6*CELL_DELAY+450}ms">¡ADIVINADO!</div>` : ''}`;
+    <div class="resultbanner ${win?'win':'try'} outline${animate?' anim':''}" style="animation-delay:${(6*CELL_DELAY+520)*revealRate}ms;${animate?'animation-duration:720ms':''}">${win?'¡ADIVINADO!':'¡SEGUÍ INTENTANDO!'}</div>`;
 }
 
 /* ─────────── PANEL ─────────── */
@@ -448,6 +498,11 @@ document.getElementById('btn-reset').onclick = ()=>{
   if(!confirm('¿Nuevo juego? Se borran secretos e intentos.')) return;
   S = fresh(); commit();
 };
+document.getElementById('btn-sound').onclick = ()=>{
+  soundMuted = !soundMuted;
+  localStorage.setItem('pokeduelo-muted', soundMuted ? '1' : '0');
+  updateSoundButton();
+};
 document.getElementById('btn-popout').onclick = ()=> window.open(location.href.split('#')[0] + '#panel', '_blank');
 
 function renderPanel(i){
@@ -490,6 +545,7 @@ addEventListener('keydown', e=>{
 
 if(location.hash === '#panel') document.body.classList.add('panel-only');
 fit();
+updateSoundButton();
 renderAll();
 initOnline();
 </script>
