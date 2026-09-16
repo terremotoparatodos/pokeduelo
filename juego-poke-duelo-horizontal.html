@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<!-- ═══════════════════════════════════════════════════════════════
+     JUEGO PARA REEL · POKÉ-DUELO
+     Versión horizontal 1920 × 1080 para YouTube. Solo la zona JUEGO es real/interactiva.
+     Teclas:  R = modo grabación 1:1   G = ocultar guías de zonas virtuales
+              P = mostrar/ocultar panel de control
+     Panel en otra pestaña: abrir este mismo archivo con #panel al final.
+     ═══════════════════════════════════════════════════════════════ -->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poké-Duelo · Horizontal</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bungee&family=Press+Start+2P&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+:root{
+  /* ── ESQUELETO DEL REEL (ajustable) ── */
+  --h-banner-top: 0px;
+  --h-cams: 482px;
+  --h-game: 598px;
+  --h-banner-bottom: 0px;
+  --reel-w: 1920px;
+
+  /* ── Estética del juego ── */
+  --ink: #16161f;
+  --ok: #3fbf4f;
+  --no: #e0413b;
+  --gold: #ffd84a;
+  /* Bungee conserva un aire arcade sin atribuirle una marca ajena. */
+  --pixel: 'Bungee', 'Press Start 2P', system-ui, sans-serif;
+}
+
+html,body{margin:0;height:100%;background:#0d0d10;overflow:hidden}
+body.rec{overflow:auto}
+
+/* ── REEL ── */
+#reel{
+  position:absolute; left:50%; top:50%;
+  width:var(--reel-w);
+  transform-origin:center center;
+  display:flex; flex-direction:column;
+}
+body.rec #reel{position:relative; left:0; top:0; transform:none !important}
+
+/* ── ZONAS VIRTUALES ── */
+.virtual{
+  flex:none; position:relative; width:100%;
+  pointer-events:none; user-select:none;
+  display:flex; align-items:center; justify-content:center;
+  font:600 22px/1 system-ui, sans-serif; letter-spacing:.25em;
+  color:rgba(255,255,255,.28);
+}
+.virtual::after{content:''; position:absolute; inset:8px; border:3px dashed rgba(255,255,255,.2); border-radius:4px}
+#v-top{height:var(--h-banner-top); background:#8e1622}
+#v-cams{height:var(--h-cams); background:#2a2a2a}
+#v-bottom{height:var(--h-banner-bottom); background:#8e1622}
+body.horizontal #v-top, body.horizontal #v-bottom{display:none}
+body.horizontal #v-cams{height:482px; background:#181a20; color:rgba(255,255,255,.35)}
+body.clean .virtual span, body.clean .virtual::after{display:none}
+
+/* ── JUEGO ── */
+#game{
+  flex:none; position:relative; width:var(--reel-w); height:var(--h-game);
+  overflow:hidden; font-family:var(--pixel); color:#fff;
+  background:url('nature-1768605061922-3261.jpg') center center / cover no-repeat;
+}
+.cloud{display:none}
+.cloud::before,.cloud::after{content:''; position:absolute; background:#fff; border-radius:50%}
+.cloud::before{width:56px; height:56px; left:18%; top:-28px}
+.cloud::after{width:40px; height:40px; left:52%; top:-18px}
+
+.half{position:absolute; top:0; bottom:0; width:960px; padding:16px 190px; box-sizing:border-box;
+  display:flex; flex-direction:column; justify-content:center; z-index:1}
+.half.l{left:0} .half.r{right:0}
+.divider{position:absolute; left:955px; top:0; bottom:0; width:10px; background:var(--ink);
+  box-shadow:-3px 0 0 #fff, 3px 0 0 #fff; z-index:2}
+
+/* Velo suave: la foto se mantiene visible y los datos siguen siendo legibles. */
+#game::before{content:''; position:absolute; inset:0; z-index:0;
+  background:linear-gradient(180deg,rgba(9,24,34,.22),rgba(8,20,18,.38));}
+
+.outline{text-shadow:
+  -3px -3px 0 var(--ink), 3px -3px 0 var(--ink), -3px 3px 0 var(--ink), 3px 3px 0 var(--ink),
+   0 -4px 0 var(--ink), 0 4px 0 var(--ink), -4px 0 0 var(--ink), 4px 0 0 var(--ink),
+   0 7px 0 rgba(0,0,0,.42), 4px 10px 8px rgba(0,0,0,.4)}
+/* Un solo intento por lado: sprite grande + 5 validaciones */
+.tile{box-sizing:border-box; border:5px solid var(--ink); border-radius:8px;
+  box-shadow:6px 6px 0 rgba(0,0,0,.35); display:flex; align-items:center; justify-content:center; gap:16px; position:relative}
+.tile.empty{background:rgba(255,255,255,.16); border:4px dashed rgba(255,255,255,.65); box-shadow:none}
+.tile.ok{background:var(--ok)}
+.tile.no{background:var(--no)}
+.tile.sprite{width:220px; height:220px; margin:0 auto; overflow:hidden}
+.tile.sprite img{width:250px; height:250px; flex:none; image-rendering:pixelated}
+.tile.sprite .q{font-size:110px; color:rgba(255,255,255,.75)}
+.checks{display:flex; flex-direction:column; gap:10px; margin-top:20px}
+.half.l .checks{transform:translateX(-10px)}
+.half.r .checks{transform:translateX(-15px)}
+.check{display:grid; grid-template-columns:120px 1fr; gap:16px; align-items:center; height:68px}
+.check .lbl{font-size:20px; text-align:right}
+.check .tile{height:68px}
+.check.types .type-tiles{display:grid; grid-template-columns:1fr 1fr; gap:12px; min-width:0}
+.check.types .type-tiles .tile{min-width:0; padding-left:8px; padding-right:8px}
+.tb{font-size:18px; padding:12px 14px 11px; border:4px solid rgba(0,0,0,.5); border-radius:6px; text-shadow:2px 2px 0 rgba(0,0,0,.55); white-space:nowrap; letter-spacing:-.025em}
+.none{font-size:30px}
+.big{font-size:34px}
+.sw{width:52px; height:52px; flex:none; border:4px solid var(--ink); border-radius:6px; box-shadow:inset -6px -6px 0 rgba(0,0,0,.18)}
+.cname{font-size:18px}
+
+.anim-pop{animation:pop .48s both}
+.anim-flip{animation:flip .62s both}
+@keyframes pop{0%{transform:scale(0)}70%{transform:scale(1.12)}100%{transform:none}}
+@keyframes flip{0%{transform:perspective(500px) rotateX(-90deg)}65%{transform:perspective(500px) rotateX(14deg)}100%{transform:none}}
+
+.half.win .tile{box-shadow:0 0 0 6px var(--gold), 6px 6px 0 6px rgba(0,0,0,.35)}
+.resultbanner{position:absolute; left:0; right:0; top:220px; text-align:center; font-size:34px; z-index:3}
+.resultbanner.win{color:var(--gold)}
+.resultbanner.try{color:#fff; font-size:30px}
+.resultbanner.anim{animation:bannerIn .72s both}
+@keyframes bannerIn{0%{transform:scale(0) rotate(-8deg)}70%{transform:scale(1.15) rotate(2deg)}100%{transform:none}}
+
+/* ── Tablero horizontal tipo Wordle ── */
+body.horizontal .half{padding:16px 30px; display:block}
+body.horizontal .wordle-board{height:100%; display:flex; flex-direction:column; min-width:0}
+body.horizontal .wordle-head{display:flex; align-items:center; justify-content:space-between; margin:0 4px 14px; min-height:38px}
+body.horizontal .wordle-head h3{margin:0; font-size:24px; letter-spacing:.055em}
+body.horizontal .wordle-head span{font-size:13px; padding:6px 9px; border-radius:999px; background:rgba(0,0,0,.36); border:1px solid rgba(255,255,255,.23); opacity:.92}
+body.horizontal .wordle-labels,.wordle-row{display:grid; grid-template-columns:118px 315px 92px 145px 1fr; gap:9px; align-items:center}
+body.horizontal .wordle-labels{padding:0 10px 8px; font-size:12px; letter-spacing:.05em; color:rgba(255,255,255,.8); text-align:center}
+body.horizontal .wordle-labels span:first-child{text-align:center}
+body.horizontal .wordle-list{display:flex; flex-direction:column; gap:9px; overflow:hidden; padding:3px 5px 8px}
+body.horizontal .wordle-row{min-height:64px; padding:7px 9px; box-sizing:border-box; background:linear-gradient(100deg,rgba(7,17,24,.72),rgba(12,31,35,.54)); border:2px solid rgba(255,255,255,.4); border-radius:10px; box-shadow:0 5px 10px rgba(0,0,0,.22)}
+body.horizontal .wordle-row.solved{border-color:var(--gold); box-shadow:0 0 0 3px rgba(255,216,74,.28),0 6px 14px rgba(0,0,0,.3)}
+body.horizontal .wordle-poke{width:58px; height:58px; margin:auto; display:flex; align-items:center; justify-content:center; overflow:hidden; box-sizing:border-box; border:3px solid var(--ink); border-radius:8px; background:rgba(255,255,255,.25); box-shadow:inset 0 2px 0 rgba(255,255,255,.34),0 3px 0 rgba(0,0,0,.3)}
+body.horizontal .wordle-poke img{width:68px; height:68px; image-rendering:pixelated; flex:none}
+body.horizontal .wordle-row.recent{min-height:112px; border-color:rgba(255,255,255,.72); background:linear-gradient(100deg,rgba(10,32,42,.92),rgba(21,62,57,.76)); box-shadow:0 8px 18px rgba(0,0,0,.36)}
+body.horizontal .wordle-row.recent .wordle-poke{width:102px; height:102px; border-width:4px; border-radius:10px; box-shadow:inset 0 3px 0 rgba(255,255,255,.38),0 5px 0 rgba(0,0,0,.33)}
+body.horizontal .wordle-row.recent .wordle-poke img{width:116px; height:116px}
+body.horizontal .wordle-row.recent .wordle-cell{min-height:74px; border-width:4px; gap:15px; padding:0 16px}
+body.horizontal .wordle-row.recent .wordle-cell .tb{font-size:15px; padding:9px 10px 8px}
+body.horizontal .wordle-row.recent .wordle-cell .big{font-size:23px}
+body.horizontal .wordle-row.recent .wordle-cell .cname{font-size:16px}
+body.horizontal .wordle-types{display:grid; grid-template-columns:1fr 1fr; gap:6px}
+body.horizontal .wordle-cell{min-height:46px; display:flex; align-items:center; justify-content:center; gap:12px; padding:0 12px; box-sizing:border-box; border:3px solid var(--ink); border-radius:7px; background:var(--no); box-shadow:inset 0 2px 0 rgba(255,255,255,.2),0 3px 0 rgba(0,0,0,.3); font-size:16px; text-align:center; overflow:hidden}
+body.horizontal .wordle-cell.ok{background:var(--ok)}
+body.horizontal .wordle-cell.no{background:var(--no)}
+body.horizontal .wordle-cell.empty{background:rgba(255,255,255,.17); border-style:dashed; color:rgba(255,255,255,.75); box-shadow:none}
+body.horizontal .wordle-cell .tb{font-size:13px; padding:7px 8px 6px; border-width:2px; letter-spacing:.01em}
+body.horizontal .wordle-cell .big{font-size:18px; letter-spacing:.04em}
+body.horizontal .wordle-cell .cname{font-size:13px; letter-spacing:.025em}
+body.horizontal .wordle-cell .sw{width:30px; height:30px; border-width:3px}
+body.horizontal .wordle-empty{flex:1; display:flex; align-items:center; justify-content:center; border:3px dashed rgba(255,255,255,.55); border-radius:10px; color:rgba(255,255,255,.82); font-size:20px; text-align:center; padding:18px}
+body.horizontal .wordle-row.new > *{animation:flip .62s both}
+body.horizontal .wordle-row.new > *:nth-child(1){animation-name:pop; animation-delay:0ms}
+body.horizontal .wordle-row.new > *:nth-child(2){animation-delay:330ms}
+body.horizontal .wordle-row.new > *:nth-child(3){animation-delay:660ms}
+body.horizontal .wordle-row.new > *:nth-child(4){animation-delay:990ms}
+body.horizontal .wordle-row.new > *:nth-child(5){animation-delay:1320ms}
+
+/* ── PANEL DE CONTROL (fuera del reel, no se graba) ── */
+#panel{
+  position:fixed; top:12px; right:12px; width:380px; max-height:calc(100vh - 24px); overflow:auto;
+  z-index:50; background:#1c1d24; color:#e9e9ef; border:1px solid #3a3b46; border-radius:12px;
+  font:14px/1.4 system-ui, sans-serif; box-shadow:0 12px 40px rgba(0,0,0,.5); padding:14px; box-sizing:border-box;
+}
+body.nopanel #panel{display:none}
+body.panel-only{overflow:auto; background:#121318}
+body.panel-only #reel{display:none}
+body.panel-only #panel{position:static; margin:24px auto; width:min(760px, calc(100% - 32px)); max-height:none;
+  display:grid; grid-template-columns:1fr 1fr; gap:14px}
+body.panel-only #panel > header, body.panel-only #panel > footer{grid-column:1 / -1}
+#panel h2{margin:0; font-size:15px; letter-spacing:.04em}
+#panel header{display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px}
+#view-menu{display:flex; gap:6px; margin:0 0 12px; flex-wrap:wrap}
+#view-menu a{display:block; color:#fff; background:#343645; border-radius:7px; padding:6px 8px; text-decoration:none; font-size:12px}
+#view-menu a:hover,#view-menu a.active{background:#2f6fe4}
+#panel section{background:#25262f; border-radius:10px; padding:12px; margin-bottom:12px}
+body.panel-only #panel section{margin:0}
+body.panel-only #view-menu{grid-column:1 / -1}
+#panel h3{margin:0 0 8px; font-size:13px; text-transform:uppercase; letter-spacing:.08em; color:#ffd84a}
+#panel label{display:block; font-size:12px; color:#a9aab8; margin:8px 0 4px}
+#panel .line{display:flex; gap:6px}
+#panel input{flex:1; min-width:0; background:#14151b; color:#fff; border:1px solid #3a3b46; border-radius:7px; padding:7px 9px; font:inherit}
+#panel input:focus{outline:2px solid #5b8cff; border-color:transparent}
+#panel button{background:#343645; color:#fff; border:0; border-radius:7px; padding:7px 10px; font:inherit; font-size:13px; cursor:pointer; white-space:nowrap}
+#panel button:hover{background:#44475a}
+#panel button.primary{background:#2f6fe4} #panel button.primary:hover{background:#3d7cf0}
+#panel button.danger{background:#6b2230} #panel button.danger:hover{background:#86293a}
+#panel .msg{min-height:18px; font-size:12px; color:#ff8a80; margin-top:4px}
+#panel .card{display:flex; gap:10px; align-items:center; background:#14151b; border-radius:8px; padding:6px; margin-top:6px; cursor:pointer}
+#panel .card img{width:56px; height:56px; image-rendering:pixelated}
+#panel .card.hide .inner{filter:blur(9px)}
+#panel .card small{color:#a9aab8}
+#panel ol{margin:8px 0 0; padding-left:22px; font-size:13px}
+#panel ol li{margin:2px 0}
+#panel .chips{font-family:monospace; margin-left:6px}
+#panel .btns{display:flex; gap:6px; margin-top:8px; flex-wrap:wrap}
+#panel footer{font-size:12px; color:#8d8e9c}
+#panel kbd{background:#343645; border-radius:4px; padding:1px 5px; font-size:11px}
+</style>
+</head>
+<body class="horizontal">
+
+<div id="reel">
+  <div class="virtual" id="v-top"><span>BANNER · 1080×78</span></div>
+  <div class="virtual" id="v-cams"><span>ESPACIO PARA CÁMARAS · 1920×482</span></div>
+
+  <!-- ═════════ ZONA JUEGO (única interactiva) ═════════ -->
+  <div id="game">
+    <div class="cloud" style="width:150px;left:60px;top:190px"></div>
+    <div class="cloud" style="width:190px;left:330px;top:470px"></div>
+    <div class="cloud" style="width:130px;left:640px;top:260px"></div>
+    <div class="cloud" style="width:210px;left:840px;top:560px"></div>
+    <div class="cloud" style="width:120px;left:120px;top:640px"></div>
+
+    <div class="half l" data-side="0"></div>
+    <div class="divider"></div>
+    <div class="half r" data-side="1"></div>
+  </div>
+
+  <div class="virtual" id="v-bottom"><span>BANNER + LOGO · 1080×270</span></div>
+</div>
+
+<!-- ═════════ PANEL DE CONTROL ═════════ -->
+<aside id="panel">
+  <header>
+    <h2>⚙ Panel · Poké-Duelo</h2>
+    <div class="line">
+      <button id="btn-sound" title="Activar o silenciar efectos">🔊</button>
+      <button id="btn-popout" title="Abrir el panel en otra pestaña">↗ Pestaña</button>
+      <button id="btn-reset" class="danger">Nueva ronda</button>
+    </div>
+  </header>
+  <nav id="view-menu" aria-label="Vistas de la partida"></nav>
+  <div id="panel-sides"></div>
+  <section id="online-session" hidden></section>
+  <footer>
+    <kbd>R</kbd> grabación 1:1 · <kbd>G</kbd> guías · <kbd>P</kbd> panel<br>
+    En pantalla se ven hasta los últimos cinco intentos de cada jugador.
+    Hacé clic en la carta del secreto para verla/ocultarla.
+  </footer>
+</aside>
+<datalist id="dex"></datalist>
+
+<script>
+/* ─────────── DATOS (PokeAPI, 1025 especies) ───────────
+   id|nombre(es)|generación|fase evolutiva|color|tipos */
+const RAW = "1|Bulbasaur|1|1|4|3.7;2|Ivysaur|1|2|4|3.7;3|Venusaur|1|3|4|3.7;4|Charmander|1|1|7|1;5|Charmeleon|1|2|7|1;6|Charizard|1|3|7|1.9;7|Squirtle|1|1|1|2;8|Wartortle|1|2|1|2;9|Blastoise|1|3|1|2;10|Caterpie|1|1|4|11;11|Metapod|1|2|4|11;12|Butterfree|1|3|8|11.9;13|Weedle|1|1|2|11.7;14|Kakuna|1|2|9|11.7;15|Beedrill|1|3|9|11.7;16|Pidgey|1|1|2|0.9;17|Pidgeotto|1|2|2|0.9;18|Pidgeot|1|3|2|0.9;19|Rattata|1|1|6|0;20|Raticate|1|2|2|0;21|Spearow|1|1|2|0.9;22|Fearow|1|2|2|0.9;23|Ekans|1|1|6|7;24|Arbok|1|2|6|7;25|Pikachu|1|2|9|4;26|Raichu|1|3|9|4;27|Sandshrew|1|1|9|8;28|Sandslash|1|2|9|8;29|Nidoran♀|1|1|1|7;30|Nidorina|1|2|1|7;31|Nidoqueen|1|3|1|7.8;32|Nidoran♂|1|1|6|7;33|Nidorino|1|2|6|7;34|Nidoking|1|3|6|7.8;35|Clefairy|1|2|5|17;36|Clefable|1|3|5|17;37|Vulpix|1|1|2|1;38|Ninetales|1|2|9|1;39|Jigglypuff|1|2|5|0.17;40|Wigglytuff|1|3|5|0.17;41|Zubat|1|1|6|7.9;42|Golbat|1|2|6|7.9;43|Oddish|1|1|1|3.7;44|Gloom|1|2|1|3.7;45|Vileplume|1|3|7|3.7;46|Paras|1|1|7|11.3;47|Parasect|1|2|7|11.3;48|Venonat|1|1|6|11.7;49|Venomoth|1|2|6|11.7;50|Diglett|1|1|2|8;51|Dugtrio|1|2|2|8;52|Meowth|1|1|9|0;53|Persian|1|2|9|0;54|Psyduck|1|1|9|2;55|Golduck|1|2|1|2;56|Mankey|1|1|2|6;57|Primeape|1|2|2|6;58|Growlithe|1|1|2|1;59|Arcanine|1|2|2|1;60|Poliwag|1|1|1|2;61|Poliwhirl|1|2|1|2;62|Poliwrath|1|3|1|2.6;63|Abra|1|1|2|10;64|Kadabra|1|2|2|10;65|Alakazam|1|3|2|10;66|Machop|1|1|3|6;67|Machoke|1|2|3|6;68|Machamp|1|3|3|6;69|Bellsprout|1|1|4|3.7;70|Weepinbell|1|2|4|3.7;71|Victreebel|1|3|4|3.7;72|Tentacool|1|1|1|2.7;73|Tentacruel|1|2|1|2.7;74|Geodude|1|1|2|12.8;75|Graveler|1|2|2|12.8;76|Golem|1|3|2|12.8;77|Ponyta|1|1|9|1;78|Rapidash|1|2|9|1;79|Slowpoke|1|1|5|2.10;80|Slowbro|1|2|5|2.10;81|Magnemite|1|1|3|4.16;82|Magneton|1|2|3|4.16;83|Farfetch’d|1|1|2|0.9;84|Doduo|1|1|2|0.9;85|Dodrio|1|2|2|0.9;86|Seel|1|1|8|2;87|Dewgong|1|2|8|2.5;88|Grimer|1|1|6|7;89|Muk|1|2|6|7;90|Shellder|1|1|6|2;91|Cloyster|1|2|6|2.5;92|Gastly|1|1|6|13.7;93|Haunter|1|2|6|13.7;94|Gengar|1|3|6|13.7;95|Onix|1|1|3|12.8;96|Drowzee|1|1|9|10;97|Hypno|1|2|9|10;98|Krabby|1|1|7|2;99|Kingler|1|2|7|2;100|Voltorb|1|1|7|4;101|Electrode|1|2|7|4;102|Exeggcute|1|1|5|3.10;103|Exeggutor|1|2|9|3.10;104|Cubone|1|1|2|8;105|Marowak|1|2|2|8;106|Hitmonlee|1|2|2|6;107|Hitmonchan|1|2|2|6;108|Lickitung|1|1|5|0;109|Koffing|1|1|6|7;110|Weezing|1|2|6|7;111|Rhyhorn|1|1|3|8.12;112|Rhydon|1|2|3|8.12;113|Chansey|1|2|5|0;114|Tangela|1|1|1|3;115|Kangaskhan|1|1|2|0;116|Horsea|1|1|1|2;117|Seadra|1|2|1|2;118|Goldeen|1|1|7|2;119|Seaking|1|2|7|2;120|Staryu|1|1|2|2;121|Starmie|1|2|6|2.10;122|Mr. Mime|1|2|5|10.17;123|Scyther|1|1|4|11.9;124|Jynx|1|2|7|5.10;125|Electabuzz|1|2|9|4;126|Magmar|1|2|7|1;127|Pinsir|1|1|2|11;128|Tauros|1|1|2|0;129|Magikarp|1|1|7|2;130|Gyarados|1|2|1|2.9;131|Lapras|1|1|1|2.5;132|Ditto|1|1|6|0;133|Eevee|1|1|2|0;134|Vaporeon|1|2|1|2;135|Jolteon|1|2|9|4;136|Flareon|1|2|7|1;137|Porygon|1|1|5|0;138|Omanyte|1|1|1|12.2;139|Omastar|1|2|1|12.2;140|Kabuto|1|1|2|12.2;141|Kabutops|1|2|2|12.2;142|Aerodactyl|1|1|6|12.9;143|Snorlax|1|2|0|0;144|Articuno|1|1|1|5.9;145|Zapdos|1|1|9|4.9;146|Moltres|1|1|9|1.9;147|Dratini|1|1|1|14;148|Dragonair|1|2|1|14;149|Dragonite|1|3|2|14.9;150|Mewtwo|1|1|6|10;151|Mew|1|1|5|10;152|Chikorita|2|1|4|3;153|Bayleef|2|2|4|3;154|Meganium|2|3|4|3;155|Cyndaquil|2|1|9|1;156|Quilava|2|2|9|1;157|Typhlosion|2|3|9|1;158|Totodile|2|1|1|2;159|Croconaw|2|2|1|2;160|Feraligatr|2|3|1|2;161|Sentret|2|1|2|0;162|Furret|2|2|2|0;163|Hoothoot|2|1|2|0.9;164|Noctowl|2|2|2|0.9;165|Ledyba|2|1|7|11.9;166|Ledian|2|2|7|11.9;167|Spinarak|2|1|4|11.7;168|Ariados|2|2|7|11.7;169|Crobat|2|3|6|7.9;170|Chinchou|2|1|1|2.4;171|Lanturn|2|2|1|2.4;172|Pichu|2|1|9|4;173|Cleffa|2|1|5|17;174|Igglybuff|2|1|5|0.17;175|Togepi|2|1|8|17;176|Togetic|2|2|8|17.9;177|Natu|2|1|4|10.9;178|Xatu|2|2|4|10.9;179|Mareep|2|1|8|4;180|Flaaffy|2|2|5|4;181|Ampharos|2|3|9|4;182|Bellossom|2|3|4|3;183|Marill|2|2|1|2.17;184|Azumarill|2|3|1|2.17;185|Sudowoodo|2|2|2|12;186|Politoed|2|3|4|2;187|Hoppip|2|1|5|3.9;188|Skiploom|2|2|4|3.9;189|Jumpluff|2|3|1|3.9;190|Aipom|2|1|6|0;191|Sunkern|2|1|9|3;192|Sunflora|2|2|9|3;193|Yanma|2|1|7|11.9;194|Wooper|2|1|1|2.8;195|Quagsire|2|2|1|2.8;196|Espeon|2|2|6|10;197|Umbreon|2|2|0|15;198|Murkrow|2|1|0|15.9;199|Slowking|2|2|5|2.10;200|Misdreavus|2|1|3|13;201|Unown|2|1|0|10;202|Wobbuffet|2|2|1|10;203|Girafarig|2|1|9|0.10;204|Pineco|2|1|3|11;205|Forretress|2|2|6|11.16;206|Dunsparce|2|1|9|0;207|Gligar|2|1|6|8.9;208|Steelix|2|2|3|16.8;209|Snubbull|2|1|5|17;210|Granbull|2|2|6|17;211|Qwilfish|2|1|3|2.7;212|Scizor|2|2|7|11.16;213|Shuckle|2|1|9|11.12;214|Heracross|2|1|1|11.6;215|Sneasel|2|1|0|15.5;216|Teddiursa|2|1|2|0;217|Ursaring|2|2|2|0;218|Slugma|2|1|7|1;219|Magcargo|2|2|7|1.12;220|Swinub|2|1|2|5.8;221|Piloswine|2|2|2|5.8;222|Corsola|2|1|5|2.12;223|Remoraid|2|1|3|2;224|Octillery|2|2|7|2;225|Delibird|2|1|7|5.9;226|Mantine|2|2|6|2.9;227|Skarmory|2|1|3|16.9;228|Houndour|2|1|0|15.1;229|Houndoom|2|2|0|15.1;230|Kingdra|2|3|1|2.14;231|Phanpy|2|1|1|8;232|Donphan|2|2|3|8;233|Porygon2|2|2|7|0;234|Stantler|2|1|2|0;235|Smeargle|2|1|8|0;236|Tyrogue|2|1|6|6;237|Hitmontop|2|2|2|6;238|Smoochum|2|1|5|5.10;239|Elekid|2|1|9|4;240|Magby|2|1|7|1;241|Miltank|2|1|5|0;242|Blissey|2|3|5|0;243|Raikou|2|1|9|4;244|Entei|2|1|2|1;245|Suicune|2|1|1|2;246|Larvitar|2|1|4|12.8;247|Pupitar|2|2|3|12.8;248|Tyranitar|2|3|4|12.15;249|Lugia|2|1|8|10.9;250|Ho-Oh|2|1|7|1.9;251|Celebi|2|1|4|10.3;252|Treecko|3|1|4|3;253|Grovyle|3|2|4|3;254|Sceptile|3|3|4|3;255|Torchic|3|1|7|1;256|Combusken|3|2|7|1.6;257|Blaziken|3|3|7|1.6;258|Mudkip|3|1|1|2;259|Marshtomp|3|2|1|2.8;260|Swampert|3|3|1|2.8;261|Poochyena|3|1|3|15;262|Mightyena|3|2|3|15;263|Zigzagoon|3|1|2|0;264|Linoone|3|2|8|0;265|Wurmple|3|1|7|11;266|Silcoon|3|2|8|11;267|Beautifly|3|3|9|11.9;268|Cascoon|3|2|6|11;269|Dustox|3|3|4|11.7;270|Lotad|3|1|4|2.3;271|Lombre|3|2|4|2.3;272|Ludicolo|3|3|4|2.3;273|Seedot|3|1|2|3;274|Nuzleaf|3|2|2|3.15;275|Shiftry|3|3|2|3.15;276|Taillow|3|1|1|0.9;277|Swellow|3|2|1|0.9;278|Wingull|3|1|8|2.9;279|Pelipper|3|2|9|2.9;280|Ralts|3|1|8|10.17;281|Kirlia|3|2|8|10.17;282|Gardevoir|3|3|8|10.17;283|Surskit|3|1|1|11.2;284|Masquerain|3|2|1|11.9;285|Shroomish|3|1|2|3;286|Breloom|3|2|4|3.6;287|Slakoth|3|1|2|0;288|Vigoroth|3|2|8|0;289|Slaking|3|3|2|0;290|Nincada|3|1|3|11.8;291|Ninjask|3|2|9|11.9;292|Shedinja|3|2|2|11.13;293|Whismur|3|1|5|0;294|Loudred|3|2|1|0;295|Exploud|3|3|1|0;296|Makuhita|3|1|9|6;297|Hariyama|3|2|2|6;298|Azurill|3|1|1|0.17;299|Nosepass|3|1|3|12;300|Skitty|3|1|5|0;301|Delcatty|3|2|6|0;302|Sableye|3|1|6|15.13;303|Mawile|3|1|0|16.17;304|Aron|3|1|3|16.12;305|Lairon|3|2|3|16.12;306|Aggron|3|3|3|16.12;307|Meditite|3|1|1|6.10;308|Medicham|3|2|7|6.10;309|Electrike|3|1|4|4;310|Manectric|3|2|9|4;311|Plusle|3|1|9|4;312|Minun|3|1|9|4;313|Volbeat|3|1|3|11;314|Illumise|3|1|6|11;315|Roselia|3|2|4|3.7;316|Gulpin|3|1|4|7;317|Swalot|3|2|6|7;318|Carvanha|3|1|7|2.15;319|Sharpedo|3|2|1|2.15;320|Wailmer|3|1|1|2;321|Wailord|3|2|1|2;322|Numel|3|1|9|1.8;323|Camerupt|3|2|7|1.8;324|Torkoal|3|1|2|1;325|Spoink|3|1|0|10;326|Grumpig|3|2|6|10;327|Spinda|3|1|2|0;328|Trapinch|3|1|2|8;329|Vibrava|3|2|4|8.14;330|Flygon|3|3|4|8.14;331|Cacnea|3|1|4|3;332|Cacturne|3|2|4|3.15;333|Swablu|3|1|1|0.9;334|Altaria|3|2|1|14.9;335|Zangoose|3|1|8|0;336|Seviper|3|1|0|7;337|Lunatone|3|1|9|12.10;338|Solrock|3|1|7|12.10;339|Barboach|3|1|3|2.8;340|Whiscash|3|2|1|2.8;341|Corphish|3|1|7|2;342|Crawdaunt|3|2|7|2.15;343|Baltoy|3|1|2|8.10;344|Claydol|3|2|0|8.10;345|Lileep|3|1|6|12.3;346|Cradily|3|2|4|12.3;347|Anorith|3|1|3|12.11;348|Armaldo|3|2|3|12.11;349|Feebas|3|1|2|2;350|Milotic|3|2|5|2;351|Castform|3|1|3|0;352|Kecleon|3|1|4|0;353|Shuppet|3|1|0|13;354|Banette|3|2|0|13;355|Duskull|3|1|0|13;356|Dusclops|3|2|0|13;357|Tropius|3|1|4|3.9;358|Chimecho|3|2|1|10;359|Absol|3|1|8|15;360|Wynaut|3|1|1|10;361|Snorunt|3|1|3|5;362|Glalie|3|2|3|5;363|Spheal|3|1|1|5.2;364|Sealeo|3|2|1|5.2;365|Walrein|3|3|1|5.2;366|Clamperl|3|1|1|2;367|Huntail|3|2|1|2;368|Gorebyss|3|2|5|2;369|Relicanth|3|1|3|2.12;370|Luvdisc|3|1|5|2;371|Bagon|3|1|1|14;372|Shelgon|3|2|8|14;373|Salamence|3|3|1|14.9;374|Beldum|3|1|1|16.10;375|Metang|3|2|1|16.10;376|Metagross|3|3|1|16.10;377|Regirock|3|1|2|12;378|Regice|3|1|1|5;379|Registeel|3|1|3|16;380|Latias|3|1|7|14.10;381|Latios|3|1|1|14.10;382|Kyogre|3|1|1|2;383|Groudon|3|1|7|8;384|Rayquaza|3|1|4|14.9;385|Jirachi|3|1|9|16.10;386|Deoxys|3|1|7|10;387|Turtwig|4|1|4|3;388|Grotle|4|2|4|3;389|Torterra|4|3|4|3.8;390|Chimchar|4|1|2|1;391|Monferno|4|2|2|1.6;392|Infernape|4|3|2|1.6;393|Piplup|4|1|1|2;394|Prinplup|4|2|1|2;395|Empoleon|4|3|1|2.16;396|Starly|4|1|2|0.9;397|Staravia|4|2|2|0.9;398|Staraptor|4|3|2|0.9;399|Bidoof|4|1|2|0;400|Bibarel|4|2|2|0.2;401|Kricketot|4|1|7|11;402|Kricketune|4|2|7|11;403|Shinx|4|1|1|4;404|Luxio|4|2|1|4;405|Luxray|4|3|1|4;406|Budew|4|1|4|3.7;407|Roserade|4|3|4|3.7;408|Cranidos|4|1|1|12;409|Rampardos|4|2|1|12;410|Shieldon|4|1|3|12.16;411|Bastiodon|4|2|3|12.16;412|Burmy|4|1|4|11;413|Wormadam|4|2|4|11.3;414|Mothim|4|2|9|11.9;415|Combee|4|1|9|11.9;416|Vespiquen|4|2|9|11.9;417|Pachirisu|4|1|8|4;418|Buizel|4|1|2|2;419|Floatzel|4|2|2|2;420|Cherubi|4|1|5|3;421|Cherrim|4|2|6|3;422|Shellos|4|1|6|2;423|Gastrodon|4|2|6|2.8;424|Ambipom|4|2|6|0;425|Drifloon|4|1|6|13.9;426|Drifblim|4|2|6|13.9;427|Buneary|4|1|2|0;428|Lopunny|4|2|2|0;429|Mismagius|4|2|6|13;430|Honchkrow|4|2|0|15.9;431|Glameow|4|1|3|0;432|Purugly|4|2|3|0;433|Chingling|4|1|9|10;434|Stunky|4|1|6|7.15;435|Skuntank|4|2|6|7.15;436|Bronzor|4|1|4|16.10;437|Bronzong|4|2|4|16.10;438|Bonsly|4|1|2|12;439|Mime Jr.|4|1|5|10.17;440|Happiny|4|1|5|0;441|Chatot|4|1|0|0.9;442|Spiritomb|4|1|6|13.15;443|Gible|4|1|1|14.8;444|Gabite|4|2|1|14.8;445|Garchomp|4|3|1|14.8;446|Munchlax|4|1|0|0;447|Riolu|4|1|1|6;448|Lucario|4|2|1|6.16;449|Hippopotas|4|1|2|8;450|Hippowdon|4|2|2|8;451|Skorupi|4|1|6|7.11;452|Drapion|4|2|6|7.15;453|Croagunk|4|1|1|7.6;454|Toxicroak|4|2|1|7.6;455|Carnivine|4|1|4|3;456|Finneon|4|1|1|2;457|Lumineon|4|2|1|2;458|Mantyke|4|1|1|2.9;459|Snover|4|1|8|3.5;460|Abomasnow|4|2|8|3.5;461|Weavile|4|2|0|15.5;462|Magnezone|4|3|3|4.16;463|Lickilicky|4|2|5|0;464|Rhyperior|4|3|3|8.12;465|Tangrowth|4|2|1|3;466|Electivire|4|3|9|4;467|Magmortar|4|3|7|1;468|Togekiss|4|3|8|17.9;469|Yanmega|4|2|4|11.9;470|Leafeon|4|2|4|3;471|Glaceon|4|2|1|5;472|Gliscor|4|2|6|8.9;473|Mamoswine|4|3|2|5.8;474|Porygon-Z|4|3|7|0;475|Gallade|4|3|8|10.6;476|Probopass|4|2|3|12.16;477|Dusknoir|4|3|0|13;478|Froslass|4|2|8|5.13;479|Rotom|4|1|7|4.13;480|Uxie|4|1|9|10;481|Mesprit|4|1|5|10;482|Azelf|4|1|1|10;483|Dialga|4|1|8|16.14;484|Palkia|4|1|6|2.14;485|Heatran|4|1|2|1.16;486|Regigigas|4|1|8|0;487|Giratina|4|1|0|13.14;488|Cresselia|4|1|9|10;489|Phione|4|1|1|2;490|Manaphy|4|1|1|2;491|Darkrai|4|1|0|15;492|Shaymin|4|1|4|3;493|Arceus|4|1|8|0;494|Victini|5|1|9|10.1;495|Snivy|5|1|4|3;496|Servine|5|2|4|3;497|Serperior|5|3|4|3;498|Tepig|5|1|7|1;499|Pignite|5|2|7|1.6;500|Emboar|5|3|7|1.6;501|Oshawott|5|1|1|2;502|Dewott|5|2|1|2;503|Samurott|5|3|1|2;504|Patrat|5|1|2|0;505|Watchog|5|2|2|0;506|Lillipup|5|1|2|0;507|Herdier|5|2|3|0;508|Stoutland|5|3|3|0;509|Purrloin|5|1|6|15;510|Liepard|5|2|6|15;511|Pansage|5|1|4|3;512|Simisage|5|2|4|3;513|Pansear|5|1|7|1;514|Simisear|5|2|7|1;515|Panpour|5|1|1|2;516|Simipour|5|2|1|2;517|Munna|5|1|5|10;518|Musharna|5|2|5|10;519|Pidove|5|1|3|0.9;520|Tranquill|5|2|3|0.9;521|Unfezant|5|3|3|0.9;522|Blitzle|5|1|0|4;523|Zebstrika|5|2|0|4;524|Roggenrola|5|1|1|12;525|Boldore|5|2|1|12;526|Gigalith|5|3|1|12;527|Woobat|5|1|1|10.9;528|Swoobat|5|2|1|10.9;529|Drilbur|5|1|3|8;530|Excadrill|5|2|3|8.16;531|Audino|5|1|5|0;532|Timburr|5|1|3|6;533|Gurdurr|5|2|3|6;534|Conkeldurr|5|3|2|6;535|Tympole|5|1|1|2;536|Palpitoad|5|2|1|2.8;537|Seismitoad|5|3|1|2.8;538|Throh|5|1|7|6;539|Sawk|5|1|1|6;540|Sewaddle|5|1|9|11.3;541|Swadloon|5|2|4|11.3;542|Leavanny|5|3|9|11.3;543|Venipede|5|1|7|11.7;544|Whirlipede|5|2|3|11.7;545|Scolipede|5|3|7|11.7;546|Cottonee|5|1|4|3.17;547|Whimsicott|5|2|4|3.17;548|Petilil|5|1|4|3;549|Lilligant|5|2|4|3;550|Basculin|5|1|4|2;551|Sandile|5|1|2|8.15;552|Krokorok|5|2|2|8.15;553|Krookodile|5|3|7|8.15;554|Darumaka|5|1|7|1;555|Darmanitan|5|2|7|1;556|Maractus|5|1|4|3;557|Dwebble|5|1|7|11.12;558|Crustle|5|2|7|11.12;559|Scraggy|5|1|9|15.6;560|Scrafty|5|2|7|15.6;561|Sigilyph|5|1|0|10.9;562|Yamask|5|1|0|13;563|Cofagrigus|5|2|9|13;564|Tirtouga|5|1|1|2.12;565|Carracosta|5|2|1|2.12;566|Archen|5|1|9|12.9;567|Archeops|5|2|9|12.9;568|Trubbish|5|1|4|7;569|Garbodor|5|2|4|7;570|Zorua|5|1|3|15;571|Zoroark|5|2|3|15;572|Minccino|5|1|3|0;573|Cinccino|5|2|3|0;574|Gothita|5|1|6|10;575|Gothorita|5|2|6|10;576|Gothitelle|5|3|6|10;577|Solosis|5|1|4|10;578|Duosion|5|2|4|10;579|Reuniclus|5|3|4|10;580|Ducklett|5|1|1|2.9;581|Swanna|5|2|8|2.9;582|Vanillite|5|1|8|5;583|Vanillish|5|2|8|5;584|Vanilluxe|5|3|8|5;585|Deerling|5|1|5|0.3;586|Sawsbuck|5|2|2|0.3;587|Emolga|5|1|8|4.9;588|Karrablast|5|1|1|11;589|Escavalier|5|2|3|11.16;590|Foongus|5|1|8|3.7;591|Amoonguss|5|2|8|3.7;592|Frillish|5|1|8|2.13;593|Jellicent|5|2|8|2.13;594|Alomomola|5|1|5|2;595|Joltik|5|1|9|11.4;596|Galvantula|5|2|9|11.4;597|Ferroseed|5|1|3|3.16;598|Ferrothorn|5|2|3|3.16;599|Klink|5|1|3|16;600|Klang|5|2|3|16;601|Klinklang|5|3|3|16;602|Tynamo|5|1|8|4;603|Eelektrik|5|2|1|4;604|Eelektross|5|3|1|4;605|Elgyem|5|1|1|10;606|Beheeyem|5|2|2|10;607|Litwick|5|1|8|13.1;608|Lampent|5|2|0|13.1;609|Chandelure|5|3|0|13.1;610|Axew|5|1|4|14;611|Fraxure|5|2|4|14;612|Haxorus|5|3|9|14;613|Cubchoo|5|1|8|5;614|Beartic|5|2|8|5;615|Cryogonal|5|1|1|5;616|Shelmet|5|1|7|11;617|Accelgor|5|2|7|11;618|Stunfisk|5|1|2|8.4;619|Mienfoo|5|1|9|6;620|Mienshao|5|2|6|6;621|Druddigon|5|1|7|14;622|Golett|5|1|4|8.13;623|Golurk|5|2|4|8.13;624|Pawniard|5|1|7|15.16;625|Bisharp|5|2|7|15.16;626|Bouffalant|5|1|2|0;627|Rufflet|5|1|8|0.9;628|Braviary|5|2|7|0.9;629|Vullaby|5|1|2|15.9;630|Mandibuzz|5|2|2|15.9;631|Heatmor|5|1|7|1;632|Durant|5|1|3|11.16;633|Deino|5|1|1|15.14;634|Zweilous|5|2|1|15.14;635|Hydreigon|5|3|1|15.14;636|Larvesta|5|1|8|11.1;637|Volcarona|5|2|8|11.1;638|Cobalion|5|1|1|16.6;639|Terrakion|5|1|3|12.6;640|Virizion|5|1|4|3.6;641|Tornadus|5|1|4|9;642|Thundurus|5|1|1|4.9;643|Reshiram|5|1|8|14.1;644|Zekrom|5|1|0|14.4;645|Landorus|5|1|2|8.9;646|Kyurem|5|1|3|14.5;647|Keldeo|5|1|9|2.6;648|Meloetta|5|1|8|0.10;649|Genesect|5|1|6|11.16;650|Chespin|6|1|4|3;651|Quilladin|6|2|4|3;652|Chesnaught|6|3|4|3.6;653|Fennekin|6|1|7|1;654|Braixen|6|2|7|1;655|Delphox|6|3|7|1.10;656|Froakie|6|1|1|2;657|Frogadier|6|2|1|2;658|Greninja|6|3|1|2.15;659|Bunnelby|6|1|2|0;660|Diggersby|6|2|2|0.8;661|Fletchling|6|1|7|0.9;662|Fletchinder|6|2|7|1.9;663|Talonflame|6|3|7|1.9;664|Scatterbug|6|1|0|11;665|Spewpa|6|2|0|11;666|Vivillon|6|3|8|11.9;667|Litleo|6|1|2|1.0;668|Pyroar|6|2|2|1.0;669|Flabébé|6|1|8|17;670|Floette|6|2|8|17;671|Florges|6|3|8|17;672|Skiddo|6|1|2|3;673|Gogoat|6|2|2|3;674|Pancham|6|1|8|6;675|Pangoro|6|2|8|6.15;676|Furfrou|6|1|8|0;677|Espurr|6|1|3|10;678|Meowstic|6|2|1|10;679|Honedge|6|1|2|16.13;680|Doublade|6|2|2|16.13;681|Aegislash|6|3|2|16.13;682|Spritzee|6|1|5|17;683|Aromatisse|6|2|5|17;684|Swirlix|6|1|8|17;685|Slurpuff|6|2|8|17;686|Inkay|6|1|1|15.10;687|Malamar|6|2|1|15.10;688|Binacle|6|1|2|12.2;689|Barbaracle|6|2|2|12.2;690|Skrelp|6|1|2|7.2;691|Dragalge|6|2|2|7.14;692|Clauncher|6|1|1|2;693|Clawitzer|6|2|1|2;694|Helioptile|6|1|9|4.0;695|Heliolisk|6|2|9|4.0;696|Tyrunt|6|1|2|12.14;697|Tyrantrum|6|2|7|12.14;698|Amaura|6|1|1|12.5;699|Aurorus|6|2|1|12.5;700|Sylveon|6|2|5|17;701|Hawlucha|6|1|4|6.9;702|Dedenne|6|1|9|4.17;703|Carbink|6|1|3|12.17;704|Goomy|6|1|6|14;705|Sliggoo|6|2|6|14;706|Goodra|6|3|6|14;707|Klefki|6|1|3|16.17;708|Phantump|6|1|2|13.3;709|Trevenant|6|2|2|13.3;710|Pumpkaboo|6|1|2|13.3;711|Gourgeist|6|2|2|13.3;712|Bergmite|6|1|1|5;713|Avalugg|6|2|1|5;714|Noibat|6|1|6|9.14;715|Noivern|6|2|6|9.14;716|Xerneas|6|1|1|17;717|Yveltal|6|1|7|15.9;718|Zygarde|6|1|4|14.8;719|Diancie|6|1|5|12.17;720|Hoopa|6|1|6|10.13;721|Volcanion|6|1|2|1.2;722|Rowlet|7|1|2|3.9;723|Dartrix|7|2|2|3.9;724|Decidueye|7|3|2|3.13;725|Litten|7|1|7|1;726|Torracat|7|2|7|1;727|Incineroar|7|3|7|1.15;728|Popplio|7|1|1|2;729|Brionne|7|2|1|2;730|Primarina|7|3|1|2.17;731|Pikipek|7|1|0|0.9;732|Trumbeak|7|2|0|0.9;733|Toucannon|7|3|0|0.9;734|Yungoos|7|1|2|0;735|Gumshoos|7|2|2|0;736|Grubbin|7|1|3|11;737|Charjabug|7|2|4|11.4;738|Vikavolt|7|3|1|11.4;739|Crabrawler|7|1|6|6;740|Crabominable|7|2|8|6.5;741|Oricorio|7|1|7|1.9;742|Cutiefly|7|1|9|11.17;743|Ribombee|7|2|9|11.17;744|Rockruff|7|1|2|12;745|Lycanroc|7|2|2|12;746|Wishiwashi|7|1|1|2;747|Mareanie|7|1|1|7.2;748|Toxapex|7|2|1|7.2;749|Mudbray|7|1|2|8;750|Mudsdale|7|2|2|8;751|Dewpider|7|1|4|2.11;752|Araquanid|7|2|4|2.11;753|Fomantis|7|1|5|3;754|Lurantis|7|2|5|3;755|Morelull|7|1|6|3.17;756|Shiinotic|7|2|6|3.17;757|Salandit|7|1|0|7.1;758|Salazzle|7|2|0|7.1;759|Stufful|7|1|5|0.6;760|Bewear|7|2|5|0.6;761|Bounsweet|7|1|6|3;762|Steenee|7|2|6|3;763|Tsareena|7|3|6|3;764|Comfey|7|1|4|17;765|Oranguru|7|1|8|0.10;766|Passimian|7|1|8|6;767|Wimpod|7|1|3|11.2;768|Golisopod|7|2|3|11.2;769|Sandygast|7|1|2|13.8;770|Palossand|7|2|2|13.8;771|Pyukumuku|7|1|0|2;772|Código Cero|7|1|3|0;773|Silvally|7|2|3|0;774|Minior|7|1|2|12.9;775|Komala|7|1|1|0;776|Turtonator|7|1|7|1.14;777|Togedemaru|7|1|3|4.16;778|Mimikyu|7|1|9|13.17;779|Bruxish|7|1|5|2.10;780|Drampa|7|1|8|0.14;781|Dhelmise|7|1|4|13.3;782|Jangmo-o|7|1|3|14;783|Hakamo-o|7|2|3|14.6;784|Kommo-o|7|3|3|14.6;785|Tapu Koko|7|1|9|4.17;786|Tapu Lele|7|1|5|10.17;787|Tapu Bulu|7|1|7|3.17;788|Tapu Fini|7|1|6|2.17;789|Cosmog|7|1|1|10;790|Cosmoem|7|2|1|10;791|Solgaleo|7|3|8|10.16;792|Lunala|7|3|6|10.13;793|Nihilego|7|1|8|12.7;794|Buzzwole|7|1|7|11.6;795|Pheromosa|7|1|8|11.6;796|Xurkitree|7|1|0|4;797|Celesteela|7|1|4|16.9;798|Kartana|7|1|8|3.16;799|Guzzlord|7|1|0|15.14;800|Necrozma|7|1|0|10;801|Magearna|7|1|3|16.17;802|Marshadow|7|1|3|6.13;803|Poipole|7|1|6|7;804|Naganadel|7|2|6|7.14;805|Stakataka|7|1|3|12.16;806|Blacephalon|7|1|8|1.13;807|Zeraora|7|1|9|4;808|Meltan|7|1|3|16;809|Melmetal|7|2|3|16;810|Grookey|8|1|4|3;811|Thwackey|8|2|4|3;812|Rillaboom|8|3|4|3;813|Scorbunny|8|1|8|1;814|Raboot|8|2|3|1;815|Cinderace|8|3|8|1;816|Sobble|8|1|1|2;817|Drizzile|8|2|1|2;818|Inteleon|8|3|1|2;819|Skwovet|8|1|2|0;820|Greedent|8|2|2|0;821|Rookidee|8|1|1|9;822|Corvisquire|8|2|1|9;823|Corviknight|8|3|6|9.16;824|Blipbug|8|1|1|11;825|Dottler|8|2|9|11.10;826|Orbeetle|8|3|7|11.10;827|Nickit|8|1|2|15;828|Thievul|8|2|2|15;829|Gossifleur|8|1|4|3;830|Eldegoss|8|2|4|3;831|Wooloo|8|1|8|0;832|Dubwool|8|2|8|0;833|Chewtle|8|1|4|2;834|Drednaw|8|2|4|2.12;835|Yamper|8|1|9|4;836|Boltund|8|2|9|4;837|Rolycoly|8|1|0|12;838|Carkol|8|2|0|12.1;839|Coalossal|8|3|0|12.1;840|Applin|8|1|4|3.14;841|Flapple|8|2|4|3.14;842|Appletun|8|2|4|3.14;843|Silicobra|8|1|4|8;844|Sandaconda|8|2|4|8;845|Cramorant|8|1|1|9.2;846|Arrokuda|8|1|2|2;847|Barraskewda|8|2|2|2;848|Toxel|8|1|6|4.7;849|Toxtricity|8|2|6|4.7;850|Sizzlipede|8|1|7|1.11;851|Centiskorch|8|2|7|1.11;852|Clobbopus|8|1|2|6;853|Grapploct|8|2|1|6;854|Sinistea|8|1|6|13;855|Polteageist|8|2|6|13;856|Hatenna|8|1|5|10;857|Hattrem|8|2|5|10;858|Hatterene|8|3|5|10.17;859|Impidimp|8|1|5|15.17;860|Morgrem|8|2|5|15.17;861|Grimmsnarl|8|3|6|15.17;862|Obstagoon|8|3|3|15.0;863|Perrserker|8|2|2|16;864|Cursola|8|2|8|13;865|Sirfetch’d|8|2|8|6;866|Mr. Rime|8|3|6|5.10;867|Runerigus|8|2|3|8.13;868|Milcery|8|1|8|17;869|Alcremie|8|2|8|17;870|Falinks|8|1|9|6;871|Pincurchin|8|1|6|4;872|Snom|8|1|8|5.11;873|Frosmoth|8|2|8|5.11;874|Stonjourner|8|1|3|12;875|Eiscue|8|1|1|5;876|Indeedee|8|1|6|10.0;877|Morpeko|8|1|9|4.15;878|Cufant|8|1|9|16;879|Copperajah|8|2|4|16;880|Dracozolt|8|1|4|4.14;881|Arctozolt|8|1|1|4.5;882|Dracovish|8|1|4|2.14;883|Arctovish|8|1|1|2.5;884|Duraludon|8|1|8|16.14;885|Dreepy|8|1|4|14.13;886|Drakloak|8|2|4|14.13;887|Dragapult|8|3|4|14.13;888|Zacian|8|1|1|17;889|Zamazenta|8|1|7|6;890|Eternatus|8|1|6|7.14;891|Kubfu|8|1|3|6;892|Urshifu|8|2|3|6.15;893|Zarude|8|1|4|15.3;894|Regieleki|8|1|9|4;895|Regidrago|8|1|4|14;896|Glastrier|8|1|8|5;897|Spectrier|8|1|0|13;898|Calyrex|8|1|4|10.3;899|Wyrdeer|8|2|3|0.10;900|Kleavor|8|2|2|11.12;901|Ursaluna|8|3|2|8.0;902|Basculegion|8|2|4|2.13;903|Sneasler|8|2|3|6.7;904|Overqwil|8|2|0|15.7;905|Enamorus|8|1|5|17.9;906|Sprigatito|9|1|4|3;907|Floragato|9|2|4|3;908|Meowscarada|9|3|4|3.15;909|Fuecoco|9|1|7|1;910|Crocalor|9|2|7|1;911|Skeledirge|9|3|7|1.13;912|Quaxly|9|1|8|2;913|Quaxwell|9|2|1|2;914|Quaquaval|9|3|1|2.6;915|Lechonk|9|1|3|0;916|Oinkologne|9|2|3|0;917|Tarountula|9|1|8|11;918|Spidops|9|2|4|11;919|Nymble|9|1|3|11;920|Lokix|9|2|3|11.15;921|Pawmi|9|1|9|4;922|Pawmo|9|2|9|4.6;923|Pawmot|9|3|9|4.6;924|Tandemaus|9|1|8|0;925|Maushold|9|2|8|0;926|Fidough|9|1|9|17;927|Dachsbun|9|2|2|17;928|Smoliv|9|1|4|3.0;929|Dolliv|9|2|4|3.0;930|Arboliva|9|3|4|3.0;931|Squawkabilly|9|1|4|0.9;932|Nacli|9|1|2|12;933|Naclstack|9|2|2|12;934|Garganacl|9|3|2|12;935|Charcadet|9|1|7|1;936|Armarouge|9|2|7|1.10;937|Ceruledge|9|2|1|1.13;938|Tadbulb|9|1|9|4;939|Bellibolt|9|2|4|4;940|Wattrel|9|1|0|4.9;941|Kilowattrel|9|2|9|4.9;942|Maschiff|9|1|2|15;943|Mabosstiff|9|2|3|15;944|Shroodle|9|1|3|7.0;945|Grafaiai|9|2|3|7.0;946|Bramblin|9|1|2|3.13;947|Brambleghast|9|2|2|3.13;948|Toedscool|9|1|9|8.3;949|Toedscruel|9|2|0|8.3;950|Klawf|9|1|7|12;951|Capsakid|9|1|4|3;952|Scovillain|9|2|4|3.1;953|Rellor|9|1|2|11;954|Rabsca|9|2|4|11.10;955|Flittle|9|1|9|10;956|Espathra|9|2|9|10;957|Tinkatink|9|1|5|17.16;958|Tinkatuff|9|2|5|17.16;959|Tinkaton|9|3|5|17.16;960|Wiglett|9|1|8|2;961|Wugtrio|9|2|7|2;962|Bombirdier|9|1|8|9.15;963|Finizen|9|1|1|2;964|Palafin|9|2|1|2;965|Varoom|9|1|3|16.7;966|Revavroom|9|2|3|16.7;967|Cyclizar|9|1|4|14.0;968|Orthworm|9|1|5|16;969|Glimmet|9|1|1|12.7;970|Glimmora|9|2|1|12.7;971|Greavard|9|1|8|13;972|Houndstone|9|2|8|13;973|Flamigo|9|1|5|9.6;974|Cetoddle|9|1|8|5;975|Cetitan|9|2|8|5;976|Veluza|9|1|3|2.10;977|Dondozo|9|1|1|2;978|Tatsugiri|9|1|5|14.2;979|Annihilape|9|3|3|6.13;980|Clodsire|9|2|2|7.8;981|Farigiraf|9|2|2|0.10;982|Dudunsparce|9|2|9|0;983|Kingambit|9|3|0|15.16;984|Colmilargo|9|1|6|8.6;985|Colagrito|9|1|5|17.10;986|Furioseta|9|1|3|3.15;987|Melenaleteo|9|1|3|13.17;988|Reptalada|9|1|7|11.6;989|Pelarena|9|1|3|4.8;990|Ferrodada|9|1|3|8.16;991|Ferrosaco|9|1|7|5.2;992|Ferropalmas|9|1|3|6.4;993|Ferrocuello|9|1|1|15.9;994|Ferropolilla|9|1|9|1.7;995|Ferropúas|9|1|4|12.4;996|Frigibax|9|1|3|14.5;997|Arctibax|9|2|3|14.5;998|Baxcalibur|9|3|3|14.5;999|Gimmighoul|9|1|2|13;1000|Gholdengo|9|2|9|16.13;1001|Wo-Chien|9|1|2|15.3;1002|Chien-Pao|9|1|8|15.5;1003|Ting-Lu|9|1|2|15.8;1004|Chi-Yu|9|1|7|15.1;1005|Bramaluna|9|1|4|14.15;1006|Ferropaladín|9|1|8|17.6;1007|Koraidon|9|1|7|6.14;1008|Miraidon|9|1|1|4.14;1009|Ondulagua|9|1|1|2.14;1010|Ferroverdor|9|1|4|3.10;1011|Dipplin|9|2|4|3.14;1012|Poltchageist|9|1|4|3.13;1013|Sinistcha|9|2|4|3.13;1014|Okidogi|9|1|0|7.6;1015|Munkidori|9|1|0|7.10;1016|Fezandipiti|9|1|0|7.17;1017|Ogerpon|9|1|4|3;1018|Archaludon|9|2|8|16.14;1019|Hydrapple|9|3|4|3.14;1020|Flamariete|9|1|2|1.14;1021|Electrofuria|9|1|9|4.14;1022|Ferromole|9|1|3|12.10;1023|Ferrotesta|9|1|1|16.10;1024|Terapagos|9|1|1|0;1025|Pecharunt|9|1|6|7.13";
+
+const TYPES = [
+  ['NOR','Normal','#A8A77A'],['FUE','Fuego','#EE8130'],['AGU','Agua','#6390F0'],['PLA','Planta','#7AC74C'],
+  ['ELÉ','Eléctrico','#F7D02C'],['HIE','Hielo','#96D9D6'],['LUC','Lucha','#C22E28'],['VEN','Veneno','#A33EA1'],
+  ['TIE','Tierra','#E2BF65'],['VOL','Volador','#A98FF3'],['PSÍ','Psíquico','#F95587'],['BIC','Bicho','#A6B91A'],
+  ['ROC','Roca','#B6A136'],['FAN','Fantasma','#735797'],['DRA','Dragón','#6F35FC'],['SIN','Siniestro','#705746'],
+  ['ACE','Acero','#B7B7CE'],['HAD','Hada','#D685AD']
+].map(([a,n,c])=>({a,n,c}));
+const COLORS = [
+  ['Negro','#2b2b2b'],['Azul','#3b6fe0'],['Marrón','#8b5a2b'],['Gris','#9a9a9a'],['Verde','#3fae4a'],
+  ['Rosa','#f28cc0'],['Morado','#8e5bd6'],['Rojo','#e03a3a'],['Blanco','#f4f4f4'],['Amarillo','#f5d130']
+].map(([n,c])=>({n,c}));
+
+const DEX = RAW.split(';').map(r=>{
+  const [id,name,gen,ph,col,ty] = r.split('|');
+  return {id:+id, name, gen:+gen, ph:+ph, col:+col, ty:ty.split('.').map(Number)};
+});
+const BY = {}; DEX.forEach(p=>BY[p.id]=p);
+const norm = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const BYNAME = {}; DEX.forEach(p=>BYNAME[norm(p.name)]=p);
+
+/* Sprites: repo oficial PokeAPI/sprites (cambiá esta función para usar otro repo) */
+const sprite = id => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`;
+
+function findPoke(q){
+  q = q.trim(); if(!q) return null;
+  let m = q.match(/#\s*(\d+)\s*$/) || q.match(/^\s*#?(\d+)\s*$/);
+  if(m) return BY[+m[1]] || null;
+  const n = norm(q);
+  if(BYNAME[n]) return BYNAME[n];
+  const starts = DEX.filter(p=>norm(p.name).startsWith(n));
+  return starts.length===1 ? starts[0] : null;
+}
+
+/* ─────────── ESTADO + SINCRONIZACIÓN ENTRE PESTAÑAS ─────────── */
+const KEY = 'pokeduelo-state-v1';
+const fresh = () => ({names:['JUGADOR 1','JUGADOR 2'], secret:[null,null], guesses:[[],[]], v:0});
+let S = fresh();
+try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.guesses) S = s; }catch(e){}
+
+/* Pegá aquí la URL y la clave anónima de tu proyecto Supabase. La clave anon
+   puede estar en el navegador; no uses nunca la service_role en este archivo. */
+const SUPABASE_CONFIG = {
+  url: '',
+  anonKey: ''
+};
+const pageParams = new URLSearchParams(location.search);
+const playerParam = Number(pageParams.get('player'));
+const playerView = playerParam === 1 || playerParam === 2 ? playerParam - 1 : null;
+const spectatorView = pageParams.get('view') === 'spectator';
+let gameId = pageParams.get('game') || '';
+let db = null;
+
+let bc = null;
+try{ bc = new BroadcastChannel('pokeduelo'); bc.onmessage = e => receive(e.data); }catch(e){}
+addEventListener('storage', e => { if(e.key===KEY && e.newValue){ try{ receive(JSON.parse(e.newValue)); }catch(_){} } });
+
+function commit(){
+  S.v = Date.now();
+  try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){}
+  try{ bc && bc.postMessage(S); }catch(e){}
+  saveOnline();
+  renderAll();
+}
+function receive(ns){ if(!ns || ns.v <= S.v) return; S = ns; renderAll(); }
+
+/* ─────────── SONIDO ─────────── */
+let audioCtx = null;
+let soundMuted = localStorage.getItem('pokeduelo-muted') === '1';
+function tone(freq, start, duration, volume=.045, type='square'){
+  if(soundMuted) return;
+  try{
+    audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
+    audioCtx.resume();
+    const osc = audioCtx.createOscillator(), gain = audioCtx.createGain();
+    osc.type = type; osc.frequency.setValueAtTime(freq, start);
+    gain.gain.setValueAtTime(0.0001, start);
+    gain.gain.exponentialRampToValueAtTime(volume, start+.012);
+    gain.gain.exponentialRampToValueAtTime(0.0001, start+duration);
+    osc.connect(gain).connect(audioCtx.destination);
+    osc.start(start); osc.stop(start+duration+.02);
+  }catch(_){}
+}
+function playReveal(win){
+  if(soundMuted) return;
+  try{
+    audioCtx ||= new (window.AudioContext || window.webkitAudioContext)();
+    const now = audioCtx.currentTime + .015;
+    tone(392, now, .10, .055); // aparición del Pokémon
+    [523, 659, 784, 659].forEach((note, i)=>tone(note, now+((i+1)*CELL_DELAY/1000), .07, .035));
+    const end = now + (6*CELL_DELAY+520)/1000;
+    if(win){ [523,659,784,1047].forEach((note,i)=>tone(note,end+i*.07,.20,.055,'triangle')); }
+    else { tone(294,end,.16,.045,'triangle'); tone(220,end+.13,.25,.04,'triangle'); }
+  }catch(_){}
+}
+function updateSoundButton(){
+  const button = document.getElementById('btn-sound');
+  if(button) { button.textContent = soundMuted ? '🔇' : '🔊'; button.title = soundMuted ? 'Activar efectos' : 'Silenciar efectos'; }
+}
+
+function onlineReady(){ return !!(SUPABASE_CONFIG.url && SUPABASE_CONFIG.anonKey && window.supabase); }
+function saveOnline(){
+  if(!db || !gameId) return;
+  db.from('pokeduelo_games').upsert({id:gameId, state:S}).then(({error})=>{
+    if(error) setOnlineMessage(`No se pudo guardar: ${error.message}`);
+  });
+}
+function setOnlineMessage(text){
+  const box = document.getElementById('online-session');
+  if(box && text) { box.hidden=false; box.textContent=text; }
+}
+function shareUrl(player){
+  const url = new URL(location.href);
+  url.searchParams.set('game', gameId);
+  url.searchParams.set('player', player);
+  return url.href;
+}
+function viewUrl(view){
+  const url = new URL(location.href);
+  if(gameId) url.searchParams.set('game', gameId);
+  url.searchParams.delete('player');
+  url.searchParams.delete('view');
+  if(view === 'j1') url.searchParams.set('player', '1');
+  if(view === 'j2') url.searchParams.set('player', '2');
+  if(view === 'spectator') url.searchParams.set('view', 'spectator');
+  return url.href;
+}
+function showViewMenu(){
+  const menu = document.getElementById('view-menu');
+  if(!menu) return;
+  const active = spectatorView ? 'spectator' : playerView === 0 ? 'j1' : playerView === 1 ? 'j2' : 'admin';
+  menu.innerHTML = [['admin','Admin'],['j1','Jugador 1'],['j2','Jugador 2'],['spectator','Espectador']]
+    .map(([view,label])=>`<a class="${active===view?'active':''}" href="${viewUrl(view)}">${label}</a>`).join('');
+}
+function showShareLinks(){
+  const box = document.getElementById('online-session');
+  if(!box || !gameId) return;
+  box.hidden = false;
+  box.innerHTML = `<h3>Partida en línea</h3><p>Compartí una vista con cada persona:</p>
+    <p><a href="${viewUrl('j1')}" target="_blank" rel="noopener">Jugador 1</a> · <a href="${viewUrl('j2')}" target="_blank" rel="noopener">Jugador 2</a></p>
+    <p><a href="${viewUrl('admin')}" target="_blank" rel="noopener">Admin</a> · <a href="${viewUrl('spectator')}" target="_blank" rel="noopener">Espectador / grabación</a></p>`;
+}
+async function initOnline(){
+  if(!onlineReady()) return;
+  db = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
+  if(!gameId){
+    gameId = crypto.randomUUID();
+    const url = new URL(location.href);
+    url.searchParams.set('game', gameId);
+    history.replaceState(null, '', url);
+  }
+  const {data, error} = await db.from('pokeduelo_games').select('state').eq('id', gameId).maybeSingle();
+  if(error){ setOnlineMessage(`No se pudo abrir la partida: ${error.message}`); return; }
+  if(data && data.state){ S = data.state; renderAll(); }
+  else {
+    const {error: createError} = await db.from('pokeduelo_games').insert({id:gameId, state:S});
+    if(createError){ setOnlineMessage(`No se pudo crear la partida: ${createError.message}`); return; }
+  }
+  db.channel(`pokeduelo-${gameId}`)
+    .on('postgres_changes', {event:'UPDATE', schema:'public', table:'pokeduelo_games', filter:`id=eq.${gameId}`}, payload=>receive(payload.new.state))
+    .subscribe();
+  if(playerView === null && !spectatorView) showShareLinks();
+  showViewMenu();
+}
+
+/* ─────────── JUEGO ─────────── */
+const LABELS = ['TIPOS','GEN','FASE','COLOR'];
+const CELL_DELAY = 330;
+const lastShown = [undefined, undefined]; // undefined = primer render, sin animación
+const lastAnimatedGuess = [null, null];
+const halves = [...document.querySelectorAll('.half')];
+
+/* La tabla original sólo trae 1/2/3. La cadena oficial permite distinguir
+   correctamente una especie sin evoluciones (ÚNICA) de una de FASE 1. */
+const phaseCache = new Map();
+const phaseLoading = new Map();
+let phaseRefreshTimer = null;
+const fallbackPhase = p => `FASE ${p.ph}`;
+const phaseFor = p => phaseCache.get(p.id) || fallbackPhase(p);
+function loadPhase(p){
+  if(!p || phaseCache.has(p.id) || phaseLoading.has(p.id)) return;
+  const job = fetch(`https://pokeapi.co/api/v2/pokemon-species/${p.id}`)
+    .then(r=>{ if(!r.ok) throw new Error('species'); return r.json(); })
+    .then(s=>fetch(s.evolution_chain.url))
+    .then(r=>{ if(!r.ok) throw new Error('chain'); return r.json(); })
+    .then(data=>{
+      let total = 0, depth = null;
+      const walk = (node, level) => {
+        total++;
+        const id = +(node.species.url.match(/\/(\d+)\/$/) || [])[1];
+        if(id === p.id) depth = level;
+        node.evolves_to.forEach(next=>walk(next, level+1));
+      };
+      walk(data.chain, 1);
+      return total === 1 ? 'ÚNICA' : `FASE ${depth || p.ph}`;
+    })
+    .catch(()=>fallbackPhase(p))
+    .then(value=>{
+      phaseCache.set(p.id, value);
+      phaseLoading.delete(p.id);
+      /* No redibujar durante un reveal: hacerlo antes cancelaba la animación. */
+      clearTimeout(phaseRefreshTimer);
+      phaseRefreshTimer = setTimeout(()=>{
+        lastShown[0] = lastShown[1] = undefined;
+        renderAll();
+      }, 3300);
+    });
+  phaseLoading.set(p.id, job);
+}
+
+function evaluate(p, t){
+  /* Cada tipo ocupa su propia casilla; un hueco de tipo secundario queda neutro. */
+  const types = [0,1].map(slot=>{
+    const ty = p.ty[slot];
+    if(ty === undefined) return {ok:null, html:`<div class="none outline">—</div>`};
+    return {ok:t.ty.includes(ty), html:`<div class="tb" style="background:${TYPES[ty].c}">${TYPES[ty].n.toUpperCase()}</div>`};
+  });
+  const same = (a,b,html) => ({ok:a===b, html});
+  return {types, cells:[
+    same(p.gen,t.gen,`<div class="big outline">${p.gen}</div>`),
+    same(phaseFor(p),phaseFor(t),`<div class="big outline">${phaseFor(p)}</div>`),
+    {ok:p.col===t.col, html:`<div class="sw" style="background:${COLORS[p.col].c}"></div><div class="cname outline">${COLORS[p.col].n.toUpperCase()}</div>`}
+  ]};
+}
+
+function renderSideHorizontal(i, t, guesses, animate){
+  const h = halves[i];
+  const player = `JUGADOR ${i+1}`;
+  if(!t){
+    h.classList.remove('win');
+    h.innerHTML = `<div class="wordle-board"><div class="wordle-head"><h3 class="outline">${player}</h3><span>ESPERANDO SECRETO</span></div><div class="wordle-empty outline">El rival todavía no fijó su Pokémon secreto.</div></div>`;
+    return;
+  }
+  const visibleGuesses = guesses.slice(-5).reverse();
+  const solved = guesses.length > 0 && guesses[guesses.length-1] === t.id;
+  h.classList.toggle('win', solved);
+  const rows = visibleGuesses.map((id,index)=>{
+    const p = BY[id], result = evaluate(p,t), latest = index === 0;
+    loadPhase(p); loadPhase(t);
+    const cell = c => `<div class="wordle-cell ${c.ok===null?'empty':c.ok?'ok':'no'}">${c.html}</div>`;
+    return `<div class="wordle-row ${latest?'recent':''} ${p.id===t.id?'solved':''}${latest && animate?' new':''}">
+      <div class="wordle-poke"><img src="${sprite(p.id)}" alt="${p.name}"></div>
+      <div class="wordle-types">${result.types.map(cell).join('')}</div>
+      ${result.cells.map(cell).join('')}
+    </div>`;
+  }).join('');
+  const count = `${guesses.length} INTENTO${guesses.length===1?'':'S'}`;
+  h.innerHTML = `<div class="wordle-board"><div class="wordle-head"><h3 class="outline">${player}</h3><span>${count}</span></div>
+    <div class="wordle-labels"><span>POKÉMON</span><span>TIPOS</span><span>GEN</span><span>FASE</span><span>COLOR</span></div>
+    <div class="wordle-list">${rows || '<div class="wordle-empty outline">Hacé tu primer intento.</div>'}</div></div>`;
+  const list = h.querySelector('.wordle-list');
+  if(list) list.scrollTop = 0;
+}
+
+function renderSide(i){
+  const h = halves[i];
+  const g = S.guesses[i];
+  const t = BY[S.secret[1-i]];
+  const p = t && g.length ? BY[g[g.length-1]] : null;
+  const key = p ? `${g.length}:${p.id}:${t.id}` : null;
+  const guessKey = p ? `${g.length}:${p.id}` : null;
+  if(key === lastShown[i]) return;
+  /* Cada intento nuevo —incluido el primero— revela el Pokémon y las casillas. */
+  const animate = !!p && guessKey !== lastAnimatedGuess[i];
+  lastShown[i] = key;
+  if(p) lastAnimatedGuess[i] = guessKey;
+  else lastAnimatedGuess[i] = null;
+
+  if(document.body.classList.contains('horizontal')){
+    renderSideHorizontal(i, t, g, animate);
+    if(animate) playReveal(p.id === t.id);
+    return;
+  }
+
+  const win = p && p.id === t.id;
+  /* Acierto y error comparten exactamente el mismo ritmo de revelación. */
+  const revealRate = 1;
+  const a = (cls, d) => animate ? ` ${cls}" style="animation-delay:${d * revealRate}ms;animation-duration:620ms` : '';
+  h.classList.toggle('win', !!win);
+  if(animate) playReveal(win);
+
+  if(!p){
+    h.innerHTML = `<div class="tile sprite empty"><div class="q outline">?</div></div>
+      <div class="checks"><div class="check types"><div class="lbl outline">TIPOS</div><div class="type-tiles"><div class="tile empty"></div><div class="tile empty"></div></div></div>${LABELS.slice(1).map(l=>`<div class="check"><div class="lbl outline">${l}</div><div class="tile empty"></div></div>`).join('')}</div>`;
+    return;
+  }
+  loadPhase(p); loadPhase(t);
+  const result = evaluate(p,t);
+  h.innerHTML = `<div class="tile sprite${animate?' anim-pop':''}" style="background:color-mix(in srgb, ${TYPES[p.ty[0]].c} 40%, #fff);${animate?'animation-duration:480ms':''}"><img src="${sprite(p.id)}" alt=""></div>
+    <div class="checks"><div class="check types"><div class="lbl outline">TIPOS</div><div class="type-tiles">${result.types.map((c,k)=>`<div class="tile ${c.ok===null?'empty':c.ok?'ok':'no'}${a('anim-flip',(k+1)*CELL_DELAY)}">${c.html}</div>`).join('')}</div></div>${result.cells.map((c,k)=>`<div class="check"><div class="lbl outline">${LABELS[k+1]}</div>
+      <div class="tile ${c.ok?'ok':'no'}${a('anim-flip',(k+3)*CELL_DELAY)}">${c.html}</div></div>`).join('')}</div>
+    <div class="resultbanner ${win?'win':'try'} outline${animate?' anim':''}" style="animation-delay:${(6*CELL_DELAY+520)*revealRate}ms;${animate?'animation-duration:720ms':''}">${win?'¡ADIVINADO!':'¡SEGUÍ INTENTANDO!'}</div>`;
+}
+
+/* ─────────── PANEL ─────────── */
+const dl = document.getElementById('dex');
+dl.innerHTML = DEX.map(p=>`<option value="${p.name} #${p.id}">`).join('');
+
+const psides = document.getElementById('panel-sides');
+psides.innerHTML = [0,1].map(i=>`
+  <section data-p="${i}">
+    <h3>Jugador ${i+1} · ${i?'derecha':'izquierda'}</h3>
+    <label>Pokémon secreto de J${i+1} (lo adivina J${2-i})</label>
+    <div class="line"><input data-k="secret" list="dex" placeholder="Nombre o número"><button data-k="set-secret">Fijar</button></div>
+    <div class="card hide" data-k="card" title="Clic para ver/ocultar"></div>
+    <label>Intento de J${i+1}</label>
+    <div class="line"><input data-k="guess" list="dex" placeholder="Nombre o número + Enter"><button class="primary" data-k="go">Validar</button></div>
+    <div class="msg" data-k="msg"></div>
+    <div class="btns"><button data-k="undo">↶ Deshacer</button><button data-k="clear">Borrar intentos</button></div>
+    <ol data-k="hist"></ol>
+  </section>`).join('');
+
+/* En un enlace de jugador se muestra sólo su sección del panel. */
+if(playerView !== null){
+  [...psides.querySelectorAll('section')].forEach((section, i)=>section.hidden = i !== playerView);
+  document.getElementById('online-session').hidden = true;
+}
+if(spectatorView) document.body.classList.add('nopanel', 'clean');
+
+const q = (i,k) => psides.querySelector(`[data-p="${i}"] [data-k="${k}"]`);
+const say = (i,txt) => { q(i,'msg').textContent = txt; };
+
+[0,1].forEach(i=>{
+  const setSecret = ()=>{
+    const p = findPoke(q(i,'secret').value);
+    if(!p){ say(i,'Pokémon secreto no encontrado.'); return; }
+    S.secret[i] = p.id; q(i,'secret').value=''; say(i,''); commit();
+  };
+  q(i,'set-secret').onclick = setSecret;
+  q(i,'secret').addEventListener('keydown', e=>{ if(e.key==='Enter') setSecret(); });
+
+  const go = ()=>{
+    const p = findPoke(q(i,'guess').value);
+    if(!p){ say(i,'Pokémon no encontrado.'); return; }
+    if(!S.secret[1-i]){ say(i,`Falta fijar el secreto de J${2-i}.`); return; }
+    if(S.guesses[i].includes(p.id)){ say(i,`${p.name} ya fue intentado.`); return; }
+    S.guesses[i].push(p.id); q(i,'guess').value=''; say(i,''); commit();
+  };
+  q(i,'go').onclick = go;
+  q(i,'guess').addEventListener('keydown', e=>{ if(e.key==='Enter') go(); });
+
+  q(i,'undo').onclick = ()=>{ S.guesses[i].pop(); commit(); };
+  q(i,'clear').onclick = ()=>{ if(confirm(`¿Borrar los intentos de J${i+1}?`)){ S.guesses[i]=[]; commit(); } };
+  q(i,'card').onclick = e=> e.currentTarget.classList.toggle('hide');
+});
+
+document.getElementById('btn-reset').onclick = ()=>{
+  if(!confirm('¿Iniciar una nueva ronda? Se borran los secretos e intentos de ambos jugadores.')) return;
+  S = fresh();
+  lastShown[0] = lastShown[1] = undefined;
+  lastAnimatedGuess[0] = lastAnimatedGuess[1] = null;
+  commit();
+};
+document.getElementById('btn-sound').onclick = ()=>{
+  soundMuted = !soundMuted;
+  localStorage.setItem('pokeduelo-muted', soundMuted ? '1' : '0');
+  updateSoundButton();
+};
+document.getElementById('btn-popout').onclick = ()=> window.open(location.href.split('#')[0] + '#panel', '_blank');
+
+function renderPanel(i){
+  const s = BY[S.secret[i]], card = q(i,'card');
+  card.style.display = s ? '' : 'none';
+  if(s) card.innerHTML = `<div class="inner" style="display:flex;gap:10px;align-items:center">
+      <img src="${sprite(s.id)}" alt=""><div><b>${s.name}</b> #${s.id}<br>
+      <small>${s.ty.map(t=>TYPES[t].n).join(' / ')} · Gen ${s.gen} · Fase ${s.ph} · ${COLORS[s.col].n}</small></div></div>`;
+  const t = BY[S.secret[1-i]];
+  q(i,'hist').innerHTML = S.guesses[i].map(id=>{
+    const p = BY[id];
+    const result = t ? evaluate(p,t) : null;
+    const chips = result ? [...result.types, ...result.cells].map(c=>c.ok===null?'⬜':c.ok?'🟩':'🟥').join('') + (p.id===t.id?' 🏆':'') : '';
+    return `<li>${p.name}<span class="chips">${chips}</span></li>`;
+  }).join('');
+}
+
+function renderAll(){ [0,1].forEach(i=>{ renderSide(i); renderPanel(i); }); }
+
+/* ─────────── ESCALA / TECLAS ─────────── */
+const reel = document.getElementById('reel');
+function reelHeight(){
+  const cs = getComputedStyle(document.documentElement);
+  return ['--h-banner-top','--h-cams','--h-game','--h-banner-bottom'].reduce((a,v)=>a+parseFloat(cs.getPropertyValue(v)),0);
+}
+function fit(){
+  if(document.body.classList.contains('rec')){ reel.style.transform=''; return; }
+  const s = Math.min(innerWidth/1080, innerHeight/reelHeight(), 1);
+  reel.style.transform = `translate(-50%,-50%) scale(${s})`;
+}
+addEventListener('resize', fit);
+
+addEventListener('keydown', e=>{
+  if(e.target.closest('input,textarea') || e.ctrlKey || e.metaKey || e.altKey) return;
+  const k = e.key.toLowerCase();
+  if(k==='r'){ document.body.classList.toggle('rec'); scrollTo(0,0); fit(); }
+  else if(k==='g'){ document.body.classList.toggle('clean'); }
+  else if(k==='p'){ document.body.classList.toggle('nopanel'); }
+});
+
+if(location.hash === '#panel') document.body.classList.add('panel-only');
+fit();
+updateSoundButton();
+renderAll();
+initOnline();
+</script>
+</body>
+</html>
