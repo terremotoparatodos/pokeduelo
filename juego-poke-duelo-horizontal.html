@@ -291,8 +291,8 @@ try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.guesses) S = s; 
 /* Pegá aquí la URL y la clave anónima de tu proyecto Supabase. La clave anon
    puede estar en el navegador; no uses nunca la service_role en este archivo. */
 const SUPABASE_CONFIG = {
-  url: '',
-  anonKey: ''
+  url: 'https://avelmhozelpzyqrwynos.supabase.co',
+  anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2ZWxtaG96ZWxwenlxcnd5bm9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5MTI5NzAsImV4cCI6MjEwNDQ4ODk3MH0.JR8_MyTsoIiEv6Wyop9BLZZVXQYpVSM5j0h7blfoaEc'
 };
 const pageParams = new URLSearchParams(location.search);
 const playerParam = Number(pageParams.get('player'));
