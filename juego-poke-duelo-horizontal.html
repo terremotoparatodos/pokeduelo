@@ -133,7 +133,18 @@ body.horizontal .wordle-labels{padding:0 10px 8px; font-size:12px; letter-spacin
 body.horizontal .wordle-labels span:first-child{text-align:center}
 body.horizontal .wordle-list{display:flex; flex-direction:column; gap:9px; overflow:hidden; padding:3px 5px 8px}
 body.horizontal .wordle-row{min-height:64px; padding:7px 9px; box-sizing:border-box; background:linear-gradient(100deg,rgba(7,17,24,.72),rgba(12,31,35,.54)); border:2px solid rgba(255,255,255,.4); border-radius:10px; box-shadow:0 5px 10px rgba(0,0,0,.22)}
-body.horizontal .wordle-row.solved{border-color:var(--gold); box-shadow:0 0 0 3px rgba(255,216,74,.28),0 6px 14px rgba(0,0,0,.3)}
+/* Acierto: marco dorado. En el reveal aparece recién al final, junto con el cartel, para no adelantar el resultado. */
+body.horizontal .wordle-row.solved{border-color:var(--gold); box-shadow:inset 0 0 0 5px var(--gold),inset 0 0 26px rgba(255,216,74,.5),0 8px 18px rgba(0,0,0,.36)}
+body.horizontal .wordle-row.solved.new{animation:winFrame .6s both; animation-delay:var(--reveal-end)}
+/* Marco interior: la lista recorta todo lo que sale de la fila. */
+@keyframes winFrame{
+  0%{border-color:rgba(255,255,255,.72); box-shadow:inset 0 0 0 0 var(--gold),inset 0 0 0 rgba(255,216,74,0),0 8px 18px rgba(0,0,0,.36)}
+  60%{border-color:var(--gold); box-shadow:inset 0 0 0 7px var(--gold),inset 0 0 40px rgba(255,216,74,.75),0 8px 18px rgba(0,0,0,.36)}
+  100%{border-color:var(--gold); box-shadow:inset 0 0 0 5px var(--gold),inset 0 0 26px rgba(255,216,74,.5),0 8px 18px rgba(0,0,0,.36)}}
+/* Cartel de resultado del último intento, como en la versión vertical. */
+body.horizontal .wordle-result{font-size:24px; letter-spacing:.04em; white-space:nowrap; color:#fff}
+body.horizontal .wordle-result.win{color:var(--gold); font-size:30px}
+body.horizontal .wordle-result.anim{animation:bannerIn .72s both; animation-delay:var(--reveal-end)}
 body.horizontal .wordle-poke{width:58px; height:58px; margin:auto; display:flex; align-items:center; justify-content:center; overflow:hidden; box-sizing:border-box; border:3px solid var(--ink); border-radius:8px; background:rgba(255,255,255,.25); box-shadow:inset 0 2px 0 rgba(255,255,255,.34),0 3px 0 rgba(0,0,0,.3)}
 body.horizontal .wordle-poke img{width:68px; height:68px; image-rendering:pixelated; flex:none}
 body.horizontal .wordle-row.recent{min-height:112px; border-color:rgba(255,255,255,.72); background:linear-gradient(100deg,rgba(10,32,42,.92),rgba(21,62,57,.76)); box-shadow:0 8px 18px rgba(0,0,0,.36)}
@@ -498,7 +509,9 @@ function renderSideHorizontal(i, t, guesses, animate){
     </div>`;
   }).join('');
   const count = `${guesses.length} INTENTO${guesses.length===1?'':'S'}`;
-  h.innerHTML = `<div class="wordle-board"><div class="wordle-head"><h3 class="outline">${player}</h3><span>${count}</span></div>
+  const result = guesses.length ? `<div class="wordle-result ${solved?'win':'try'} outline${animate?' anim':''}">${solved?'¡ADIVINADO!':'¡SEGUÍ INTENTANDO!'}</div>` : '';
+  /* Mismo momento que el cartel y el sonido final de la versión vertical. */
+  h.innerHTML = `<div class="wordle-board" style="--reveal-end:${6*CELL_DELAY+520}ms"><div class="wordle-head"><h3 class="outline">${player}</h3>${result}<span>${count}</span></div>
     <div class="wordle-labels"><span>POKÉMON</span><span>TIPOS</span>${catLabels().map(l=>`<span>${l}</span>`).join('')}</div>
     <div class="wordle-list">${rows || '<div class="wordle-empty outline">Hacé tu primer intento.</div>'}</div></div>`;
   const list = h.querySelector('.wordle-list');
