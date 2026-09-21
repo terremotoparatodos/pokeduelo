@@ -1,0 +1,1026 @@
+﻿#,nombre,fase,color_2_prueba,altura_m,peso_kg,mega,forma_regional,metodo,mejor_stat,detalle_pokeapi
+1,Bulbasaur,FASE 1,ninguno,0.7,6.9,su evolución,no,NINGUNO,At. Esp. + Def. Esp.,
+2,Ivysaur,FASE 2,ninguno,1.0,13.0,su evolución,no,NIVEL,At. Esp. + Def. Esp.,level-up version_group=red-blue min_level=16
+3,Venusaur,FASE 3,Rosa,2.0,100.0,sí,no,NIVEL,At. Esp. + Def. Esp.,level-up version_group=red-blue min_level=32
+4,Charmander,FASE 1,Amarillo,0.6,8.5,su evolución,no,NINGUNO,Velocidad,
+5,Charmeleon,FASE 2,Blanco,1.1,19.0,su evolución,no,NIVEL,At. Esp. + Velocidad,level-up version_group=red-blue min_level=16
+6,Charizard,FASE 3,Azul,1.7,90.5,sí,no,NIVEL,At. Esp.,level-up version_group=red-blue min_level=36
+7,Squirtle,FASE 1,Rojo,0.5,9.0,su evolución,no,NINGUNO,Defensa,
+8,Wartortle,FASE 2,Blanco,1.0,22.5,su evolución,no,NIVEL,Defensa + Def. Esp.,level-up version_group=red-blue min_level=16
+9,Blastoise,FASE 3,Amarillo,1.6,85.5,sí,no,NIVEL,Def. Esp.,level-up version_group=red-blue min_level=36
+10,Caterpie,FASE 1,Amarillo,0.3,2.9,no,no,NINGUNO,PS + Velocidad,
+11,Metapod,FASE 2,ninguno,0.7,9.9,no,no,NIVEL,Defensa,level-up version_group=red-blue min_level=7
+12,Butterfree,FASE 3,Azul,1.1,32.0,no,no,NIVEL,At. Esp.,level-up version_group=red-blue min_level=10
+13,Weedle,FASE 1,Rojo,0.3,3.2,su evolución,no,NINGUNO,Velocidad,
+14,Kakuna,FASE 2,Marrón,0.6,10.0,su evolución,no,NIVEL,Defensa,level-up version_group=red-blue min_level=7
+15,Beedrill,FASE 3,Blanco,1.0,29.5,sí,no,NIVEL,Ataque,level-up version_group=red-blue min_level=10
+16,Pidgey,FASE 1,Amarillo,0.3,1.8,su evolución,no,NINGUNO,Velocidad,
+17,Pidgeotto,FASE 2,Amarillo,1.1,30.0,su evolución,no,NIVEL,Velocidad,level-up version_group=red-blue min_level=18
+18,Pidgeot,FASE 3,Rojo,1.5,39.5,sí,no,NIVEL,Velocidad,level-up version_group=red-blue min_level=36
+19,Rattata,FASE 1,Rosa,0.3,3.5,no,Alola,NINGUNO,Velocidad,
+20,Raticate,FASE 2,Amarillo,0.7,18.5,no,Alola,NIVEL,Velocidad,level-up version_group=red-blue min_level=20
+21,Spearow,FASE 1,Rojo,0.3,2.0,no,no,NINGUNO,Velocidad,
+22,Fearow,FASE 2,Rojo,1.2,38.0,no,no,NIVEL,Velocidad,level-up version_group=red-blue min_level=20
+23,Ekans,FASE 1,Rosa,2.0,6.9,no,no,NINGUNO,Ataque,
+24,Arbok,FASE 2,ninguno,3.5,65.0,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=22
+25,Pikachu,FASE 2,ninguno,0.4,6.0,su evolución,no,AMISTAD,Velocidad,level-up version_group=gold-silver min_happiness=220
+26,Raichu,FASE 3,Rojo,0.8,30.0,sí,Alola,PIEDRA,Velocidad,use-item version_group=red-blue item=thunder-stone required_pokemon_form=pikachu
+27,Sandshrew,FASE 1,Blanco,0.6,12.0,no,Alola,NINGUNO,Defensa,
+28,Sandslash,FASE 2,Marrón,1.0,29.5,no,Alola,NIVEL,Defensa,level-up version_group=red-blue min_level=22
+29,Nidoran♀,FASE 1,ninguno,0.4,7.0,no,no,NINGUNO,PS,
+30,Nidorina,FASE 2,ninguno,0.8,20.0,no,no,NIVEL,PS,level-up version_group=red-blue min_level=16
+31,Nidoqueen,FASE 3,Amarillo,1.3,60.0,no,no,PIEDRA,Ataque,use-item version_group=red-blue item=moon-stone
+32,Nidoran♂,FASE 1,Rosa,0.5,9.0,no,no,NINGUNO,Ataque,
+33,Nidorino,FASE 2,ninguno,0.9,19.5,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=16
+34,Nidoking,FASE 3,Rosa,1.4,62.0,no,no,PIEDRA,Ataque,use-item version_group=red-blue item=moon-stone
+35,Clefairy,FASE 2,Blanco,0.6,7.5,su evolución,no,AMISTAD,PS,level-up version_group=gold-silver min_happiness=160
+36,Clefable,FASE 3,Marrón,1.3,40.0,sí,no,PIEDRA,PS + At. Esp.,use-item version_group=red-blue item=moon-stone
+37,Vulpix,FASE 1,Rojo,0.6,9.9,no,Alola,NINGUNO,Def. Esp. + Velocidad,
+38,Ninetales,FASE 2,Rojo,1.1,19.9,no,Alola,PIEDRA,Def. Esp. + Velocidad,use-item version_group=red-blue item=fire-stone
+39,Jigglypuff,FASE 2,ninguno,0.5,5.5,no,no,AMISTAD,PS,level-up version_group=gold-silver min_happiness=160
+40,Wigglytuff,FASE 3,Blanco,1.0,12.0,no,no,PIEDRA,PS,use-item version_group=red-blue item=moon-stone
+41,Zubat,FASE 1,Azul,0.8,7.5,no,no,NINGUNO,Velocidad,
+42,Golbat,FASE 2,Rosa,1.6,55.0,no,no,NIVEL,Velocidad,level-up version_group=red-blue min_level=22
+43,Oddish,FASE 1,Verde,0.5,5.4,no,no,NINGUNO,At. Esp.,
+44,Gloom,FASE 2,Marrón,0.8,8.6,no,no,NIVEL,At. Esp.,level-up version_group=red-blue min_level=21
+45,Vileplume,FASE 3,Rosa,1.2,18.6,no,no,PIEDRA,At. Esp.,use-item version_group=red-blue item=leaf-stone
+46,Paras,FASE 1,ninguno,0.3,5.4,no,no,NINGUNO,Ataque,
+47,Parasect,FASE 2,ninguno,1.0,29.5,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=24
+48,Venonat,FASE 1,Rojo,1.0,30.0,no,no,NINGUNO,PS,
+49,Venomoth,FASE 2,Blanco,1.5,12.5,no,no,NIVEL,At. Esp. + Velocidad,level-up version_group=red-blue min_level=31
+50,Diglett,FASE 1,Rojo,0.2,0.8,no,Alola,NINGUNO,Velocidad,
+51,Dugtrio,FASE 2,Rojo,0.7,33.3,no,Alola,NIVEL,Velocidad,level-up version_group=red-blue min_level=26
+52,Meowth,FASE 1,Rojo,0.4,4.2,no,Alola + Galar,NINGUNO,Velocidad,
+53,Persian,FASE 2,ninguno,1.0,32.0,no,Alola,NIVEL,Velocidad,level-up version_group=red-blue min_level=28
+54,Psyduck,FASE 1,Rojo,0.8,19.6,no,no,NINGUNO,At. Esp.,
+55,Golduck,FASE 2,ninguno,1.7,76.6,no,no,NIVEL,At. Esp.,level-up version_group=red-blue min_level=33
+56,Mankey,FASE 1,Blanco,0.5,28.0,no,no,NINGUNO,Ataque,
+57,Primeape,FASE 2,Blanco,1.0,32.0,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=28
+58,Growlithe,FASE 1,Amarillo,0.7,19.0,no,Hisui,NINGUNO,Ataque + At. Esp.,
+59,Arcanine,FASE 2,Blanco,1.9,155.0,no,Hisui,PIEDRA,Ataque,use-item version_group=red-blue item=fire-stone
+60,Poliwag,FASE 1,Blanco,0.6,12.4,no,no,NINGUNO,Velocidad,
+61,Poliwhirl,FASE 2,Blanco,1.0,20.0,no,no,NIVEL,Velocidad,level-up version_group=red-blue min_level=25
+62,Poliwrath,FASE 3,Blanco,1.3,54.0,no,no,PIEDRA,Ataque + Defensa,use-item version_group=red-blue item=water-stone
+63,Abra,FASE 1,Amarillo,0.9,19.5,su evolución,no,NINGUNO,At. Esp.,
+64,Kadabra,FASE 2,Amarillo,1.3,56.5,su evolución,no,NIVEL,At. Esp.,level-up version_group=red-blue min_level=16
+65,Alakazam,FASE 3,Amarillo,1.5,48.0,sí,no,INTERCAMBIO,At. Esp.,trade version_group=red-blue
+66,Machop,FASE 1,Verde,0.8,19.5,no,no,NINGUNO,Ataque,
+67,Machoke,FASE 2,Morado,1.5,70.5,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=28
+68,Machamp,FASE 3,ninguno,1.6,130.0,no,no,INTERCAMBIO,Ataque,trade version_group=red-blue
+69,Bellsprout,FASE 1,Amarillo,0.7,4.0,su evolución,no,NINGUNO,Ataque,
+70,Weepinbell,FASE 2,Amarillo,1.0,6.4,su evolución,no,NIVEL,Ataque,level-up version_group=red-blue min_level=21
+71,Victreebel,FASE 3,Amarillo,1.7,15.5,sí,no,PIEDRA,Ataque,use-item version_group=red-blue item=leaf-stone
+72,Tentacool,FASE 1,Rojo,0.9,45.5,no,no,NINGUNO,Def. Esp.,
+73,Tentacruel,FASE 2,Gris,1.6,55.0,no,no,NIVEL,Def. Esp.,level-up version_group=red-blue min_level=30
+74,Geodude,FASE 1,Amarillo,0.4,20.0,no,Alola,NINGUNO,Defensa,
+75,Graveler,FASE 2,Gris,1.0,105.0,no,Alola,NIVEL,Defensa,level-up version_group=red-blue min_level=25
+76,Golem,FASE 3,Amarillo,1.4,300.0,no,Alola,INTERCAMBIO,Defensa,trade version_group=red-blue
+77,Ponyta,FASE 1,Rojo,1.0,30.0,no,Galar,NINGUNO,Velocidad,
+78,Rapidash,FASE 2,Rojo,1.7,95.0,no,Galar,NIVEL,Velocidad,level-up version_group=red-blue min_level=40
+79,Slowpoke,FASE 1,Blanco,1.2,36.0,su evolución,Galar,NINGUNO,PS,
+80,Slowbro,FASE 2,Gris,1.6,78.5,sí,Galar,NIVEL,Defensa,level-up version_group=red-blue min_level=37
+81,Magnemite,FASE 1,Verde,0.3,6.0,no,no,NINGUNO,At. Esp.,
+82,Magneton,FASE 2,Blanco,1.0,60.0,no,no,NIVEL,At. Esp.,level-up version_group=red-blue min_level=30
+83,Farfetch’d,FASE 1,Amarillo,0.8,15.0,no,Galar,NINGUNO,Ataque,
+84,Doduo,FASE 1,ninguno,1.4,39.2,no,no,NINGUNO,Ataque,
+85,Dodrio,FASE 2,Rojo,1.8,85.2,no,no,NIVEL,Ataque + Velocidad,level-up version_group=red-blue min_level=31
+86,Seel,FASE 1,Azul,1.1,90.0,no,no,NINGUNO,Def. Esp.,
+87,Dewgong,FASE 2,ninguno,1.7,120.0,no,no,NIVEL,Def. Esp.,level-up version_group=red-blue min_level=34
+88,Grimer,FASE 1,Rosa,0.9,30.0,no,Alola,NINGUNO,PS + Ataque,
+89,Muk,FASE 2,Rosa,1.2,30.0,no,Alola,NIVEL,PS + Ataque,level-up version_group=red-blue min_level=38
+90,Shellder,FASE 1,Rojo,0.3,4.0,no,no,NINGUNO,Defensa,
+91,Cloyster,FASE 2,Rosa,1.5,132.5,no,no,PIEDRA,Defensa,use-item version_group=red-blue item=water-stone
+92,Gastly,FASE 1,Rosa,1.3,0.1,su evolución,no,NINGUNO,At. Esp.,
+93,Haunter,FASE 2,Rojo,1.6,0.1,su evolución,no,NIVEL,At. Esp.,level-up version_group=red-blue min_level=25
+94,Gengar,FASE 3,ninguno,1.5,40.5,sí,no,INTERCAMBIO,At. Esp.,trade version_group=red-blue
+95,Onix,FASE 1,Blanco,8.8,210.0,su evolución,no,NINGUNO,Defensa,
+96,Drowzee,FASE 1,Marrón,1.0,32.4,no,no,NINGUNO,Def. Esp.,
+97,Hypno,FASE 2,ninguno,1.6,75.6,no,no,NIVEL,Def. Esp.,level-up version_group=red-blue min_level=26
+98,Krabby,FASE 1,Marrón,0.4,6.5,no,no,NINGUNO,Ataque,
+99,Kingler,FASE 2,Marrón,1.3,60.0,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=28
+100,Voltorb,FASE 1,Gris,0.5,10.4,no,Hisui,NINGUNO,Velocidad,
+101,Electrode,FASE 2,Blanco,1.2,66.6,no,Hisui,NIVEL,Velocidad,level-up version_group=red-blue min_level=30
+102,Exeggcute,FASE 1,Blanco,0.4,2.5,no,no,NINGUNO,Defensa,
+103,Exeggutor,FASE 2,Verde,2.0,120.0,no,Alola,PIEDRA,At. Esp.,use-item version_group=red-blue item=leaf-stone
+104,Cubone,FASE 1,Blanco,0.4,6.5,no,no,NINGUNO,Defensa,
+105,Marowak,FASE 2,Blanco,1.0,45.0,no,Alola,NIVEL,Defensa,level-up version_group=red-blue min_level=28
+106,Hitmonlee,FASE 2,Rojo,1.5,49.8,no,no,NIVEL,Ataque,level-up version_group=gold-silver min_level=20 relative_physical_stats=1
+107,Hitmonchan,FASE 2,Gris,1.4,50.2,no,no,NIVEL,Def. Esp.,level-up version_group=gold-silver min_level=20 relative_physical_stats=-1
+108,Lickitung,FASE 1,Rojo,1.2,65.5,no,no,NINGUNO,PS,
+109,Koffing,FASE 1,Amarillo,0.6,1.0,no,no,NINGUNO,Defensa,
+110,Weezing,FASE 2,Amarillo,1.2,9.5,no,Galar,NIVEL,Defensa,level-up version_group=red-blue min_level=35
+111,Rhyhorn,FASE 1,Azul,1.0,115.0,no,no,NINGUNO,Defensa,
+112,Rhydon,FASE 2,ninguno,1.9,120.0,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=42
+113,Chansey,FASE 2,Rojo,1.1,34.6,no,no,OBJETO,PS,level-up version_group=diamond-pearl held_item=oval-stone time_of_day=day
+114,Tangela,FASE 1,ninguno,1.0,35.0,no,no,NINGUNO,Defensa,
+115,Kangaskhan,ÚNICA,Rojo,2.2,80.0,sí,no,NINGUNO,PS,
+116,Horsea,FASE 1,Amarillo,0.4,8.0,no,no,NINGUNO,Defensa + At. Esp.,
+117,Seadra,FASE 2,Amarillo,1.2,25.0,no,no,NIVEL,Defensa + At. Esp.,level-up version_group=red-blue min_level=32
+118,Goldeen,FASE 1,Blanco,0.6,15.0,no,no,NINGUNO,Ataque,
+119,Seaking,FASE 2,Blanco,1.3,39.0,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=33
+120,Staryu,FASE 1,Amarillo,0.8,34.5,su evolución,no,NINGUNO,Velocidad,
+121,Starmie,FASE 2,Amarillo,1.1,80.0,sí,no,PIEDRA,Velocidad,use-item version_group=red-blue item=water-stone
+122,Mr. Mime,FASE 2,Blanco,1.3,54.5,no,Galar,MOVIMIENTO,Def. Esp.,level-up version_group=diamond-pearl known_move=mimic
+123,Scyther,FASE 1,Blanco,1.5,56.0,su evolución,no,NINGUNO,Ataque,
+124,Jynx,FASE 2,Amarillo,1.4,40.6,no,no,NIVEL,At. Esp.,level-up version_group=gold-silver min_level=30
+125,Electabuzz,FASE 2,ninguno,1.1,30.0,no,no,NIVEL,Velocidad,level-up version_group=gold-silver min_level=30
+126,Magmar,FASE 2,Amarillo,1.3,44.5,no,no,NIVEL,At. Esp.,level-up version_group=gold-silver min_level=30
+127,Pinsir,ÚNICA,Blanco,1.5,55.0,sí,no,NINGUNO,Ataque,
+128,Tauros,ÚNICA,Rojo,1.4,88.4,no,Paldea,NINGUNO,Velocidad,
+129,Magikarp,FASE 1,Blanco,0.9,10.0,su evolución,no,NINGUNO,Velocidad,
+130,Gyarados,FASE 2,Blanco,6.5,235.0,sí,no,NIVEL,Ataque,level-up version_group=red-blue min_level=20
+131,Lapras,ÚNICA,Blanco,2.5,220.0,no,no,NINGUNO,PS,
+132,Ditto,ÚNICA,ninguno,0.3,4.0,no,no,NINGUNO,NO TIENE,
+133,Eevee,FASE 1,Rojo,0.3,6.5,no,no,NINGUNO,Def. Esp.,
+134,Vaporeon,FASE 2,ninguno,1.0,29.0,no,no,PIEDRA,PS,use-item version_group=red-blue item=water-stone required_pokemon_form=eevee
+135,Jolteon,FASE 2,ninguno,0.8,24.5,no,no,PIEDRA,Velocidad,use-item version_group=red-blue item=thunder-stone required_pokemon_form=eevee
+136,Flareon,FASE 2,Amarillo,0.9,25.0,no,no,PIEDRA,Ataque,use-item version_group=red-blue item=fire-stone required_pokemon_form=eevee
+137,Porygon,FASE 1,Azul,0.8,36.5,no,no,NINGUNO,At. Esp.,
+138,Omanyte,FASE 1,Marrón,0.4,7.5,no,no,NINGUNO,Defensa,
+139,Omastar,FASE 2,Amarillo,1.0,35.0,no,no,NIVEL,Defensa,level-up version_group=red-blue min_level=40
+140,Kabuto,FASE 1,Rojo,0.5,11.5,no,no,NINGUNO,Defensa,
+141,Kabutops,FASE 2,Rojo,1.3,40.5,no,no,NIVEL,Ataque,level-up version_group=red-blue min_level=40
+142,Aerodactyl,ÚNICA,Azul,1.8,59.0,sí,no,NINGUNO,Velocidad,
+143,Snorlax,FASE 2,Blanco,2.1,460.0,no,no,AMISTAD,PS,level-up version_group=diamond-pearl min_happiness=160
+144,Articuno,ÚNICA,ninguno,1.7,55.4,no,Galar,NINGUNO,Def. Esp.,
+145,Zapdos,ÚNICA,ninguno,1.6,52.6,no,Galar,NINGUNO,At. Esp.,
+146,Moltres,ÚNICA,Rojo,2.0,60.0,no,Galar,NINGUNO,At. Esp.,
+147,Dratini,FASE 1,Blanco,1.8,3.3,su evolución,no,NINGUNO,Ataque,
+148,Dragonair,FASE 2,Blanco,4.0,16.5,su evolución,no,NIVEL,Ataque,level-up version_group=red-blue min_level=30
+149,Dragonite,FASE 3,Rojo,2.2,210.0,sí,no,NIVEL,Ataque,level-up version_group=red-blue min_level=55
+150,Mewtwo,ÚNICA,Blanco,2.0,122.0,sí,no,NINGUNO,At. Esp.,
+151,Mew,ÚNICA,ninguno,0.4,4.0,no,no,NINGUNO,NO TIENE,
+152,Chikorita,FASE 1,ninguno,0.9,6.4,su evolución,no,NINGUNO,Defensa + Def. Esp.,
+153,Bayleef,FASE 2,Amarillo,1.2,15.8,su evolución,no,NIVEL,Defensa + Def. Esp.,level-up version_group=gold-silver min_level=16
+154,Meganium,FASE 3,Rojo,1.8,100.5,sí,no,NIVEL,Defensa + Def. Esp.,level-up version_group=gold-silver min_level=32
+155,Cyndaquil,FASE 1,Rojo,0.5,7.9,no,no,NINGUNO,Velocidad,
+156,Quilava,FASE 2,Rojo,0.9,19.0,no,no,NIVEL,At. Esp. + Velocidad,level-up version_group=legends-arceus min_level=17 region=hisui
+157,Typhlosion,FASE 3,Azul,1.7,79.5,no,Hisui,NIVEL,At. Esp.,level-up version_group=gold-silver min_level=36
+158,Totodile,FASE 1,ninguno,0.6,9.5,su evolución,no,NINGUNO,Ataque,
+159,Croconaw,FASE 2,Amarillo,1.1,25.0,su evolución,no,NIVEL,Ataque + Defensa,level-up version_group=gold-silver min_level=18
+160,Feraligatr,FASE 3,ninguno,2.3,88.8,sí,no,NIVEL,Ataque,level-up version_group=gold-silver min_level=30
+161,Sentret,FASE 1,ninguno,0.8,6.0,no,no,NINGUNO,Ataque,
+162,Furret,FASE 2,Amarillo,1.8,32.5,no,no,NIVEL,Velocidad,level-up version_group=gold-silver min_level=15
+163,Hoothoot,FASE 1,Rojo,0.7,21.2,no,no,NINGUNO,PS,
+164,Noctowl,FASE 2,Amarillo,1.6,40.8,no,no,NIVEL,PS,level-up version_group=gold-silver min_level=20
+165,Ledyba,FASE 1,Amarillo,1.0,10.8,no,no,NINGUNO,Def. Esp.,
+166,Ledian,FASE 2,Amarillo,1.4,35.6,no,no,NIVEL,Def. Esp.,level-up version_group=gold-silver min_level=18
+167,Spinarak,FASE 1,Amarillo,0.5,8.5,no,no,NINGUNO,Ataque,
+168,Ariados,FASE 2,Amarillo,1.1,33.5,no,no,NIVEL,Ataque,level-up version_group=gold-silver min_level=22
+169,Crobat,FASE 3,Azul,1.8,75.0,no,no,AMISTAD,Velocidad,level-up version_group=gold-silver min_happiness=160
+170,Chinchou,FASE 1,Amarillo,0.5,12.0,no,no,NINGUNO,PS,
+171,Lanturn,FASE 2,Amarillo,1.2,22.5,no,no,NIVEL,PS,level-up version_group=gold-silver min_level=27
+172,Pichu,FASE 1,Negro,0.3,2.0,su evolución,no,NINGUNO,Velocidad,
+173,Cleffa,FASE 1,Blanco,0.3,3.0,su evolución,no,NINGUNO,Def. Esp.,
+174,Igglybuff,FASE 1,ninguno,0.3,1.0,no,no,NINGUNO,PS,
+175,Togepi,FASE 1,Gris,0.3,1.5,no,no,NINGUNO,Defensa + Def. Esp.,
+176,Togetic,FASE 2,Gris,0.6,3.2,no,no,AMISTAD,Def. Esp.,level-up version_group=gold-silver min_happiness=160
+177,Natu,FASE 1,Amarillo,0.2,2.0,no,no,NINGUNO,At. Esp. + Velocidad,
+178,Xatu,FASE 2,Blanco,1.5,15.0,no,no,NIVEL,At. Esp. + Velocidad,level-up version_group=gold-silver min_level=25
+179,Mareep,FASE 1,Azul,0.6,7.8,su evolución,no,NINGUNO,At. Esp.,
+180,Flaaffy,FASE 2,Blanco,0.8,13.3,su evolución,no,NIVEL,At. Esp.,level-up version_group=gold-silver min_level=15
+181,Ampharos,FASE 3,Blanco,1.4,61.5,sí,no,NIVEL,At. Esp.,level-up version_group=gold-silver min_level=30
+182,Bellossom,FASE 3,Rojo,0.4,5.8,no,no,PIEDRA,Def. Esp.,use-item version_group=gold-silver item=sun-stone
+183,Marill,FASE 2,Blanco,0.4,8.5,no,no,AMISTAD,PS,level-up version_group=ruby-sapphire min_happiness=160
+184,Azumarill,FASE 3,Blanco,0.8,28.5,no,no,NIVEL,PS,level-up version_group=gold-silver min_level=18
+185,Sudowoodo,FASE 2,Amarillo,1.2,38.0,no,no,MOVIMIENTO,Defensa,level-up version_group=diamond-pearl known_move=mimic
+186,Politoed,FASE 3,Amarillo,1.1,33.9,no,no,INTERCAMBIO,Def. Esp.,trade version_group=gold-silver held_item=kings-rock
+187,Hoppip,FASE 1,Verde,0.4,0.5,no,no,NINGUNO,Def. Esp.,
+188,Skiploom,FASE 2,Amarillo,0.6,1.0,no,no,NIVEL,Velocidad,level-up version_group=gold-silver min_level=18
+189,Jumpluff,FASE 3,Blanco,0.8,3.0,no,no,NIVEL,Velocidad,level-up version_group=gold-silver min_level=27
+190,Aipom,FASE 1,Amarillo,0.8,11.5,no,no,NINGUNO,Velocidad,
+191,Sunkern,FASE 1,Verde,0.3,1.8,no,no,NINGUNO,NO TIENE,
+192,Sunflora,FASE 2,Verde,0.8,8.5,no,no,PIEDRA,At. Esp.,use-item version_group=gold-silver item=sun-stone
+193,Yanma,FASE 1,Blanco,1.2,38.0,no,no,NINGUNO,Velocidad,
+194,Wooper,FASE 1,Rosa,0.4,8.5,no,Paldea,NINGUNO,PS,
+195,Quagsire,FASE 2,ninguno,1.4,75.0,no,no,NIVEL,PS,level-up version_group=gold-silver min_level=20
+196,Espeon,FASE 2,Rosa,0.9,26.5,no,no,AMISTAD,At. Esp.,level-up version_group=gold-silver min_happiness=160 time_of_day=day required_pokemon_form=eevee
+197,Umbreon,FASE 2,Azul,1.0,27.0,no,no,AMISTAD,Def. Esp.,level-up version_group=gold-silver min_happiness=160 time_of_day=night required_pokemon_form=eevee
+198,Murkrow,FASE 1,Azul,0.5,2.1,no,no,NINGUNO,Velocidad,
+199,Slowking,FASE 2,Blanco,2.0,79.5,no,Galar,INTERCAMBIO,Def. Esp.,trade version_group=gold-silver held_item=kings-rock
+200,Misdreavus,FASE 1,Azul,0.7,1.0,no,no,NINGUNO,NO TIENE,
+201,Unown,ÚNICA,Gris,0.5,5.0,no,no,NINGUNO,Ataque + At. Esp.,
+202,Wobbuffet,FASE 2,ninguno,1.3,28.5,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=15
+203,Girafarig,FASE 1,Negro,1.5,41.5,no,no,NINGUNO,At. Esp.,
+204,Pineco,FASE 1,Azul,0.6,7.2,no,no,NINGUNO,Defensa,
+205,Forretress,FASE 2,Rojo,1.2,125.8,no,no,NIVEL,Defensa,level-up version_group=gold-silver min_level=31
+206,Dunsparce,FASE 1,Azul,1.5,14.0,no,no,NINGUNO,PS,
+207,Gligar,FASE 1,Rosa,1.1,64.8,no,no,NINGUNO,Defensa,
+208,Steelix,FASE 2,Azul,9.2,400.0,sí,no,INTERCAMBIO,Defensa,trade version_group=gold-silver held_item=metal-coat
+209,Snubbull,FASE 1,Rojo,0.6,7.8,no,no,NINGUNO,Ataque,
+210,Granbull,FASE 2,Rosa,1.4,48.7,no,no,NIVEL,Ataque,level-up version_group=gold-silver min_level=23
+211,Qwilfish,FASE 1,Amarillo,0.5,3.9,no,Hisui,NINGUNO,Ataque,
+212,Scizor,FASE 2,Blanco,1.8,118.0,sí,no,INTERCAMBIO,Ataque,trade version_group=gold-silver held_item=metal-coat
+213,Shuckle,ÚNICA,Marrón,0.6,20.5,no,no,NINGUNO,Defensa + Def. Esp.,
+214,Heracross,ÚNICA,ninguno,1.5,54.0,sí,no,NINGUNO,Ataque,
+215,Sneasel,FASE 1,Azul,0.9,28.0,no,Hisui,NINGUNO,Velocidad,
+216,Teddiursa,FASE 1,Rojo,0.6,8.8,no,no,NINGUNO,Ataque,
+217,Ursaring,FASE 2,ninguno,1.8,125.8,no,no,NIVEL,Ataque,level-up version_group=gold-silver min_level=30
+218,Slugma,FASE 1,ninguno,0.7,35.0,no,no,NINGUNO,At. Esp.,
+219,Magcargo,FASE 2,Negro,0.8,55.0,no,no,NIVEL,Defensa,level-up version_group=gold-silver min_level=38
+220,Swinub,FASE 1,ninguno,0.4,6.5,no,no,NINGUNO,NO TIENE,
+221,Piloswine,FASE 2,ninguno,1.1,55.8,no,no,NIVEL,PS + Ataque,level-up version_group=gold-silver min_level=33
+222,Corsola,FASE 1,ninguno,0.6,5.0,no,Galar,NINGUNO,Defensa + Def. Esp.,
+223,Remoraid,FASE 1,Verde,0.6,12.0,no,no,NINGUNO,NO TIENE,
+224,Octillery,FASE 2,Marrón,0.9,28.5,no,no,NIVEL,Ataque + At. Esp.,level-up version_group=gold-silver min_level=25
+225,Delibird,ÚNICA,Blanco,0.9,16.0,no,no,NINGUNO,Velocidad,
+226,Mantine,FASE 2,Azul,2.1,220.0,no,no,ESPECIAL,Def. Esp.,level-up version_group=diamond-pearl party_species=remoraid
+227,Skarmory,ÚNICA,Azul,1.7,50.5,sí,no,NINGUNO,Defensa,
+228,Houndour,FASE 1,ninguno,0.6,10.8,su evolución,no,NINGUNO,At. Esp.,
+229,Houndoom,FASE 2,Blanco,1.4,35.0,sí,no,NIVEL,At. Esp.,level-up version_group=gold-silver min_level=24
+230,Kingdra,FASE 3,ninguno,1.8,152.0,no,no,INTERCAMBIO,NO TIENE,trade version_group=gold-silver held_item=dragon-scale
+231,Phanpy,FASE 1,ninguno,0.5,33.5,no,no,NINGUNO,PS,
+232,Donphan,FASE 2,Blanco,1.1,120.0,no,no,NIVEL,Ataque + Defensa,level-up version_group=gold-silver min_level=25
+233,Porygon2,FASE 2,Azul,0.6,32.5,no,no,INTERCAMBIO,At. Esp.,trade version_group=gold-silver held_item=up-grade
+234,Stantler,FASE 1,Amarillo,1.4,71.2,no,no,NINGUNO,Ataque,
+235,Smeargle,ÚNICA,Amarillo,1.2,58.0,no,no,NINGUNO,Velocidad,
+236,Tyrogue,FASE 1,Rosa,0.7,21.0,no,no,NINGUNO,NO TIENE,
+237,Hitmontop,FASE 2,Amarillo,1.4,48.0,no,no,NIVEL,Def. Esp.,level-up version_group=gold-silver min_level=20
+238,Smoochum,FASE 1,Amarillo,0.4,6.0,no,no,NINGUNO,At. Esp.,
+239,Elekid,FASE 1,ninguno,0.6,23.5,no,no,NINGUNO,Velocidad,
+240,Magby,FASE 1,ninguno,0.7,21.4,no,no,NINGUNO,Velocidad,
+241,Miltank,ÚNICA,Negro,1.2,75.5,no,no,NINGUNO,Defensa,
+242,Blissey,FASE 3,Blanco,1.5,46.8,no,no,AMISTAD,PS,level-up version_group=gold-silver min_happiness=160
+243,Raikou,ÚNICA,Gris,1.9,178.0,no,no,NINGUNO,At. Esp. + Velocidad,
+244,Entei,ÚNICA,Blanco,2.1,198.0,no,no,NINGUNO,PS + Ataque,
+245,Suicune,ÚNICA,Morado,2.0,187.0,no,no,NINGUNO,Defensa + Def. Esp.,
+246,Larvitar,FASE 1,ninguno,0.6,72.0,su evolución,no,NINGUNO,Ataque,
+247,Pupitar,FASE 2,Azul,1.2,152.0,su evolución,no,NIVEL,Ataque,level-up version_group=gold-silver min_level=30
+248,Tyranitar,FASE 3,ninguno,2.0,202.0,sí,no,NIVEL,Ataque,level-up version_group=gold-silver min_level=55
+249,Lugia,ÚNICA,Azul,5.2,216.0,no,no,NINGUNO,Def. Esp.,
+250,Ho-Oh,ÚNICA,Amarillo,3.8,199.0,no,no,NINGUNO,Def. Esp.,
+251,Celebi,ÚNICA,Blanco,0.6,5.0,no,no,NINGUNO,NO TIENE,
+252,Treecko,FASE 1,ninguno,0.5,5.0,su evolución,no,NINGUNO,Velocidad,
+253,Grovyle,FASE 2,Rojo,0.9,21.6,su evolución,no,NIVEL,Velocidad,level-up version_group=ruby-sapphire min_level=16
+254,Sceptile,FASE 3,ninguno,1.7,52.2,sí,no,NIVEL,Velocidad,level-up version_group=ruby-sapphire min_level=36
+255,Torchic,FASE 1,Amarillo,0.4,2.5,su evolución,no,NINGUNO,At. Esp.,
+256,Combusken,FASE 2,Amarillo,0.9,19.5,su evolución,no,NIVEL,Ataque + At. Esp.,level-up version_group=ruby-sapphire min_level=16
+257,Blaziken,FASE 3,Amarillo,1.9,52.0,sí,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=36
+258,Mudkip,FASE 1,Rojo,0.4,7.6,su evolución,no,NINGUNO,Ataque,
+259,Marshtomp,FASE 2,Verde,0.7,28.0,su evolución,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=16
+260,Swampert,FASE 3,Negro,1.5,81.9,sí,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=36
+261,Poochyena,FASE 1,Negro,0.5,13.6,no,no,NINGUNO,Ataque,
+262,Mightyena,FASE 2,Negro,1.0,37.0,no,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=18
+263,Zigzagoon,FASE 1,Blanco,0.4,17.5,no,Galar,NINGUNO,Velocidad,
+264,Linoone,FASE 2,Marrón,0.5,32.5,no,Galar,NIVEL,Velocidad,level-up version_group=ruby-sapphire min_level=20
+265,Wurmple,FASE 1,Marrón,0.3,3.6,no,no,NINGUNO,PS + Ataque,
+266,Silcoon,FASE 2,ninguno,0.6,10.0,no,no,NIVEL,Defensa,"level-up version_group=x-y min_level=7 condition_expression={'expression': 'EC 16 >> 10 % 4 <=', 'percentage_chance': 50, 'variables': [{'name': 'encryption-constant', 'url': 'https://pokeapi.co/api/v2/evolution-variable/1/'}]}"
+267,Beautifly,FASE 3,Gris,1.0,28.4,no,no,NIVEL,At. Esp.,level-up version_group=ruby-sapphire min_level=10
+268,Cascoon,FASE 2,Blanco,0.7,11.5,no,no,NIVEL,Defensa,"level-up version_group=x-y min_level=7 condition_expression={'expression': 'EC 16 >> 10 % 5 >=', 'percentage_chance': 50, 'variables': [{'name': 'encryption-constant', 'url': 'https://pokeapi.co/api/v2/evolution-variable/1/'}]}"
+269,Dustox,FASE 3,Morado,1.2,31.6,no,no,NIVEL,Def. Esp.,level-up version_group=ruby-sapphire min_level=10
+270,Lotad,FASE 1,Azul,0.5,2.6,no,no,NINGUNO,Def. Esp.,
+271,Lombre,FASE 2,ninguno,1.2,32.5,no,no,NIVEL,Def. Esp.,level-up version_group=ruby-sapphire min_level=14
+272,Ludicolo,FASE 3,Amarillo,1.5,55.0,no,no,PIEDRA,Def. Esp.,use-item version_group=ruby-sapphire item=water-stone
+273,Seedot,FASE 1,Gris,0.5,4.0,no,no,NINGUNO,Defensa,
+274,Nuzleaf,FASE 2,Blanco,1.0,28.0,no,no,NIVEL,PS + Ataque,level-up version_group=ruby-sapphire min_level=14
+275,Shiftry,FASE 3,Blanco,1.3,59.6,no,no,PIEDRA,Ataque,use-item version_group=ruby-sapphire item=leaf-stone
+276,Taillow,FASE 1,Rojo,0.3,2.3,no,no,NINGUNO,Velocidad,
+277,Swellow,FASE 2,Rojo,0.7,19.8,no,no,NIVEL,Velocidad,level-up version_group=ruby-sapphire min_level=22
+278,Wingull,FASE 1,Azul,0.6,9.5,no,no,NINGUNO,Velocidad,
+279,Pelipper,FASE 2,Blanco,1.2,28.0,no,no,NIVEL,Defensa,level-up version_group=ruby-sapphire min_level=25
+280,Ralts,FASE 1,Verde,0.4,6.6,su evolución,no,NINGUNO,At. Esp.,
+281,Kirlia,FASE 2,Verde,0.8,20.2,su evolución,no,NIVEL,At. Esp.,level-up version_group=ruby-sapphire min_level=20
+282,Gardevoir,FASE 3,Verde,1.6,48.4,sí,no,NIVEL,At. Esp.,level-up version_group=ruby-sapphire min_level=30
+283,Surskit,FASE 1,Amarillo,0.5,1.7,no,no,NINGUNO,Velocidad,
+284,Masquerain,FASE 2,Blanco,0.8,3.6,no,no,NIVEL,At. Esp.,level-up version_group=ruby-sapphire min_level=22
+285,Shroomish,FASE 1,Blanco,0.4,4.5,no,no,NINGUNO,NO TIENE,
+286,Breloom,FASE 2,Marrón,1.2,39.2,no,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=23
+287,Slakoth,FASE 1,Blanco,0.8,24.0,no,no,NINGUNO,NO TIENE,
+288,Vigoroth,FASE 2,ninguno,1.4,46.5,no,no,NIVEL,Velocidad,level-up version_group=ruby-sapphire min_level=18
+289,Slaking,FASE 3,Blanco,2.0,130.5,no,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=36
+290,Nincada,FASE 1,Blanco,0.5,5.5,no,no,NINGUNO,Defensa,
+291,Ninjask,FASE 2,Blanco,0.8,12.0,no,no,NIVEL,Velocidad,level-up version_group=ruby-sapphire min_level=20
+292,Shedinja,FASE 2,Amarillo,0.8,1.2,no,no,ESPECIAL,Ataque,shed version_group=ruby-sapphire
+293,Whismur,FASE 1,Amarillo,0.6,16.3,no,no,NINGUNO,PS,
+294,Loudred,FASE 2,Morado,1.0,40.5,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=20
+295,Exploud,FASE 3,Morado,1.5,84.0,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=40
+296,Makuhita,FASE 1,ninguno,1.0,86.4,no,no,NINGUNO,PS,
+297,Hariyama,FASE 2,Azul,2.3,253.8,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=24
+298,Azurill,FASE 1,ninguno,0.2,2.0,no,no,NINGUNO,PS,
+299,Nosepass,FASE 1,Azul,1.0,97.0,no,no,NINGUNO,Defensa,
+300,Skitty,FASE 1,Marrón,0.6,11.0,no,no,NINGUNO,PS + Velocidad,
+301,Delcatty,FASE 2,Rojo,1.1,32.6,no,no,PIEDRA,Velocidad,use-item version_group=ruby-sapphire item=moon-stone
+302,Sableye,ÚNICA,ninguno,0.5,11.0,sí,no,NINGUNO,Ataque + Defensa,
+303,Mawile,ÚNICA,Gris,0.6,11.5,sí,no,NINGUNO,Ataque + Defensa,
+304,Aron,FASE 1,Blanco,0.4,60.0,su evolución,no,NINGUNO,Defensa,
+305,Lairon,FASE 2,Blanco,0.9,120.0,su evolución,no,NIVEL,Defensa,level-up version_group=ruby-sapphire min_level=32
+306,Aggron,FASE 3,Blanco,2.1,360.0,sí,no,NIVEL,Defensa,level-up version_group=ruby-sapphire min_level=42
+307,Meditite,FASE 1,Blanco,0.6,11.2,su evolución,no,NINGUNO,Velocidad,
+308,Medicham,FASE 2,Rosa,1.3,31.5,sí,no,NIVEL,Velocidad,level-up version_group=ruby-sapphire min_level=37
+309,Electrike,FASE 1,Amarillo,0.6,15.2,su evolución,no,NINGUNO,At. Esp. + Velocidad,
+310,Manectric,FASE 2,Azul,1.5,40.2,sí,no,NIVEL,At. Esp. + Velocidad,level-up version_group=ruby-sapphire min_level=26
+311,Plusle,ÚNICA,Rojo,0.4,4.2,no,no,NINGUNO,Velocidad,
+312,Minun,ÚNICA,Azul,0.4,4.2,no,no,NINGUNO,Velocidad,
+313,Volbeat,ÚNICA,Azul,0.7,17.7,no,no,NINGUNO,Def. Esp. + Velocidad,
+314,Illumise,ÚNICA,Azul,0.6,17.7,no,no,NINGUNO,Def. Esp. + Velocidad,
+315,Roselia,FASE 2,Azul,0.3,2.0,no,no,AMISTAD,At. Esp.,level-up version_group=diamond-pearl min_happiness=160 time_of_day=day
+316,Gulpin,FASE 1,Amarillo,0.4,10.3,no,no,NINGUNO,PS,
+317,Swalot,FASE 2,ninguno,1.7,80.0,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=26
+318,Carvanha,FASE 1,Amarillo,0.8,20.8,su evolución,no,NINGUNO,Ataque,
+319,Sharpedo,FASE 2,Gris,1.8,88.8,sí,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=30
+320,Wailmer,FASE 1,Blanco,2.0,130.0,no,no,NINGUNO,PS,
+321,Wailord,FASE 2,Blanco,14.5,398.0,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=40
+322,Numel,FASE 1,Blanco,0.7,24.0,su evolución,no,NINGUNO,At. Esp.,
+323,Camerupt,FASE 2,Blanco,1.9,220.0,sí,no,NIVEL,At. Esp.,level-up version_group=ruby-sapphire min_level=33
+324,Torkoal,ÚNICA,Gris,0.5,80.4,no,no,NINGUNO,Defensa,
+325,Spoink,FASE 1,Gris,0.7,30.6,no,no,NINGUNO,Def. Esp.,
+326,Grumpig,FASE 2,Rosa,0.9,71.5,no,no,NIVEL,Def. Esp.,level-up version_group=ruby-sapphire min_level=32
+327,Spinda,ÚNICA,Blanco,1.1,5.0,no,no,NINGUNO,NO TIENE,
+328,Trapinch,FASE 1,Rojo,0.7,15.0,no,no,NINGUNO,Ataque,
+329,Vibrava,FASE 2,Gris,1.1,15.3,no,no,NIVEL,Ataque + Velocidad,level-up version_group=ruby-sapphire min_level=35
+330,Flygon,FASE 3,ninguno,2.0,82.0,no,no,NIVEL,Ataque + Velocidad,level-up version_group=ruby-sapphire min_level=45
+331,Cacnea,FASE 1,ninguno,0.4,51.3,no,no,NINGUNO,Ataque + At. Esp.,
+332,Cacturne,FASE 2,ninguno,1.3,77.4,no,no,NIVEL,Ataque + At. Esp.,level-up version_group=ruby-sapphire min_level=32
+333,Swablu,FASE 1,Blanco,0.4,1.2,su evolución,no,NINGUNO,Def. Esp.,
+334,Altaria,FASE 2,Blanco,1.1,20.6,sí,no,NIVEL,Def. Esp.,level-up version_group=ruby-sapphire min_level=35
+335,Zangoose,ÚNICA,Azul,1.3,40.3,no,no,NINGUNO,Ataque,
+336,Seviper,ÚNICA,Azul,2.7,52.5,no,no,NINGUNO,Ataque + At. Esp.,
+337,Lunatone,ÚNICA,ninguno,1.0,168.0,no,no,NINGUNO,At. Esp.,
+338,Solrock,ÚNICA,Amarillo,1.2,154.0,no,no,NINGUNO,Ataque,
+339,Barboach,FASE 1,Azul,0.4,1.9,no,no,NINGUNO,Velocidad,
+340,Whiscash,FASE 2,Amarillo,0.9,23.6,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=30
+341,Corphish,FASE 1,Blanco,0.6,11.5,no,no,NINGUNO,Ataque,
+342,Crawdaunt,FASE 2,Gris,1.1,32.8,no,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=30
+343,Baltoy,FASE 1,Amarillo,0.5,21.5,no,no,NINGUNO,Def. Esp.,
+344,Claydol,FASE 2,Gris,1.5,108.0,no,no,NIVEL,Def. Esp.,level-up version_group=ruby-sapphire min_level=36
+345,Lileep,FASE 1,Rosa,1.0,23.8,no,no,NINGUNO,Def. Esp.,
+346,Cradily,FASE 2,Rosa,1.5,60.4,no,no,NIVEL,Def. Esp.,level-up version_group=ruby-sapphire min_level=40
+347,Anorith,FASE 1,Verde,0.7,12.5,no,no,NINGUNO,Ataque,
+348,Armaldo,FASE 2,Azul,1.5,68.2,no,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=40
+349,Feebas,FASE 1,Azul,0.6,7.4,no,no,NINGUNO,Velocidad,
+350,Milotic,FASE 2,Blanco,6.2,162.0,no,no,INTERCAMBIO,Def. Esp.,level-up version_group=omega-ruby-alpha-sapphire min_beauty=170
+351,Castform,ÚNICA,Blanco,0.3,0.8,no,no,NINGUNO,NO TIENE,
+352,Kecleon,ÚNICA,Amarillo,1.0,22.0,no,no,NINGUNO,Def. Esp.,
+353,Shuppet,FASE 1,Azul,0.6,2.3,su evolución,no,NINGUNO,Ataque,
+354,Banette,FASE 2,Gris,1.1,12.5,sí,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=37
+355,Duskull,FASE 1,Blanco,0.8,15.0,no,no,NINGUNO,Defensa + Def. Esp.,
+356,Dusclops,FASE 2,Gris,1.6,30.6,no,no,NIVEL,Defensa + Def. Esp.,level-up version_group=ruby-sapphire min_level=37
+357,Tropius,ÚNICA,Marrón,2.0,100.0,no,no,NINGUNO,PS,
+358,Chimecho,FASE 2,Rojo,0.6,1.0,sí,no,AMISTAD,At. Esp.,level-up version_group=diamond-pearl min_happiness=220 time_of_day=night
+359,Absol,ÚNICA,Azul,1.2,47.0,sí,no,NINGUNO,Ataque,
+360,Wynaut,FASE 1,ninguno,0.6,14.0,no,no,NINGUNO,PS,
+361,Snorunt,FASE 1,Amarillo,0.7,16.8,su evolución,no,NINGUNO,NO TIENE,
+362,Glalie,FASE 2,Blanco,1.5,256.5,sí,no,NIVEL,NO TIENE,level-up version_group=ruby-sapphire min_level=42
+363,Spheal,FASE 1,Blanco,0.8,39.5,no,no,NINGUNO,PS,
+364,Sealeo,FASE 2,Blanco,1.1,87.6,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=32
+365,Walrein,FASE 3,ninguno,1.4,150.6,no,no,NIVEL,PS,level-up version_group=ruby-sapphire min_level=44
+366,Clamperl,FASE 1,Negro,0.4,52.5,no,no,NINGUNO,Defensa,
+367,Huntail,FASE 2,Rojo,1.7,27.0,no,no,INTERCAMBIO,Defensa,trade version_group=ruby-sapphire held_item=deep-sea-tooth
+368,Gorebyss,FASE 2,Morado,1.8,22.6,no,no,INTERCAMBIO,At. Esp.,trade version_group=ruby-sapphire held_item=deep-sea-scale
+369,Relicanth,ÚNICA,Blanco,1.0,23.4,no,no,NINGUNO,Defensa,
+370,Luvdisc,ÚNICA,ninguno,0.6,8.7,no,no,NINGUNO,Velocidad,
+371,Bagon,FASE 1,Blanco,0.6,42.1,su evolución,no,NINGUNO,Ataque,
+372,Shelgon,FASE 2,Gris,1.1,110.5,su evolución,no,NIVEL,Defensa,level-up version_group=ruby-sapphire min_level=30
+373,Salamence,FASE 3,Rojo,1.5,102.6,sí,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=50
+374,Beldum,FASE 1,ninguno,0.6,95.2,su evolución,no,NINGUNO,Defensa,
+375,Metang,FASE 2,ninguno,1.2,202.5,su evolución,no,NIVEL,Defensa,level-up version_group=ruby-sapphire min_level=20
+376,Metagross,FASE 3,ninguno,1.6,550.0,sí,no,NIVEL,Ataque,level-up version_group=ruby-sapphire min_level=45
+377,Regirock,ÚNICA,Blanco,1.7,230.0,no,no,NINGUNO,Defensa,
+378,Regice,ÚNICA,ninguno,1.8,175.0,no,no,NINGUNO,Def. Esp.,
+379,Registeel,ÚNICA,Blanco,1.9,205.0,no,no,NINGUNO,Defensa + Def. Esp.,
+380,Latias,ÚNICA,Blanco,1.4,40.0,sí,no,NINGUNO,Def. Esp.,
+381,Latios,ÚNICA,Gris,2.0,60.0,sí,no,NINGUNO,At. Esp.,
+382,Kyogre,ÚNICA,Rojo,4.5,352.0,no,no,NINGUNO,At. Esp.,
+383,Groudon,ÚNICA,Gris,3.5,950.0,no,no,NINGUNO,Ataque,
+384,Rayquaza,ÚNICA,ninguno,7.0,206.5,sí,no,NINGUNO,Ataque + At. Esp.,
+385,Jirachi,ÚNICA,Blanco,0.3,1.1,no,no,NINGUNO,NO TIENE,
+386,Deoxys,ÚNICA,Rosa,1.7,60.8,no,no,NINGUNO,NO TIENE,
+387,Turtwig,FASE 1,Amarillo,0.4,10.2,no,no,NINGUNO,Ataque,
+388,Grotle,FASE 2,Amarillo,1.1,97.0,no,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=18
+389,Torterra,FASE 3,Marrón,2.2,310.0,no,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=32
+390,Chimchar,FASE 1,Rojo,0.5,6.2,no,no,NINGUNO,Velocidad,
+391,Monferno,FASE 2,Rojo,0.9,22.0,no,no,NIVEL,Velocidad,level-up version_group=diamond-pearl min_level=14
+392,Infernape,FASE 3,Rojo,1.2,55.0,no,no,NIVEL,Velocidad,level-up version_group=diamond-pearl min_level=36
+393,Piplup,FASE 1,Blanco,0.4,5.2,no,no,NINGUNO,At. Esp.,
+394,Prinplup,FASE 2,ninguno,0.8,23.0,no,no,NIVEL,At. Esp.,level-up version_group=diamond-pearl min_level=16
+395,Empoleon,FASE 3,ninguno,1.7,84.5,no,no,NIVEL,At. Esp.,level-up version_group=diamond-pearl min_level=36
+396,Starly,FASE 1,Gris,0.3,2.0,su evolución,no,NINGUNO,Velocidad,
+397,Staravia,FASE 2,Negro,0.6,15.5,su evolución,no,NIVEL,Velocidad,level-up version_group=diamond-pearl min_level=14
+398,Staraptor,FASE 3,Rojo,1.2,24.9,sí,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=34
+399,Bidoof,FASE 1,Rojo,0.5,20.0,no,no,NINGUNO,PS,
+400,Bibarel,FASE 2,Rojo,1.0,31.5,no,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=15
+401,Kricketot,FASE 1,Marrón,0.3,2.2,no,no,NINGUNO,Defensa + Def. Esp.,
+402,Kricketune,FASE 2,Marrón,1.0,25.5,no,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=10
+403,Shinx,FASE 1,Amarillo,0.5,9.5,no,no,NINGUNO,Ataque,
+404,Luxio,FASE 2,Negro,0.9,30.5,no,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=15
+405,Luxray,FASE 3,Negro,1.4,42.0,no,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=30
+406,Budew,FASE 1,Amarillo,0.2,1.2,no,no,NINGUNO,Def. Esp.,
+407,Roserade,FASE 3,Blanco,0.9,14.5,no,no,PIEDRA,At. Esp.,use-item version_group=diamond-pearl item=shiny-stone
+408,Cranidos,FASE 1,Gris,0.9,31.5,no,no,NINGUNO,Ataque,
+409,Rampardos,FASE 2,Gris,1.6,102.5,no,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=30
+410,Shieldon,FASE 1,Marrón,0.5,57.0,no,no,NINGUNO,Defensa,
+411,Bastiodon,FASE 2,Negro,1.3,149.5,no,no,NIVEL,Defensa,level-up version_group=diamond-pearl min_level=30
+412,Burmy,FASE 1,Negro,0.2,3.4,no,no,NINGUNO,Defensa + Def. Esp.,
+413,Wormadam,FASE 2,Negro,0.5,6.5,no,no,NIVEL,Def. Esp.,level-up version_group=diamond-pearl gender=1 min_level=20 required_pokemon_form=burmy-plant evolved_pokemon_form=wormadam-plant || level-up version_group=diamond-pearl gender=1 min_level=20 required_pokemon_form=burmy-sandy evolved_pokemon_form=wormadam-sandy || level-up version_group=diamond-pearl gender=1 min_level=20 required_pokemon_form=burmy-trash evolved_pokemon_form=wormadam-trash
+414,Mothim,FASE 2,Rojo,0.9,23.3,no,no,NIVEL,Ataque + At. Esp.,level-up version_group=diamond-pearl gender=2 min_level=20
+415,Combee,FASE 1,Blanco,0.3,5.5,no,no,NINGUNO,Velocidad,
+416,Vespiquen,FASE 2,Marrón,1.2,38.5,no,no,NIVEL,Defensa + Def. Esp.,level-up version_group=diamond-pearl gender=1 min_level=21
+417,Pachirisu,ÚNICA,Azul,0.4,3.9,no,no,NINGUNO,Velocidad,
+418,Buizel,FASE 1,Rojo,0.7,29.5,no,no,NINGUNO,Velocidad,
+419,Floatzel,FASE 2,Rojo,1.1,33.5,no,no,NIVEL,Velocidad,level-up version_group=diamond-pearl min_level=26
+420,Cherubi,FASE 1,Verde,0.4,3.3,no,no,NINGUNO,At. Esp.,
+421,Cherrim,FASE 2,Verde,0.5,9.3,no,no,NIVEL,At. Esp.,level-up version_group=diamond-pearl min_level=25
+422,Shellos,FASE 1,Rosa,0.3,6.3,no,no,NINGUNO,PS,
+423,Gastrodon,FASE 2,Rosa,0.9,29.9,no,no,NIVEL,PS,level-up version_group=diamond-pearl min_level=30 required_pokemon_form=shellos-west evolved_pokemon_form=gastrodon-west || level-up version_group=diamond-pearl min_level=30 required_pokemon_form=shellos-east evolved_pokemon_form=gastrodon-east
+424,Ambipom,FASE 2,Amarillo,1.2,20.3,no,no,MOVIMIENTO,Velocidad,level-up version_group=diamond-pearl known_move=double-hit
+425,Drifloon,FASE 1,Blanco,0.4,1.2,no,no,NINGUNO,PS,
+426,Drifblim,FASE 2,Amarillo,1.2,15.0,no,no,NIVEL,PS,level-up version_group=diamond-pearl min_level=28
+427,Buneary,FASE 1,Blanco,0.4,5.5,su evolución,no,NINGUNO,Velocidad,
+428,Lopunny,FASE 2,Blanco,1.2,33.3,sí,no,AMISTAD,Velocidad,level-up version_group=diamond-pearl min_happiness=160
+429,Mismagius,FASE 2,Rosa,0.9,4.4,no,no,PIEDRA,NO TIENE,use-item version_group=diamond-pearl item=dusk-stone
+430,Honchkrow,FASE 2,Azul,0.9,27.3,no,no,PIEDRA,Ataque,use-item version_group=diamond-pearl item=dusk-stone
+431,Glameow,FASE 1,Azul,0.5,3.9,no,no,NINGUNO,Velocidad,
+432,Purugly,FASE 2,Azul,1.0,43.8,no,no,NIVEL,Velocidad,level-up version_group=diamond-pearl min_level=38
+433,Chingling,FASE 1,Rojo,0.2,0.6,su evolución,no,NINGUNO,At. Esp.,
+434,Stunky,FASE 1,Blanco,0.4,19.2,no,no,NINGUNO,Velocidad,
+435,Skuntank,FASE 2,Blanco,1.0,38.0,no,no,NIVEL,PS,level-up version_group=diamond-pearl min_level=34
+436,Bronzor,FASE 1,Azul,0.5,60.5,no,no,NINGUNO,Defensa + Def. Esp.,
+437,Bronzong,FASE 2,Azul,1.3,187.0,no,no,NIVEL,Defensa + Def. Esp.,level-up version_group=diamond-pearl min_level=33
+438,Bonsly,FASE 1,Verde,0.5,15.0,no,no,NINGUNO,Defensa,
+439,Mime Jr.,FASE 1,Azul,0.6,13.0,no,no,NINGUNO,Def. Esp.,
+440,Happiny,FASE 1,Rojo,0.6,24.4,no,no,NINGUNO,PS,
+441,Chatot,ÚNICA,Azul,0.5,1.9,no,no,NINGUNO,At. Esp.,
+442,Spiritomb,ÚNICA,Rosa,1.0,108.0,no,no,NINGUNO,Defensa + Def. Esp.,
+443,Gible,FASE 1,ninguno,0.7,20.5,su evolución,no,NINGUNO,Ataque,
+444,Gabite,FASE 2,Rojo,1.4,56.0,su evolución,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=24
+445,Garchomp,FASE 3,ninguno,1.9,95.0,sí,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=48
+446,Munchlax,FASE 1,Azul,0.6,105.0,no,no,NINGUNO,PS,
+447,Riolu,FASE 1,Negro,0.7,20.2,su evolución,no,NINGUNO,Ataque,
+448,Lucario,FASE 2,Negro,1.2,54.0,sí,no,AMISTAD,At. Esp.,level-up version_group=diamond-pearl min_happiness=160 time_of_day=day
+449,Hippopotas,FASE 1,Amarillo,0.8,49.5,no,no,NINGUNO,Defensa,
+450,Hippowdon,FASE 2,Amarillo,2.0,300.0,no,no,NIVEL,Defensa,level-up version_group=diamond-pearl min_level=34
+451,Skorupi,FASE 1,Azul,0.8,12.0,no,no,NINGUNO,Defensa,
+452,Drapion,FASE 2,Rosa,1.3,61.5,no,no,NIVEL,Defensa,level-up version_group=diamond-pearl min_level=40
+453,Croagunk,FASE 1,Negro,0.7,23.0,no,no,NINGUNO,Ataque + At. Esp.,
+454,Toxicroak,FASE 2,Rojo,1.3,44.4,no,no,NIVEL,Ataque,level-up version_group=diamond-pearl min_level=37
+455,Carnivine,ÚNICA,Amarillo,1.4,27.0,no,no,NINGUNO,Ataque,
+456,Finneon,FASE 1,Negro,0.4,7.0,no,no,NINGUNO,Velocidad,
+457,Lumineon,FASE 2,Negro,1.2,24.0,no,no,NIVEL,Velocidad,level-up version_group=diamond-pearl min_level=31
+458,Mantyke,FASE 1,ninguno,1.0,65.0,no,no,NINGUNO,Def. Esp.,
+459,Snover,FASE 1,Marrón,1.0,50.5,su evolución,no,NINGUNO,Ataque + At. Esp.,
+460,Abomasnow,FASE 2,Verde,2.2,135.5,sí,no,NIVEL,Ataque + At. Esp.,level-up version_group=diamond-pearl min_level=40
+461,Weavile,FASE 2,Azul,1.1,34.0,no,no,OBJETO,Velocidad,level-up version_group=diamond-pearl held_item=razor-claw time_of_day=night
+462,Magnezone,FASE 3,Azul,1.2,180.0,no,no,PIEDRA,At. Esp.,use-item version_group=sword-shield item=thunder-stone
+463,Lickilicky,FASE 2,Rojo,1.7,140.0,no,no,MOVIMIENTO,PS,level-up version_group=diamond-pearl known_move=rollout
+464,Rhyperior,FASE 3,Negro,2.4,282.8,no,no,INTERCAMBIO,Ataque,trade version_group=diamond-pearl held_item=protector
+465,Tangrowth,FASE 2,ninguno,2.0,128.6,no,no,MOVIMIENTO,Defensa,level-up version_group=diamond-pearl known_move=ancient-power
+466,Electivire,FASE 3,Negro,1.8,138.6,no,no,INTERCAMBIO,Ataque,trade version_group=diamond-pearl held_item=electirizer
+467,Magmortar,FASE 3,Amarillo,1.6,68.0,no,no,INTERCAMBIO,At. Esp.,trade version_group=diamond-pearl held_item=magmarizer
+468,Togekiss,FASE 3,ninguno,1.5,38.0,no,no,PIEDRA,At. Esp.,use-item version_group=diamond-pearl item=shiny-stone
+469,Yanmega,FASE 2,Rojo,1.9,51.5,no,no,MOVIMIENTO,At. Esp.,level-up version_group=diamond-pearl known_move=ancient-power
+470,Leafeon,FASE 2,Blanco,1.0,25.5,no,no,PIEDRA,Defensa,use-item version_group=sword-shield item=leaf-stone required_pokemon_form=eevee
+471,Glaceon,FASE 2,ninguno,0.8,25.9,no,no,PIEDRA,At. Esp.,use-item version_group=sword-shield item=ice-stone required_pokemon_form=eevee
+472,Gliscor,FASE 2,Azul,2.0,42.5,no,no,OBJETO,Defensa,level-up version_group=diamond-pearl held_item=razor-fang time_of_day=night
+473,Mamoswine,FASE 3,Blanco,2.5,291.0,no,no,MOVIMIENTO,Ataque,level-up version_group=diamond-pearl known_move=ancient-power
+474,Porygon-Z,FASE 3,Azul,0.9,34.0,no,no,INTERCAMBIO,At. Esp.,trade version_group=diamond-pearl held_item=dubious-disc
+475,Gallade,FASE 3,Verde,1.6,52.0,sí,no,PIEDRA,Ataque,use-item version_group=diamond-pearl item=dawn-stone gender=2
+476,Probopass,FASE 2,Rojo,1.4,340.0,no,no,PIEDRA,Def. Esp.,use-item version_group=scarlet-violet item=thunder-stone
+477,Dusknoir,FASE 3,Gris,2.2,106.6,no,no,INTERCAMBIO,Defensa + Def. Esp.,trade version_group=diamond-pearl held_item=reaper-cloth
+478,Froslass,FASE 2,Azul,1.3,26.6,sí,no,PIEDRA,Velocidad,use-item version_group=diamond-pearl item=dawn-stone gender=1
+479,Rotom,ÚNICA,Verde,0.3,0.3,no,no,NINGUNO,At. Esp.,
+480,Uxie,ÚNICA,Azul,0.3,0.3,no,no,NINGUNO,Defensa + Def. Esp.,
+481,Mesprit,ÚNICA,Azul,0.3,0.3,no,no,NINGUNO,NO TIENE,
+482,Azelf,ÚNICA,ninguno,0.3,0.3,no,no,NINGUNO,Ataque + At. Esp.,
+483,Dialga,ÚNICA,Azul,5.4,683.0,no,no,NINGUNO,At. Esp.,
+484,Palkia,ÚNICA,Blanco,4.2,336.0,no,no,NINGUNO,At. Esp.,
+485,Heatran,ÚNICA,Gris,1.7,430.0,sí,no,NINGUNO,At. Esp.,
+486,Regigigas,ÚNICA,Amarillo,3.7,420.0,no,no,NINGUNO,Ataque,
+487,Giratina,ÚNICA,Amarillo,4.5,750.0,no,no,NINGUNO,PS,
+488,Cresselia,ÚNICA,Rosa,1.5,85.6,no,no,NINGUNO,PS + Def. Esp.,
+489,Phione,ÚNICA,ninguno,0.4,3.1,no,no,NINGUNO,NO TIENE,
+490,Manaphy,ÚNICA,ninguno,0.3,1.4,no,no,NINGUNO,NO TIENE,
+491,Darkrai,ÚNICA,Rojo,1.5,50.5,sí,no,NINGUNO,At. Esp.,
+492,Shaymin,ÚNICA,Rosa,0.2,2.1,no,no,NINGUNO,NO TIENE,
+493,Arceus,ÚNICA,Amarillo,3.2,320.0,no,no,NINGUNO,NO TIENE,
+494,Victini,ÚNICA,Blanco,0.4,4.0,no,no,NINGUNO,NO TIENE,
+495,Snivy,FASE 1,Blanco,0.6,8.1,no,no,NINGUNO,Velocidad,
+496,Servine,FASE 2,Blanco,0.8,16.0,no,no,NIVEL,Velocidad,level-up version_group=black-white min_level=17
+497,Serperior,FASE 3,ninguno,3.3,63.0,no,no,NIVEL,Velocidad,level-up version_group=black-white min_level=36
+498,Tepig,FASE 1,Negro,0.5,9.9,su evolución,no,NINGUNO,PS,
+499,Pignite,FASE 2,Negro,1.0,55.5,su evolución,no,NIVEL,Ataque,level-up version_group=black-white min_level=17
+500,Emboar,FASE 3,Negro,1.6,150.0,sí,no,NIVEL,Ataque,level-up version_group=black-white min_level=36
+501,Oshawott,FASE 1,Blanco,0.5,5.9,no,no,NINGUNO,At. Esp.,
+502,Dewott,FASE 2,Verde,0.8,24.5,no,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=17
+503,Samurott,FASE 3,Amarillo,1.5,94.6,no,Hisui,NIVEL,At. Esp.,level-up version_group=black-white min_level=36
+504,Patrat,FASE 1,Rojo,0.5,11.6,no,no,NINGUNO,Ataque,
+505,Watchog,FASE 2,Rojo,1.1,27.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=20
+506,Lillipup,FASE 1,Amarillo,0.4,4.1,no,no,NINGUNO,Ataque,
+507,Herdier,FASE 2,Marrón,0.9,14.7,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=16
+508,Stoutland,FASE 3,Blanco,1.2,61.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=32
+509,Purrloin,FASE 1,Rosa,0.4,10.1,no,no,NINGUNO,Velocidad,
+510,Liepard,FASE 2,Amarillo,1.1,37.5,no,no,NIVEL,Velocidad,level-up version_group=black-white min_level=20
+511,Pansage,FASE 1,Marrón,0.6,10.5,no,no,NINGUNO,Velocidad,
+512,Simisage,FASE 2,Marrón,1.1,30.5,no,no,PIEDRA,Velocidad,use-item version_group=black-white item=leaf-stone
+513,Pansear,FASE 1,Marrón,0.6,11.0,no,no,NINGUNO,Velocidad,
+514,Simisear,FASE 2,Marrón,1.0,28.0,no,no,PIEDRA,Velocidad,use-item version_group=black-white item=fire-stone
+515,Panpour,FASE 1,Marrón,0.6,13.5,no,no,NINGUNO,Velocidad,
+516,Simipour,FASE 2,Marrón,1.0,29.0,no,no,PIEDRA,Velocidad,use-item version_group=black-white item=water-stone
+517,Munna,FASE 1,Morado,0.6,23.3,no,no,NINGUNO,PS,
+518,Musharna,FASE 2,Morado,1.1,60.5,no,no,PIEDRA,PS,use-item version_group=black-white item=moon-stone
+519,Pidove,FASE 1,Blanco,0.3,2.1,no,no,NINGUNO,Ataque,
+520,Tranquill,FASE 2,Blanco,0.6,15.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=21
+521,Unfezant,FASE 3,Negro,1.2,29.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=32
+522,Blitzle,FASE 1,Blanco,0.8,29.8,no,no,NINGUNO,Velocidad,
+523,Zebstrika,FASE 2,Blanco,1.6,79.5,no,no,NIVEL,Velocidad,level-up version_group=black-white min_level=27
+524,Roggenrola,FASE 1,Negro,0.4,18.0,no,no,NINGUNO,Defensa,
+525,Boldore,FASE 2,Rojo,0.9,102.0,no,no,NIVEL,Ataque + Defensa,level-up version_group=black-white min_level=25
+526,Gigalith,FASE 3,Rojo,1.7,260.0,no,no,INTERCAMBIO,Ataque,trade version_group=black-white
+527,Woobat,FASE 1,Negro,0.4,2.1,no,no,NINGUNO,Velocidad,
+528,Swoobat,FASE 2,Negro,0.9,10.5,no,no,AMISTAD,Velocidad,level-up version_group=black-white min_happiness=160
+529,Drilbur,FASE 1,Negro,0.3,8.5,su evolución,no,NINGUNO,Ataque,
+530,Excadrill,FASE 2,Negro,0.7,40.4,sí,no,NIVEL,Ataque,level-up version_group=black-white min_level=31
+531,Audino,ÚNICA,Blanco,1.1,31.0,sí,no,NINGUNO,PS,
+532,Timburr,FASE 1,Marrón,0.6,12.5,no,no,NINGUNO,Ataque,
+533,Gurdurr,FASE 2,Rojo,1.2,40.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=25
+534,Conkeldurr,FASE 3,Gris,1.4,87.0,no,no,INTERCAMBIO,Ataque,trade version_group=black-white
+535,Tympole,FASE 1,Blanco,0.5,4.5,no,no,NINGUNO,Velocidad,
+536,Palpitoad,FASE 2,Blanco,0.8,17.0,no,no,NIVEL,PS,level-up version_group=black-white min_level=25
+537,Seismitoad,FASE 3,Verde,1.5,62.0,no,no,NIVEL,PS,level-up version_group=black-white min_level=36
+538,Throh,ÚNICA,Blanco,1.3,55.5,no,no,NINGUNO,PS,
+539,Sawk,ÚNICA,Verde,1.4,51.0,no,no,NINGUNO,Ataque,
+540,Sewaddle,FASE 1,Verde,0.3,2.5,no,no,NINGUNO,Defensa,
+541,Swadloon,FASE 2,Amarillo,0.5,7.3,no,no,NIVEL,Defensa,level-up version_group=black-white min_level=20
+542,Leavanny,FASE 3,Verde,1.2,20.5,no,no,AMISTAD,Ataque,level-up version_group=black-white min_happiness=220
+543,Venipede,FASE 1,Verde,0.4,5.3,su evolución,no,NINGUNO,Defensa,
+544,Whirlipede,FASE 2,Morado,1.2,58.5,su evolución,no,NIVEL,Defensa,level-up version_group=black-white min_level=22
+545,Scolipede,FASE 3,Negro,2.5,200.5,sí,no,NIVEL,Velocidad,level-up version_group=black-white min_level=30
+546,Cottonee,FASE 1,Blanco,0.3,0.6,no,no,NINGUNO,Velocidad,
+547,Whimsicott,FASE 2,Blanco,0.7,6.6,no,no,PIEDRA,Velocidad,use-item version_group=black-white item=sun-stone
+548,Petilil,FASE 1,Blanco,0.5,6.6,no,no,NINGUNO,At. Esp.,
+549,Lilligant,FASE 2,Rojo,1.1,16.3,no,Hisui,PIEDRA,At. Esp.,use-item version_group=black-white item=sun-stone
+550,Basculin,FASE 1,Blanco,1.0,18.0,no,no,NINGUNO,Velocidad,
+551,Sandile,FASE 1,Negro,0.7,15.2,no,no,NINGUNO,Ataque,
+552,Krokorok,FASE 2,Negro,1.0,33.4,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=29
+553,Krookodile,FASE 3,Rosa,1.5,96.3,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=40
+554,Darumaka,FASE 1,Amarillo,0.6,37.5,no,Galar,NINGUNO,Ataque,
+555,Darmanitan,FASE 2,Marrón,1.3,92.9,no,Galar,NIVEL,Ataque,level-up version_group=black-white min_level=35
+556,Maractus,ÚNICA,Rosa,1.0,28.0,no,no,NINGUNO,At. Esp.,
+557,Dwebble,FASE 1,Amarillo,0.3,14.5,no,no,NINGUNO,Defensa,
+558,Crustle,FASE 2,Marrón,1.4,200.0,no,no,NIVEL,Defensa,level-up version_group=black-white min_level=34
+559,Scraggy,FASE 1,Blanco,0.6,11.8,su evolución,no,NINGUNO,Ataque,
+560,Scrafty,FASE 2,Amarillo,1.1,30.0,sí,no,NIVEL,Defensa + Def. Esp.,level-up version_group=black-white min_level=39
+561,Sigilyph,ÚNICA,Amarillo,1.4,14.0,no,no,NINGUNO,At. Esp.,
+562,Yamask,FASE 1,Rojo,0.5,1.5,no,Galar,NINGUNO,Defensa,
+563,Cofagrigus,FASE 2,Negro,1.7,76.5,no,no,NIVEL,Defensa,level-up version_group=black-white min_level=34
+564,Tirtouga,FASE 1,ninguno,0.7,16.5,no,no,NINGUNO,Defensa,
+565,Carracosta,FASE 2,ninguno,1.2,81.0,no,no,NIVEL,Defensa,level-up version_group=black-white min_level=37
+566,Archen,FASE 1,Rojo,0.5,9.5,no,no,NINGUNO,Ataque,
+567,Archeops,FASE 2,Azul,1.4,32.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=37
+568,Trubbish,FASE 1,ninguno,0.6,31.0,no,no,NINGUNO,Velocidad,
+569,Garbodor,FASE 2,Marrón,1.9,107.3,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=36
+570,Zorua,FASE 1,Azul,0.7,12.5,no,Hisui,NINGUNO,At. Esp.,
+571,Zoroark,FASE 2,Rojo,1.6,81.1,no,Hisui,NIVEL,At. Esp.,level-up version_group=black-white min_level=30
+572,Minccino,FASE 1,ninguno,0.4,5.8,no,no,NINGUNO,Velocidad,
+573,Cinccino,FASE 2,Blanco,0.5,7.5,no,no,PIEDRA,Velocidad,use-item version_group=black-white item=shiny-stone
+574,Gothita,FASE 1,Rosa,0.4,5.8,no,no,NINGUNO,Def. Esp.,
+575,Gothorita,FASE 2,Negro,0.7,18.0,no,no,NIVEL,Def. Esp.,level-up version_group=black-white min_level=32
+576,Gothitelle,FASE 3,Negro,1.5,44.0,no,no,NIVEL,Def. Esp.,level-up version_group=black-white min_level=41
+577,Solosis,FASE 1,ninguno,0.3,1.0,no,no,NINGUNO,At. Esp.,
+578,Duosion,FASE 2,ninguno,0.6,8.0,no,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=32
+579,Reuniclus,FASE 3,ninguno,1.0,20.1,no,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=41
+580,Ducklett,FASE 1,ninguno,0.5,5.5,no,no,NINGUNO,PS,
+581,Swanna,FASE 2,Azul,1.3,24.2,no,no,NIVEL,Velocidad,level-up version_group=black-white min_level=35
+582,Vanillite,FASE 1,Azul,0.4,5.7,no,no,NINGUNO,At. Esp.,
+583,Vanillish,FASE 2,Azul,1.1,41.0,no,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=35
+584,Vanilluxe,FASE 3,Azul,1.3,57.5,no,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=47
+585,Deerling,FASE 1,Blanco,0.6,19.5,no,no,NINGUNO,Velocidad,
+586,Sawsbuck,FASE 2,Rojo,1.9,92.5,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=34 required_pokemon_form=deerling-spring evolved_pokemon_form=sawsbuck-spring || level-up version_group=black-white min_level=34 required_pokemon_form=deerling-summer evolved_pokemon_form=sawsbuck-summer || level-up version_group=black-white min_level=34 required_pokemon_form=deerling-autumn evolved_pokemon_form=sawsbuck-autumn || level-up version_group=black-white min_level=34 required_pokemon_form=deerling-winter evolved_pokemon_form=sawsbuck-winter
+587,Emolga,ÚNICA,Negro,0.4,5.0,no,no,NINGUNO,Velocidad,
+588,Karrablast,FASE 1,Amarillo,0.5,5.9,no,no,NINGUNO,Ataque,
+589,Escavalier,FASE 2,Rojo,1.0,33.0,no,no,INTERCAMBIO,Ataque,trade version_group=black-white trade_species=shelmet
+590,Foongus,FASE 1,Marrón,0.2,1.0,no,no,NINGUNO,PS,
+591,Amoonguss,FASE 2,Rojo,0.6,10.5,no,no,NIVEL,PS,level-up version_group=black-white min_level=39
+592,Frillish,FASE 1,Azul,1.2,33.0,no,no,NINGUNO,Def. Esp.,
+593,Jellicent,FASE 2,Azul,2.2,135.0,no,no,NIVEL,Def. Esp.,level-up version_group=black-white min_level=40
+594,Alomomola,ÚNICA,ninguno,1.2,31.6,no,no,NINGUNO,PS,
+595,Joltik,FASE 1,ninguno,0.1,0.6,no,no,NINGUNO,Velocidad,
+596,Galvantula,FASE 2,Azul,0.8,14.3,no,no,NIVEL,Velocidad,level-up version_group=black-white min_level=36
+597,Ferroseed,FASE 1,Verde,0.6,18.8,no,no,NINGUNO,Defensa,
+598,Ferrothorn,FASE 2,Verde,1.0,110.0,no,no,NIVEL,Defensa,level-up version_group=black-white min_level=40
+599,Klink,FASE 1,Blanco,0.3,21.0,no,no,NINGUNO,Defensa,
+600,Klang,FASE 2,Blanco,0.6,51.0,no,no,NIVEL,Defensa,level-up version_group=black-white min_level=38
+601,Klinklang,FASE 3,Blanco,0.6,81.0,no,no,NIVEL,Defensa,level-up version_group=black-white min_level=49
+602,Tynamo,FASE 1,ninguno,0.2,0.3,su evolución,no,NINGUNO,Velocidad,
+603,Eelektrik,FASE 2,Rojo,1.2,22.0,su evolución,no,NIVEL,Ataque,level-up version_group=black-white min_level=39
+604,Eelektross,FASE 3,Amarillo,2.1,80.5,sí,no,PIEDRA,Ataque,use-item version_group=black-white item=thunder-stone
+605,Elgyem,FASE 1,Verde,0.5,9.0,no,no,NINGUNO,At. Esp.,
+606,Beheeyem,FASE 2,ninguno,1.0,34.5,no,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=42
+607,Litwick,FASE 1,Morado,0.3,3.1,su evolución,no,NINGUNO,At. Esp.,
+608,Lampent,FASE 2,Blanco,0.6,13.0,su evolución,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=41
+609,Chandelure,FASE 3,Morado,1.0,34.3,sí,no,PIEDRA,At. Esp.,use-item version_group=black-white item=dusk-stone
+610,Axew,FASE 1,Negro,0.6,18.0,no,no,NINGUNO,Ataque,
+611,Fraxure,FASE 2,Gris,1.0,36.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=38
+612,Haxorus,FASE 3,Marrón,1.8,105.5,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=48
+613,Cubchoo,FASE 1,Azul,0.5,8.5,no,no,NINGUNO,Ataque,
+614,Beartic,FASE 2,ninguno,2.6,260.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=37
+615,Cryogonal,ÚNICA,ninguno,1.1,148.0,no,no,NINGUNO,Def. Esp.,
+616,Shelmet,FASE 1,Blanco,0.4,7.7,no,no,NINGUNO,Defensa,
+617,Accelgor,FASE 2,Azul,0.8,25.3,no,no,INTERCAMBIO,Velocidad,trade version_group=black-white trade_species=karrablast
+618,Stunfisk,ÚNICA,Amarillo,0.7,11.0,no,Galar,NINGUNO,PS,
+619,Mienfoo,FASE 1,Rojo,0.9,20.0,no,no,NINGUNO,Ataque,
+620,Mienshao,FASE 2,Blanco,1.4,35.5,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=50
+621,Druddigon,ÚNICA,Azul,1.6,139.0,no,no,NINGUNO,Ataque,
+622,Golett,FASE 1,Amarillo,1.0,92.0,su evolución,no,NINGUNO,Ataque,
+623,Golurk,FASE 2,Azul,2.8,330.0,sí,no,NIVEL,Ataque,level-up version_group=black-white min_level=43
+624,Pawniard,FASE 1,Blanco,0.5,10.2,no,no,NINGUNO,Ataque,
+625,Bisharp,FASE 2,Blanco,1.6,70.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=52
+626,Bouffalant,ÚNICA,Negro,1.6,94.6,no,no,NINGUNO,Ataque,
+627,Rufflet,FASE 1,Azul,0.5,10.5,no,no,NINGUNO,Ataque,
+628,Braviary,FASE 2,Azul,1.5,41.0,no,Hisui,NIVEL,Ataque,level-up version_group=black-white min_level=54
+629,Vullaby,FASE 1,Negro,0.5,9.0,no,no,NINGUNO,Defensa,
+630,Mandibuzz,FASE 2,Negro,1.2,39.5,no,no,NIVEL,PS,level-up version_group=black-white min_level=54
+631,Heatmor,ÚNICA,Marrón,1.4,58.0,no,no,NINGUNO,At. Esp.,
+632,Durant,ÚNICA,Negro,0.3,33.0,no,no,NINGUNO,Defensa,
+633,Deino,FASE 1,Negro,0.8,17.3,no,no,NINGUNO,Ataque,
+634,Zweilous,FASE 2,Negro,1.4,50.0,no,no,NIVEL,Ataque,level-up version_group=black-white min_level=50
+635,Hydreigon,FASE 3,Negro,1.8,160.0,no,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=64
+636,Larvesta,FASE 1,Rojo,1.1,28.8,no,no,NINGUNO,Ataque,
+637,Volcarona,FASE 2,Rojo,1.6,46.0,no,no,NIVEL,At. Esp.,level-up version_group=black-white min_level=59
+638,Cobalion,ÚNICA,Verde,2.1,250.0,no,no,NINGUNO,Defensa,
+639,Terrakion,ÚNICA,Negro,1.9,260.0,no,no,NINGUNO,Ataque,
+640,Virizion,ÚNICA,Blanco,2.0,200.0,no,no,NINGUNO,Def. Esp.,
+641,Tornadus,ÚNICA,Morado,1.5,63.0,no,no,NINGUNO,At. Esp.,
+642,Thundurus,ÚNICA,Gris,1.5,61.0,no,no,NINGUNO,At. Esp.,
+643,Reshiram,ÚNICA,Azul,3.2,330.0,no,no,NINGUNO,At. Esp.,
+644,Zekrom,ÚNICA,ninguno,2.9,345.0,no,no,NINGUNO,Ataque,
+645,Landorus,ÚNICA,Rojo,1.5,68.0,no,no,NINGUNO,Ataque,
+646,Kyurem,ÚNICA,Azul,3.0,325.0,no,no,NINGUNO,Ataque + At. Esp.,
+647,Keldeo,ÚNICA,Azul,1.4,48.5,no,no,NINGUNO,At. Esp.,
+648,Meloetta,ÚNICA,Verde,0.6,6.5,no,no,NINGUNO,At. Esp. + Def. Esp.,
+649,Genesect,ÚNICA,Rosa,1.5,82.5,no,no,NINGUNO,Ataque + At. Esp.,
+650,Chespin,FASE 1,Marrón,0.4,9.0,su evolución,no,NINGUNO,Defensa,
+651,Quilladin,FASE 2,Marrón,0.7,29.0,su evolución,no,NIVEL,Defensa,level-up version_group=x-y min_level=16
+652,Chesnaught,FASE 3,Marrón,1.6,90.0,sí,no,NIVEL,Defensa,level-up version_group=x-y min_level=36
+653,Fennekin,FASE 1,Amarillo,0.4,9.4,su evolución,no,NINGUNO,At. Esp.,
+654,Braixen,FASE 2,Amarillo,1.0,14.5,su evolución,no,NIVEL,At. Esp.,level-up version_group=x-y min_level=16
+655,Delphox,FASE 3,Amarillo,1.5,39.0,sí,no,NIVEL,At. Esp.,level-up version_group=x-y min_level=36
+656,Froakie,FASE 1,Gris,0.3,7.0,su evolución,no,NINGUNO,Velocidad,
+657,Frogadier,FASE 2,Gris,0.6,10.9,su evolución,no,NIVEL,Velocidad,level-up version_group=x-y min_level=16
+658,Greninja,FASE 3,Blanco,1.5,40.0,sí,no,NIVEL,Velocidad,level-up version_group=x-y min_level=36
+659,Bunnelby,FASE 1,Gris,0.4,5.0,no,no,NINGUNO,Velocidad,
+660,Diggersby,FASE 2,Gris,1.0,42.4,no,no,NIVEL,PS,level-up version_group=x-y min_level=20
+661,Fletchling,FASE 1,Azul,0.3,1.7,no,no,NINGUNO,Velocidad,
+662,Fletchinder,FASE 2,Amarillo,0.7,16.0,no,no,NIVEL,Velocidad,level-up version_group=x-y min_level=17
+663,Talonflame,FASE 3,Gris,1.2,24.5,no,no,NIVEL,Velocidad,level-up version_group=x-y min_level=35
+664,Scatterbug,FASE 1,Gris,0.3,2.5,no,no,NINGUNO,Defensa,
+665,Spewpa,FASE 2,Gris,0.3,8.4,no,no,NIVEL,Defensa,level-up version_group=x-y min_level=9
+666,Vivillon,FASE 3,Rosa,1.2,17.0,no,no,NIVEL,At. Esp.,level-up version_group=x-y min_level=12
+667,Litleo,FASE 1,Negro,0.6,13.5,su evolución,no,NINGUNO,At. Esp.,
+668,Pyroar,FASE 2,Rojo,1.5,81.5,sí,no,NIVEL,At. Esp.,level-up version_group=x-y min_level=35
+669,Flabébé,FASE 1,Rojo,0.1,0.1,su evolución,no,NINGUNO,Def. Esp.,
+670,Floette,FASE 2,Verde,0.2,0.9,sí,no,NIVEL,Def. Esp.,level-up version_group=x-y min_level=19 required_pokemon_form=flabebe-red evolved_pokemon_form=floette-red || level-up version_group=x-y min_level=19 required_pokemon_form=flabebe-yellow evolved_pokemon_form=floette-yellow || level-up version_group=x-y min_level=19 required_pokemon_form=flabebe-orange evolved_pokemon_form=floette-orange || level-up version_group=x-y min_level=19 required_pokemon_form=flabebe-blue evolved_pokemon_form=floette-blue || level-up version_group=x-y min_level=19 required_pokemon_form=flabebe-white evolved_pokemon_form=floette-white
+671,Florges,FASE 3,Verde,1.1,10.0,no,no,PIEDRA,Def. Esp.,use-item version_group=x-y item=shiny-stone required_pokemon_form=floette-red evolved_pokemon_form=florges-red || use-item version_group=x-y item=shiny-stone required_pokemon_form=floette-yellow evolved_pokemon_form=florges-yellow || use-item version_group=x-y item=shiny-stone required_pokemon_form=floette-orange evolved_pokemon_form=florges-orange || use-item version_group=x-y item=shiny-stone required_pokemon_form=floette-blue evolved_pokemon_form=florges-blue || use-item version_group=x-y item=shiny-stone required_pokemon_form=floette-white evolved_pokemon_form=florges-white
+672,Skiddo,FASE 1,Verde,0.9,31.0,no,no,NINGUNO,PS,
+673,Gogoat,FASE 2,Verde,1.7,91.0,no,no,NIVEL,PS,level-up version_group=x-y min_level=32
+674,Pancham,FASE 1,Gris,0.6,8.0,no,no,NINGUNO,Ataque,
+675,Pangoro,FASE 2,Gris,2.1,136.0,no,no,NIVEL,Ataque,level-up version_group=x-y min_level=32 party_type=dark
+676,Furfrou,ÚNICA,Gris,1.2,28.0,no,no,NINGUNO,Velocidad,
+677,Espurr,FASE 1,ninguno,0.3,3.5,su evolución,no,NINGUNO,Velocidad,
+678,Meowstic,FASE 2,Blanco,0.6,8.5,sí,no,NIVEL,Velocidad,level-up version_group=x-y gender=2 min_level=25 evolved_pokemon_form=meowstic-male || level-up version_group=x-y gender=1 min_level=25 evolved_pokemon_form=meowstic-female
+679,Honedge,FASE 1,Azul,0.8,2.0,no,no,NINGUNO,Defensa,
+680,Doublade,FASE 2,Rosa,0.8,4.5,no,no,NIVEL,Defensa,level-up version_group=x-y min_level=35
+681,Aegislash,FASE 3,Amarillo,1.7,53.0,no,no,PIEDRA,Defensa + Def. Esp.,use-item version_group=x-y item=dusk-stone
+682,Spritzee,FASE 1,Blanco,0.2,0.5,no,no,NINGUNO,PS,
+683,Aromatisse,FASE 2,ninguno,0.8,15.5,no,no,INTERCAMBIO,PS,trade version_group=black-white held_item=sachet
+684,Swirlix,FASE 1,Rosa,0.4,3.5,no,no,NINGUNO,Defensa,
+685,Slurpuff,FASE 2,Rosa,0.8,5.0,no,no,INTERCAMBIO,Defensa,trade version_group=x-y held_item=whipped-dream
+686,Inkay,FASE 1,Blanco,0.4,3.5,su evolución,no,NINGUNO,Ataque,
+687,Malamar,FASE 2,Morado,1.5,47.0,sí,no,NIVEL,Ataque,level-up version_group=x-y min_level=30 turn_upside_down=True
+688,Binacle,FASE 1,Verde,0.5,31.0,su evolución,no,NINGUNO,Defensa,
+689,Barbaracle,FASE 2,Blanco,1.3,96.0,sí,no,NIVEL,Defensa,level-up version_group=x-y min_level=39
+690,Skrelp,FASE 1,Morado,0.5,7.3,su evolución,no,NINGUNO,NO TIENE,
+691,Dragalge,FASE 2,Rojo,1.8,81.5,sí,no,NIVEL,Def. Esp.,level-up version_group=x-y min_level=48
+692,Clauncher,FASE 1,Negro,0.5,8.3,no,no,NINGUNO,Def. Esp.,
+693,Clawitzer,FASE 2,Amarillo,1.3,35.3,no,no,NIVEL,At. Esp.,level-up version_group=x-y min_level=37
+694,Helioptile,FASE 1,Negro,0.5,6.0,no,no,NINGUNO,Velocidad,
+695,Heliolisk,FASE 2,Negro,1.0,21.0,no,no,PIEDRA,At. Esp. + Velocidad,use-item version_group=x-y item=sun-stone
+696,Tyrunt,FASE 1,Negro,0.8,26.0,no,no,NINGUNO,Ataque,
+697,Tyrantrum,FASE 2,Blanco,2.5,270.0,no,no,NIVEL,Ataque,level-up version_group=x-y min_level=39 time_of_day=day
+698,Amaura,FASE 1,Blanco,1.3,25.2,no,no,NINGUNO,PS,
+699,Aurorus,FASE 2,Blanco,2.7,225.0,no,no,NIVEL,PS,level-up version_group=x-y min_level=39 time_of_day=night
+700,Sylveon,FASE 2,Blanco,1.0,23.5,no,no,AMISTAD,Def. Esp.,level-up version_group=sword-shield known_move_type=fairy min_happiness=160 required_pokemon_form=eevee
+701,Hawlucha,ÚNICA,Rojo,0.8,21.5,sí,no,NINGUNO,Velocidad,
+702,Dedenne,ÚNICA,Negro,0.2,2.2,no,no,NINGUNO,Velocidad,
+703,Carbink,ÚNICA,Azul,0.3,5.7,no,no,NINGUNO,Defensa + Def. Esp.,
+704,Goomy,FASE 1,Blanco,0.3,2.8,no,no,NINGUNO,Def. Esp.,
+705,Sliggoo,FASE 2,Blanco,0.8,17.5,no,Hisui,NIVEL,Def. Esp.,level-up version_group=x-y min_level=40
+706,Goodra,FASE 3,Blanco,2.0,150.5,no,Hisui,NIVEL,Def. Esp.,level-up version_group=x-y min_level=50 needs_overworld_rain=True
+707,Klefki,ÚNICA,Amarillo,0.2,3.0,no,no,NINGUNO,Defensa,
+708,Phantump,FASE 1,Negro,0.4,7.0,no,no,NINGUNO,Ataque,
+709,Trevenant,FASE 2,Verde,1.5,71.0,no,no,INTERCAMBIO,Ataque,trade version_group=x-y
+710,Pumpkaboo,FASE 1,Rosa,0.4,5.0,no,no,NINGUNO,Defensa,
+711,Gourgeist,FASE 2,ninguno,0.9,12.5,no,no,INTERCAMBIO,Defensa,trade version_group=x-y required_pokemon_form=pumpkaboo-average evolved_pokemon_form=gourgeist-average || trade version_group=x-y required_pokemon_form=pumpkaboo-small evolved_pokemon_form=gourgeist-small || trade version_group=x-y required_pokemon_form=pumpkaboo-large evolved_pokemon_form=gourgeist-large || trade version_group=x-y required_pokemon_form=pumpkaboo-super evolved_pokemon_form=gourgeist-super
+712,Bergmite,FASE 1,Blanco,1.0,99.5,no,no,NINGUNO,Defensa,
+713,Avalugg,FASE 2,ninguno,2.0,505.0,no,Hisui,NIVEL,Defensa,level-up version_group=x-y min_level=37
+714,Noibat,FASE 1,Gris,0.5,8.0,no,no,NINGUNO,Velocidad,
+715,Noivern,FASE 2,Negro,1.5,85.0,no,no,NIVEL,Velocidad,level-up version_group=x-y min_level=48
+716,Xerneas,ÚNICA,Negro,3.0,215.0,no,no,NINGUNO,Ataque + At. Esp.,
+717,Yveltal,ÚNICA,Negro,5.8,203.0,no,no,NINGUNO,Ataque + At. Esp.,
+718,Zygarde,ÚNICA,Negro,5.0,305.0,sí,no,NINGUNO,Defensa,
+719,Diancie,ÚNICA,Gris,0.7,8.8,sí,no,NINGUNO,Defensa + Def. Esp.,
+720,Hoopa,ÚNICA,Gris,0.5,9.0,no,no,NINGUNO,At. Esp.,
+721,Volcanion,ÚNICA,Rojo,1.7,195.0,no,no,NINGUNO,At. Esp.,
+722,Rowlet,FASE 1,Blanco,0.3,1.5,no,no,NINGUNO,PS,
+723,Dartrix,FASE 2,Blanco,0.7,16.0,no,no,NIVEL,PS,level-up version_group=sun-moon min_level=17
+724,Decidueye,FASE 3,Verde,1.6,36.6,no,Hisui,NIVEL,Ataque,level-up version_group=sun-moon min_level=34
+725,Litten,FASE 1,Azul,0.4,4.3,no,no,NINGUNO,Velocidad,
+726,Torracat,FASE 2,Negro,0.7,25.0,no,no,NIVEL,Velocidad,level-up version_group=sun-moon min_level=17
+727,Incineroar,FASE 3,Negro,1.8,83.0,no,no,NIVEL,Ataque,level-up version_group=sun-moon min_level=34
+728,Popplio,FASE 1,ninguno,0.4,7.5,no,no,NINGUNO,At. Esp.,
+729,Brionne,FASE 2,Blanco,0.6,17.5,no,no,NIVEL,At. Esp.,level-up version_group=sun-moon min_level=17
+730,Primarina,FASE 3,Blanco,1.8,44.0,no,no,NIVEL,At. Esp.,level-up version_group=sun-moon min_level=34
+731,Pikipek,FASE 1,Rojo,0.3,1.2,no,no,NINGUNO,Ataque,
+732,Trumbeak,FASE 2,ninguno,0.6,14.8,no,no,NIVEL,Ataque,level-up version_group=sun-moon min_level=14
+733,Toucannon,FASE 3,Rojo,1.1,26.0,no,no,NIVEL,Ataque,level-up version_group=sun-moon min_level=28
+734,Yungoos,FASE 1,Rojo,0.4,6.0,no,no,NINGUNO,Ataque,
+735,Gumshoos,FASE 2,Amarillo,0.7,14.2,no,no,NIVEL,Ataque,level-up version_group=sun-moon min_level=20 time_of_day=day
+736,Grubbin,FASE 1,Amarillo,0.4,4.4,no,no,NINGUNO,Ataque,
+737,Charjabug,FASE 2,ninguno,0.5,10.5,no,no,NIVEL,Defensa,level-up version_group=sun-moon min_level=20
+738,Vikavolt,FASE 3,Blanco,1.5,45.0,no,no,PIEDRA,At. Esp.,use-item version_group=sword-shield item=thunder-stone
+739,Crabrawler,FASE 1,Azul,0.6,7.0,su evolución,no,NINGUNO,Ataque,
+740,Crabominable,FASE 2,Azul,1.7,180.0,sí,no,PIEDRA,Ataque,use-item version_group=scarlet-violet item=ice-stone
+741,Oricorio,ÚNICA,Gris,0.6,3.4,no,no,NINGUNO,At. Esp.,
+742,Cutiefly,FASE 1,Blanco,0.1,0.2,no,no,NINGUNO,Velocidad,
+743,Ribombee,FASE 2,Blanco,0.2,0.5,no,no,NIVEL,Velocidad,level-up version_group=sun-moon min_level=25
+744,Rockruff,FASE 1,Blanco,0.5,9.2,no,no,NINGUNO,Ataque,
+745,Lycanroc,FASE 2,Blanco,0.8,25.0,no,no,NIVEL,Ataque,level-up version_group=sun-moon min_level=25 time_of_day=day required_pokemon_form=rockruff evolved_pokemon_form=lycanroc-midday || level-up version_group=sun-moon min_level=25 time_of_day=night required_pokemon_form=rockruff evolved_pokemon_form=lycanroc-midnight || level-up version_group=sun-moon min_level=25 time_of_day=dusk required_pokemon_form=rockruff-own-tempo evolved_pokemon_form=lycanroc-dusk
+746,Wishiwashi,ÚNICA,Blanco,0.2,0.3,no,no,NINGUNO,PS,
+747,Mareanie,FASE 1,Verde,0.4,8.0,no,no,NINGUNO,Defensa,
+748,Toxapex,FASE 2,Rosa,0.7,14.5,no,no,NIVEL,Defensa,level-up version_group=sun-moon min_level=38
+749,Mudbray,FASE 1,Rosa,1.0,110.0,no,no,NINGUNO,Ataque,
+750,Mudsdale,FASE 2,Rojo,2.5,920.0,no,no,NIVEL,Ataque,level-up version_group=sun-moon min_level=30
+751,Dewpider,FASE 1,Azul,0.3,4.0,no,no,NINGUNO,Def. Esp.,
+752,Araquanid,FASE 2,Azul,1.8,82.0,no,no,NIVEL,Def. Esp.,level-up version_group=sun-moon min_level=22
+753,Fomantis,FASE 1,Verde,0.3,1.5,no,no,NINGUNO,Ataque,
+754,Lurantis,FASE 2,Rojo,0.9,18.5,no,no,NIVEL,Ataque,level-up version_group=sun-moon min_level=34 time_of_day=day
+755,Morelull,FASE 1,Blanco,0.2,1.5,no,no,NINGUNO,Def. Esp.,
+756,Shiinotic,FASE 2,Rosa,1.0,11.5,no,no,NIVEL,Def. Esp.,level-up version_group=sun-moon min_level=24
+757,Salandit,FASE 1,Gris,0.6,4.8,no,no,NINGUNO,Velocidad,
+758,Salazzle,FASE 2,Gris,1.2,22.2,no,no,NIVEL,Velocidad,level-up version_group=sun-moon gender=1 min_level=33
+759,Stufful,FASE 1,Blanco,0.5,6.8,no,no,NINGUNO,Ataque,
+760,Bewear,FASE 2,Negro,2.1,135.0,no,no,NIVEL,Ataque,level-up version_group=sun-moon min_level=27
+761,Bounsweet,FASE 1,Verde,0.3,3.2,no,no,NINGUNO,PS,
+762,Steenee,FASE 2,Verde,0.7,8.2,no,no,NIVEL,Velocidad,level-up version_group=sun-moon min_level=18
+763,Tsareena,FASE 3,Verde,1.2,21.4,no,no,MOVIMIENTO,Ataque,level-up version_group=sun-moon known_move=stomp
+764,Comfey,ÚNICA,Rojo,0.1,0.3,no,no,NINGUNO,Def. Esp.,
+765,Oranguru,ÚNICA,Gris,1.5,76.0,no,no,NINGUNO,Def. Esp.,
+766,Passimian,ÚNICA,Verde,2.0,82.8,no,no,NINGUNO,Ataque,
+767,Wimpod,FASE 1,Rosa,0.5,12.0,su evolución,no,NINGUNO,Velocidad,
+768,Golisopod,FASE 2,Blanco,2.0,108.0,sí,no,NIVEL,Defensa,level-up version_group=sun-moon min_level=30
+769,Sandygast,FASE 1,Blanco,0.5,70.0,no,no,NINGUNO,Defensa,
+770,Palossand,FASE 2,ninguno,1.3,250.0,no,no,NIVEL,Defensa,level-up version_group=sun-moon min_level=42
+771,Pyukumuku,ÚNICA,Rojo,0.3,1.2,no,no,NINGUNO,Defensa + Def. Esp.,
+772,Código Cero,FASE 1,Rojo,1.9,120.5,no,no,NINGUNO,NO TIENE,
+773,Silvally,FASE 2,Blanco,2.3,100.5,no,no,AMISTAD,NO TIENE,level-up version_group=sun-moon min_happiness=160
+774,Minior,ÚNICA,Rosa,0.3,40.0,no,no,NINGUNO,Defensa + Def. Esp.,
+775,Komala,ÚNICA,Marrón,0.4,19.9,no,no,NINGUNO,Ataque,
+776,Turtonator,ÚNICA,Amarillo,2.0,212.0,no,no,NINGUNO,Defensa,
+777,Togedemaru,ÚNICA,Blanco,0.3,3.3,no,no,NINGUNO,Ataque,
+778,Mimikyu,ÚNICA,Rojo,0.2,0.7,no,no,NINGUNO,Def. Esp.,
+779,Bruxish,ÚNICA,Azul,0.9,19.0,no,no,NINGUNO,Ataque,
+780,Drampa,ÚNICA,Verde,3.0,185.0,sí,no,NINGUNO,At. Esp.,
+781,Dhelmise,ÚNICA,Azul,3.9,210.0,no,no,NINGUNO,Ataque,
+782,Jangmo-o,FASE 1,Blanco,0.6,29.7,no,no,NINGUNO,Defensa,
+783,Hakamo-o,FASE 2,Amarillo,1.2,47.0,no,no,NIVEL,Defensa,level-up version_group=sun-moon min_level=35
+784,Kommo-o,FASE 3,Amarillo,1.6,78.2,no,no,NIVEL,Defensa,level-up version_group=sun-moon min_level=45
+785,Tapu Koko,ÚNICA,Rojo,1.8,20.5,no,no,NINGUNO,Velocidad,
+786,Tapu Lele,ÚNICA,Rojo,1.2,18.6,no,no,NINGUNO,At. Esp.,
+787,Tapu Bulu,ÚNICA,Negro,1.9,45.5,no,no,NINGUNO,Ataque,
+788,Tapu Fini,ÚNICA,Azul,1.3,21.2,no,no,NINGUNO,Def. Esp.,
+789,Cosmog,FASE 1,Morado,0.2,0.1,no,no,NINGUNO,PS,
+790,Cosmoem,FASE 2,Amarillo,0.1,999.9,no,no,NIVEL,Defensa + Def. Esp.,level-up version_group=sun-moon min_level=43
+791,Solgaleo,FASE 3,Gris,3.4,230.0,no,no,NIVEL,PS + Ataque,level-up version_group=sun-moon min_level=53
+792,Lunala,FASE 3,Amarillo,4.0,120.0,no,no,NIVEL,PS + At. Esp.,level-up version_group=sun-moon min_level=53
+793,Nihilego,ÚNICA,Gris,1.2,55.5,no,no,NINGUNO,Def. Esp.,
+794,Buzzwole,ÚNICA,Marrón,2.4,333.6,no,no,NINGUNO,Ataque + Defensa,
+795,Pheromosa,ÚNICA,Marrón,1.8,25.0,no,no,NINGUNO,Velocidad,
+796,Xurkitree,ÚNICA,Blanco,3.8,100.0,no,no,NINGUNO,At. Esp.,
+797,Celesteela,ÚNICA,ninguno,9.2,999.9,no,no,NINGUNO,At. Esp.,
+798,Kartana,ÚNICA,Rojo,0.3,0.1,no,no,NINGUNO,Ataque,
+799,Guzzlord,ÚNICA,Amarillo,5.5,888.0,no,no,NINGUNO,PS,
+800,Necrozma,ÚNICA,Gris,2.4,230.0,no,no,NINGUNO,At. Esp.,
+801,Magearna,ÚNICA,Blanco,1.0,80.5,sí,no,NINGUNO,At. Esp.,
+802,Marshadow,ÚNICA,Negro,0.7,22.2,no,no,NINGUNO,Ataque + Velocidad,
+803,Poipole,FASE 1,Rosa,0.6,1.8,no,no,NINGUNO,NO TIENE,
+804,Naganadel,FASE 2,ninguno,3.6,150.0,no,no,MOVIMIENTO,At. Esp.,level-up version_group=ultra-sun-ultra-moon known_move=dragon-pulse
+805,Stakataka,ÚNICA,Negro,5.5,820.0,no,no,NINGUNO,Defensa,
+806,Blacephalon,ÚNICA,Gris,1.8,13.0,no,no,NINGUNO,At. Esp.,
+807,Zeraora,ÚNICA,ninguno,1.5,44.5,sí,no,NINGUNO,Velocidad,
+808,Meltan,FASE 1,Amarillo,0.2,8.0,no,no,NINGUNO,Ataque + Defensa,
+809,Melmetal,FASE 2,Negro,2.5,800.0,no,no,ESPECIAL,Ataque + Defensa,meltan-candies version_group=lets-go-pikachu-lets-go-eevee
+810,Grookey,FASE 1,Rojo,0.3,5.0,no,no,NINGUNO,Ataque + Velocidad,
+811,Thwackey,FASE 2,Amarillo,0.7,14.0,no,no,NIVEL,Ataque,level-up version_group=sword-shield min_level=16
+812,Rillaboom,FASE 3,Marrón,2.1,90.0,no,no,NIVEL,Ataque,level-up version_group=sword-shield min_level=35
+813,Scorbunny,FASE 1,Rojo,0.3,4.5,no,no,NINGUNO,Ataque,
+814,Raboot,FASE 2,Blanco,0.6,9.0,no,no,NIVEL,Velocidad,level-up version_group=sword-shield min_level=16
+815,Cinderace,FASE 3,Rojo,1.4,33.0,no,no,NIVEL,Velocidad,level-up version_group=sword-shield min_level=35
+816,Sobble,FASE 1,ninguno,0.3,4.0,no,no,NINGUNO,At. Esp. + Velocidad,
+817,Drizzile,FASE 2,Verde,0.7,11.5,no,no,NIVEL,At. Esp.,level-up version_group=sword-shield min_level=16
+818,Inteleon,FASE 3,Amarillo,1.9,45.2,no,no,NIVEL,At. Esp.,level-up version_group=sword-shield min_level=35
+819,Skwovet,FASE 1,Blanco,0.3,2.5,no,no,NINGUNO,PS,
+820,Greedent,FASE 2,Rojo,0.6,6.0,no,no,NIVEL,PS,level-up version_group=sword-shield min_level=24
+821,Rookidee,FASE 1,Negro,0.2,1.8,no,no,NINGUNO,Velocidad,
+822,Corvisquire,FASE 2,Negro,0.8,16.0,no,no,NIVEL,Velocidad,level-up version_group=sword-shield min_level=18
+823,Corviknight,FASE 3,Azul,2.2,75.0,no,no,NIVEL,Defensa,level-up version_group=sword-shield min_level=38
+824,Blipbug,FASE 1,Morado,0.4,8.0,no,no,NINGUNO,Def. Esp. + Velocidad,
+825,Dottler,FASE 2,Rojo,0.4,19.5,no,no,NIVEL,Def. Esp.,level-up version_group=sword-shield min_level=10
+826,Orbeetle,FASE 3,Morado,0.4,40.8,no,no,NIVEL,Def. Esp.,level-up version_group=sword-shield min_level=30
+827,Nickit,FASE 1,Rojo,0.6,8.9,no,no,NINGUNO,Def. Esp.,
+828,Thievul,FASE 2,Rojo,1.2,19.9,no,no,NIVEL,Def. Esp.,level-up version_group=sword-shield min_level=18
+829,Gossifleur,FASE 1,Rojo,0.4,2.2,no,no,NINGUNO,Defensa + Def. Esp.,
+830,Eldegoss,FASE 2,Blanco,0.5,2.5,no,no,NIVEL,Def. Esp.,level-up version_group=sword-shield min_level=20
+831,Wooloo,FASE 1,Gris,0.6,6.0,no,no,NINGUNO,Defensa,
+832,Dubwool,FASE 2,Gris,1.3,43.0,no,no,NIVEL,Defensa,level-up version_group=sword-shield min_level=24
+833,Chewtle,FASE 1,Amarillo,0.3,8.5,no,no,NINGUNO,Ataque,
+834,Drednaw,FASE 2,Rojo,1.0,115.5,no,no,NIVEL,Ataque,level-up version_group=sword-shield min_level=22
+835,Yamper,FASE 1,Marrón,0.3,13.5,no,no,NINGUNO,PS,
+836,Boltund,FASE 2,Verde,1.0,34.0,no,no,NIVEL,Velocidad,level-up version_group=sword-shield min_level=25
+837,Rolycoly,FASE 1,Gris,0.3,12.0,no,no,NINGUNO,Defensa + Def. Esp.,
+838,Carkol,FASE 2,ninguno,1.1,78.0,no,no,NIVEL,Defensa,level-up version_group=sword-shield min_level=18
+839,Coalossal,FASE 3,ninguno,2.8,310.5,no,no,NIVEL,Defensa,level-up version_group=sword-shield min_level=34
+840,Applin,FASE 1,Rojo,0.2,0.5,no,no,NINGUNO,Defensa,
+841,Flapple,FASE 2,Amarillo,0.3,1.0,no,no,OBJETO,Ataque,use-item version_group=sword-shield item=tart-apple
+842,Appletun,FASE 2,Rojo,0.4,13.0,no,no,OBJETO,PS,use-item version_group=sword-shield item=sweet-apple
+843,Silicobra,FASE 1,Blanco,2.2,7.6,no,no,NINGUNO,Defensa,
+844,Sandaconda,FASE 2,Marrón,3.8,65.5,no,no,NIVEL,Defensa,level-up version_group=sword-shield min_level=36
+845,Cramorant,ÚNICA,Blanco,0.8,18.0,no,no,NINGUNO,Def. Esp.,
+846,Arrokuda,FASE 1,Amarillo,0.5,1.0,no,no,NINGUNO,Velocidad,
+847,Barraskewda,FASE 2,Rojo,1.3,30.0,no,no,NIVEL,Velocidad,level-up version_group=sword-shield min_level=26
+848,Toxel,FASE 1,ninguno,0.4,11.0,no,no,NINGUNO,At. Esp.,
+849,Toxtricity,FASE 2,Amarillo,1.6,40.0,no,no,NIVEL,At. Esp.,"level-up version_group=sword-shield min_level=30 evolved_pokemon_form=toxtricity-amped allowed_natures=[{'name': 'hardy', 'url': 'https://pokeapi.co/api/v2/nature/1/'}, {'name': 'docile', 'url': 'https://pokeapi.co/api/v2/nature/7/'}, {'name': 'hasty', 'url': 'https://pokeapi.co/api/v2/nature/10/'}, {'name': 'adamant', 'url': 'https://pokeapi.co/api/v2/nature/11/'}, {'name': 'impish', 'url': 'https://pokeapi.co/api/v2/nature/12/'}, {'name': 'rash', 'url': 'https://pokeapi.co/api/v2/nature/15/'}, {'name': 'jolly', 'url': 'https://pokeapi.co/api/v2/nature/16/'}, {'name': 'naughty', 'url': 'https://pokeapi.co/api/v2/nature/17/'}, {'name': 'lax', 'url': 'https://pokeapi.co/api/v2/nature/18/'}, {'name': 'quirky', 'url': 'https://pokeapi.co/api/v2/nature/19/'}, {'name': 'naive', 'url': 'https://pokeapi.co/api/v2/nature/20/'}, {'name': 'brave', 'url': 'https://pokeapi.co/api/v2/nature/21/'}, {'name': 'sassy', 'url': 'https://pokeapi.co/api/v2/nature/24/'}] || level-up version_group=sword-shield min_level=30 evolved_pokemon_form=toxtricity-low-key allowed_natures=[{'name': 'bold', 'url': 'https://pokeapi.co/api/v2/nature/2/'}, {'name': 'modest', 'url': 'https://pokeapi.co/api/v2/nature/3/'}, {'name': 'calm', 'url': 'https://pokeapi.co/api/v2/nature/4/'}, {'name': 'timid', 'url': 'https://pokeapi.co/api/v2/nature/5/'}, {'name': 'lonely', 'url': 'https://pokeapi.co/api/v2/nature/6/'}, {'name': 'mild', 'url': 'https://pokeapi.co/api/v2/nature/8/'}, {'name': 'gentle', 'url': 'https://pokeapi.co/api/v2/nature/9/'}, {'name': 'bashful', 'url': 'https://pokeapi.co/api/v2/nature/13/'}, {'name': 'careful', 'url': 'https://pokeapi.co/api/v2/nature/14/'}, {'name': 'relaxed', 'url': 'https://pokeapi.co/api/v2/nature/22/'}, {'name': 'quiet', 'url': 'https://pokeapi.co/api/v2/nature/23/'}, {'name': 'serious', 'url': 'https://pokeapi.co/api/v2/nature/25/'}]"
+850,Sizzlipede,FASE 1,ninguno,0.7,1.0,no,no,NINGUNO,Ataque,
+851,Centiskorch,FASE 2,ninguno,3.0,120.0,no,no,NIVEL,Ataque,level-up version_group=sword-shield min_level=28
+852,Clobbopus,FASE 1,Blanco,0.6,4.0,no,no,NINGUNO,Ataque,
+853,Grapploct,FASE 2,Morado,1.6,39.0,no,no,MOVIMIENTO,Ataque,level-up version_group=sword-shield known_move=taunt
+854,Sinistea,FASE 1,Verde,0.1,0.2,no,no,NINGUNO,At. Esp.,
+855,Polteageist,FASE 2,Verde,0.2,0.4,no,no,OBJETO,At. Esp.,use-item version_group=sword-shield item=cracked-pot required_pokemon_form=sinistea-phony evolved_pokemon_form=polteageist-phony || use-item version_group=sword-shield item=chipped-pot required_pokemon_form=sinistea-antique evolved_pokemon_form=polteageist-antique
+856,Hatenna,FASE 1,Azul,0.4,3.4,no,no,NINGUNO,At. Esp.,
+857,Hattrem,FASE 2,Azul,0.6,4.8,no,no,NIVEL,At. Esp.,level-up version_group=sword-shield min_level=32
+858,Hatterene,FASE 3,Azul,2.1,5.1,no,no,NIVEL,At. Esp.,level-up version_group=sword-shield min_level=42
+859,Impidimp,FASE 1,Rojo,0.4,5.5,no,no,NINGUNO,At. Esp.,
+860,Morgrem,FASE 2,Rojo,0.8,12.5,no,no,NIVEL,At. Esp.,level-up version_group=sword-shield min_level=32
+861,Grimmsnarl,FASE 3,Verde,1.5,61.0,no,no,NIVEL,Ataque,level-up version_group=sword-shield min_level=42
+862,Obstagoon,FASE 3,Negro,1.6,46.0,no,no,NIVEL,Defensa,level-up version_group=sword-shield min_level=35 time_of_day=night required_pokemon_form=linoone-galar
+863,Perrserker,FASE 2,Gris,0.8,28.0,no,no,NIVEL,Ataque,level-up version_group=sword-shield min_level=28 required_pokemon_form=meowth-galar
+864,Cursola,FASE 2,Gris,1.0,0.4,no,no,NIVEL,At. Esp.,level-up version_group=sword-shield min_level=38 required_pokemon_form=corsola-galar
+865,Sirfetch’d,FASE 2,Verde,0.8,117.0,no,no,ESPECIAL,Ataque,three-critical-hits version_group=sword-shield required_pokemon_form=farfetchd-galar
+866,Mr. Rime,FASE 3,Azul,1.5,58.2,no,no,NIVEL,At. Esp.,level-up version_group=sword-shield min_level=42 required_pokemon_form=mr-mime-galar
+867,Runerigus,FASE 2,Negro,1.6,66.6,no,no,ESPECIAL,Defensa,take-damage version_group=sword-shield location=dusty-bowl required_pokemon_form=yamask-galar min_damage_taken=49
+868,Milcery,FASE 1,Amarillo,0.2,0.3,no,no,NINGUNO,Def. Esp.,
+869,Alcremie,FASE 2,Rosa,0.3,0.5,no,no,ESPECIAL,Def. Esp.,spin version_group=sword-shield
+870,Falinks,ÚNICA,Rojo,3.0,62.0,sí,no,NINGUNO,Ataque + Defensa,
+871,Pincurchin,ÚNICA,Gris,0.3,1.0,no,no,NINGUNO,Ataque,
+872,Snom,FASE 1,Azul,0.3,3.8,no,no,NINGUNO,At. Esp.,
+873,Frosmoth,FASE 2,Gris,1.3,42.0,no,no,AMISTAD,At. Esp.,level-up version_group=sword-shield min_happiness=160 time_of_day=night
+874,Stonjourner,ÚNICA,Marrón,2.5,520.0,no,no,NINGUNO,Defensa,
+875,Eiscue,ÚNICA,Verde,1.4,89.0,no,no,NINGUNO,Defensa,
+876,Indeedee,ÚNICA,Blanco,0.9,28.0,no,no,NINGUNO,At. Esp.,
+877,Morpeko,ÚNICA,Gris,0.3,3.0,no,no,NINGUNO,Velocidad,
+878,Cufant,FASE 1,Rojo,1.2,100.0,no,no,NINGUNO,Ataque,
+879,Copperajah,FASE 2,Negro,3.0,650.0,no,no,NIVEL,Ataque,level-up version_group=sword-shield min_level=34
+880,Dracozolt,ÚNICA,Amarillo,1.8,190.0,no,no,NINGUNO,Ataque,
+881,Arctozolt,ÚNICA,Verde,2.3,150.0,no,no,NINGUNO,Ataque,
+882,Dracovish,ÚNICA,Azul,2.3,215.0,no,no,NINGUNO,Defensa,
+883,Arctovish,ÚNICA,Blanco,2.0,175.0,no,no,NINGUNO,Defensa,
+884,Duraludon,FASE 1,Gris,1.8,40.0,no,no,NINGUNO,At. Esp.,
+885,Dreepy,FASE 1,ninguno,0.5,2.0,no,no,NINGUNO,Velocidad,
+886,Drakloak,FASE 2,Azul,1.4,11.0,no,no,NIVEL,Velocidad,level-up version_group=sword-shield min_level=50
+887,Dragapult,FASE 3,Azul,3.0,50.0,no,no,NIVEL,Velocidad,level-up version_group=sword-shield min_level=60
+888,Zacian,ÚNICA,Rojo,2.8,110.0,no,no,NINGUNO,Velocidad,
+889,Zamazenta,ÚNICA,Azul,2.9,210.0,no,no,NINGUNO,Velocidad,
+890,Eternatus,ÚNICA,Rojo,20.0,950.0,no,no,NINGUNO,At. Esp.,
+891,Kubfu,FASE 1,Blanco,0.6,12.0,no,no,NINGUNO,Ataque,
+892,Urshifu,FASE 2,Negro,1.9,105.0,no,no,OBJETO,Ataque,use-item version_group=scarlet-violet item=scroll-of-darkness evolved_pokemon_form=urshifu-single-strike || use-item version_group=scarlet-violet item=scroll-of-waters evolved_pokemon_form=urshifu-rapid-strike
+893,Zarude,ÚNICA,Negro,1.8,70.0,no,no,NINGUNO,Ataque,
+894,Regieleki,ÚNICA,Blanco,1.2,145.0,no,no,NINGUNO,Velocidad,
+895,Regidrago,ÚNICA,Azul,2.1,200.0,no,no,NINGUNO,PS,
+896,Glastrier,ÚNICA,Azul,2.2,800.0,no,no,NINGUNO,Ataque,
+897,Spectrier,ÚNICA,Morado,2.0,44.5,no,no,NINGUNO,At. Esp.,
+898,Calyrex,ÚNICA,Blanco,1.1,7.7,no,no,NINGUNO,PS,
+899,Wyrdeer,FASE 2,Blanco,1.8,95.1,no,no,MOVIMIENTO,Ataque + At. Esp.,agile-style-move version_group=legends-arceus used_move=psyshield-bash min_move_count=20
+900,Kleavor,FASE 2,Negro,1.8,89.0,no,no,OBJETO,Ataque,use-item version_group=legends-arceus item=black-augurite
+901,Ursaluna,FASE 3,Negro,2.4,290.0,no,no,OBJETO,Ataque,use-item version_group=legends-arceus item=peat-block time_of_day=full-moon
+902,Basculegion,FASE 2,Rojo,3.0,110.0,no,no,ESPECIAL,PS,recoil-damage version_group=legends-arceus gender=2 required_pokemon_form=basculin-white-striped evolved_pokemon_form=basculegion-male min_damage_taken=294 || recoil-damage version_group=legends-arceus gender=1 required_pokemon_form=basculin-white-striped evolved_pokemon_form=basculegion-female min_damage_taken=294
+903,Sneasler,FASE 2,Azul,1.3,43.0,no,no,OBJETO,Ataque,level-up version_group=legends-arceus held_item=razor-claw time_of_day=day required_pokemon_form=sneasel-hisui
+904,Overqwil,FASE 2,Blanco,2.5,60.5,no,no,MOVIMIENTO,Ataque,use-move version_group=legends-za required_pokemon_form=qwilfish-hisui used_move=barb-barrage min_move_count=20
+905,Enamorus,ÚNICA,Blanco,1.6,48.0,no,no,NINGUNO,At. Esp.,
+906,Sprigatito,FASE 1,ninguno,0.4,4.1,no,no,NINGUNO,Velocidad,
+907,Floragato,FASE 2,ninguno,0.9,12.2,no,no,NIVEL,Velocidad,level-up version_group=scarlet-violet min_level=16
+908,Meowscarada,FASE 3,Negro,1.5,31.2,no,no,NIVEL,Velocidad,level-up version_group=scarlet-violet min_level=36
+909,Fuecoco,FASE 1,Blanco,0.4,9.8,no,no,NINGUNO,PS,
+910,Crocalor,FASE 2,Blanco,1.0,30.7,no,no,NIVEL,At. Esp.,level-up version_group=scarlet-violet min_level=16
+911,Skeledirge,FASE 3,Gris,1.6,326.5,no,no,NIVEL,At. Esp.,level-up version_group=scarlet-violet min_level=36
+912,Quaxly,FASE 1,Azul,0.5,6.1,no,no,NINGUNO,Ataque,
+913,Quaxwell,FASE 2,Blanco,1.2,21.5,no,no,NIVEL,Ataque,level-up version_group=scarlet-violet min_level=16
+914,Quaquaval,FASE 3,Verde,1.8,61.9,no,no,NIVEL,Ataque,level-up version_group=scarlet-violet min_level=36
+915,Lechonk,FASE 1,Azul,0.5,10.2,no,no,NINGUNO,PS,
+916,Oinkologne,FASE 2,Negro,1.0,120.0,no,no,NIVEL,PS,level-up version_group=scarlet-violet gender=2 min_level=18 evolved_pokemon_form=oinkologne-male || level-up version_group=scarlet-violet gender=1 min_level=18 evolved_pokemon_form=oinkologne-female
+917,Tarountula,FASE 1,Gris,0.3,4.0,no,no,NINGUNO,Defensa,
+918,Spidops,FASE 2,Amarillo,1.0,16.5,no,no,NIVEL,Defensa,level-up version_group=scarlet-violet min_level=15
+919,Nymble,FASE 1,Azul,0.2,1.0,no,no,NINGUNO,Ataque,
+920,Lokix,FASE 2,Negro,1.0,17.5,no,no,NIVEL,Ataque,level-up version_group=scarlet-violet min_level=24
+921,Pawmi,FASE 1,Rojo,0.3,2.5,no,no,NINGUNO,Velocidad,
+922,Pawmo,FASE 2,Rojo,0.4,6.5,no,no,NIVEL,Velocidad,level-up version_group=scarlet-violet min_level=18
+923,Pawmot,FASE 3,Rojo,0.9,41.0,no,no,ESPECIAL,Ataque,level-up version_group=scarlet-violet min_steps=1000
+924,Tandemaus,FASE 1,Gris,0.3,1.8,no,no,NINGUNO,Velocidad,
+925,Maushold,FASE 2,Gris,0.3,2.8,no,no,NIVEL,Velocidad,"in-battle-level-up version_group=scarlet-violet min_level=25 evolved_pokemon_form=maushold-family-of-four condition_expression={'expression': 'EC 100 % 0 !=', 'percentage_chance': 99, 'variables': [{'name': 'encryption-constant', 'url': 'https://pokeapi.co/api/v2/evolution-variable/1/'}]} || in-battle-level-up version_group=scarlet-violet min_level=25 evolved_pokemon_form=maushold-family-of-three condition_expression={'expression': 'EC 100 % 0 ==', 'percentage_chance': 1, 'variables': [{'name': 'encryption-constant', 'url': 'https://pokeapi.co/api/v2/evolution-variable/1/'}]}"
+926,Fidough,FASE 1,Blanco,0.3,10.9,no,no,NINGUNO,Defensa,
+927,Dachsbun,FASE 2,Rojo,0.5,14.9,no,no,NIVEL,Defensa,level-up version_group=scarlet-violet min_level=26
+928,Smoliv,FASE 1,Amarillo,0.3,6.5,no,no,NINGUNO,At. Esp.,
+929,Dolliv,FASE 2,Amarillo,0.6,11.9,no,no,NIVEL,At. Esp. + Def. Esp.,level-up version_group=scarlet-violet min_level=25
+930,Arboliva,FASE 3,Rosa,1.4,48.2,no,no,NIVEL,At. Esp.,level-up version_group=scarlet-violet min_level=35
+931,Squawkabilly,ÚNICA,Blanco,0.6,2.4,no,no,NINGUNO,Ataque,
+932,Nacli,FASE 1,Blanco,0.4,16.0,no,no,NINGUNO,Defensa,
+933,Naclstack,FASE 2,Blanco,0.6,105.0,no,no,NIVEL,Defensa,level-up version_group=scarlet-violet min_level=24
+934,Garganacl,FASE 3,Blanco,2.3,240.0,no,no,NIVEL,Defensa,level-up version_group=scarlet-violet min_level=38
+935,Charcadet,FASE 1,Negro,0.6,10.5,no,no,NINGUNO,Ataque + At. Esp.,
+936,Armarouge,FASE 2,Amarillo,1.5,85.0,no,no,OBJETO,At. Esp.,use-item version_group=scarlet-violet item=auspicious-armor
+937,Ceruledge,FASE 2,Morado,1.6,62.0,no,no,OBJETO,Ataque,use-item version_group=scarlet-violet item=malicious-armor
+938,Tadbulb,FASE 1,Marrón,0.3,0.4,no,no,NINGUNO,PS,
+939,Bellibolt,FASE 2,Gris,1.2,113.0,no,no,PIEDRA,PS,use-item version_group=scarlet-violet item=thunder-stone
+940,Wattrel,FASE 1,Amarillo,0.4,3.6,no,no,NINGUNO,Velocidad,
+941,Kilowattrel,FASE 2,Negro,1.4,38.6,no,no,NIVEL,Velocidad,level-up version_group=scarlet-violet min_level=25
+942,Maschiff,FASE 1,Rosa,0.5,16.0,no,no,NINGUNO,Ataque,
+943,Mabosstiff,FASE 2,Marrón,1.1,61.0,no,no,NIVEL,Ataque,level-up version_group=scarlet-violet min_level=30
+944,Shroodle,FASE 1,Negro,0.2,0.7,no,no,NINGUNO,Velocidad,
+945,Grafaiai,FASE 2,Negro,0.7,27.2,no,no,NIVEL,Velocidad,level-up version_group=scarlet-violet min_level=28
+946,Bramblin,FASE 1,Rojo,0.6,0.6,no,no,NINGUNO,Ataque,
+947,Brambleghast,FASE 2,Amarillo,1.2,6.0,no,no,ESPECIAL,Ataque,level-up version_group=scarlet-violet min_steps=1000
+948,Toedscool,FASE 1,Blanco,0.9,33.0,no,no,NINGUNO,Def. Esp.,
+949,Toedscruel,FASE 2,Amarillo,1.9,58.0,no,no,NIVEL,Def. Esp.,level-up version_group=scarlet-violet min_level=30
+950,Klawf,ÚNICA,Marrón,1.3,79.0,no,no,NINGUNO,Defensa,
+951,Capsakid,FASE 1,ninguno,0.3,3.0,su evolución,no,NINGUNO,Ataque + At. Esp.,
+952,Scovillain,FASE 2,Rojo,0.9,15.0,sí,no,PIEDRA,Ataque + At. Esp.,use-item version_group=scarlet-violet item=fire-stone
+953,Rellor,FASE 1,ninguno,0.2,1.0,no,no,NINGUNO,Defensa,
+954,Rabsca,FASE 2,Rosa,0.3,3.5,no,no,ESPECIAL,At. Esp.,level-up version_group=scarlet-violet min_steps=1000
+955,Flittle,FASE 1,Blanco,0.2,1.5,no,no,NINGUNO,Velocidad,
+956,Espathra,FASE 2,Blanco,1.9,90.0,no,no,NIVEL,Velocidad,level-up version_group=scarlet-violet min_level=35
+957,Tinkatink,FASE 1,Rojo,0.4,8.9,no,no,NINGUNO,Def. Esp.,
+958,Tinkatuff,FASE 2,Morado,0.7,59.1,no,no,NIVEL,Def. Esp.,level-up version_group=scarlet-violet min_level=24
+959,Tinkaton,FASE 3,Morado,0.7,112.8,no,no,NIVEL,Def. Esp.,level-up version_group=scarlet-violet min_level=38
+960,Wiglett,FASE 1,Gris,1.2,1.8,no,no,NINGUNO,Velocidad,
+961,Wugtrio,FASE 2,Azul,1.2,5.4,no,no,NIVEL,Velocidad,level-up version_group=scarlet-violet min_level=26
+962,Bombirdier,ÚNICA,Gris,1.5,42.9,no,no,NINGUNO,Ataque,
+963,Finizen,FASE 1,Blanco,1.3,60.2,no,no,NINGUNO,Velocidad,
+964,Palafin,FASE 2,Blanco,1.3,60.2,no,no,NIVEL,PS + Velocidad,level-up version_group=scarlet-violet min_level=38 needs_multiplayer=True
+965,Varoom,FASE 1,Blanco,1.0,35.0,no,no,NINGUNO,Ataque,
+966,Revavroom,FASE 2,Negro,1.8,120.0,no,no,NIVEL,Ataque,level-up version_group=scarlet-violet min_level=40
+967,Cyclizar,ÚNICA,Negro,1.6,63.0,no,no,NINGUNO,Velocidad,
+968,Orthworm,ÚNICA,Rojo,2.5,310.0,no,no,NINGUNO,Defensa,
+969,Glimmet,FASE 1,ninguno,0.7,8.0,su evolución,no,NINGUNO,At. Esp.,
+970,Glimmora,FASE 2,Verde,1.5,45.0,sí,no,NIVEL,At. Esp.,level-up version_group=scarlet-violet min_level=35
+971,Greavard,FASE 1,Azul,0.6,35.0,no,no,NINGUNO,Ataque,
+972,Houndstone,FASE 2,Gris,2.0,15.0,no,no,NIVEL,Ataque,level-up version_group=scarlet-violet min_level=30 time_of_day=night
+973,Flamigo,ÚNICA,ninguno,1.6,37.0,no,no,NINGUNO,Ataque,
+974,Cetoddle,FASE 1,Gris,1.2,45.0,no,no,NINGUNO,PS,
+975,Cetitan,FASE 2,Gris,4.5,700.0,no,no,PIEDRA,PS,use-item version_group=scarlet-violet item=ice-stone
+976,Veluza,ÚNICA,Rosa,2.5,90.0,no,no,NINGUNO,Ataque,
+977,Dondozo,ÚNICA,Gris,12.0,220.0,no,no,NINGUNO,PS,
+978,Tatsugiri,ÚNICA,Rojo,0.3,8.0,sí,no,NINGUNO,At. Esp.,
+979,Annihilape,FASE 3,Blanco,1.2,56.0,no,no,MOVIMIENTO,Ataque,use-move version_group=scarlet-violet used_move=rage-fist min_move_count=20
+980,Clodsire,FASE 2,Negro,1.8,223.0,no,no,NIVEL,PS,level-up version_group=scarlet-violet min_level=20 required_pokemon_form=wooper-paldea
+981,Farigiraf,FASE 2,Rojo,3.2,160.0,no,no,MOVIMIENTO,PS,level-up version_group=scarlet-violet known_move=twin-beam
+982,Dudunsparce,FASE 2,Verde,3.6,39.2,no,no,MOVIMIENTO,PS,"level-up version_group=scarlet-violet known_move=hyper-drill evolved_pokemon_form=dudunsparce-two-segment condition_expression={'expression': 'EC 100 % 0 !=', 'percentage_chance': 99, 'variables': [{'name': 'encryption-constant', 'url': 'https://pokeapi.co/api/v2/evolution-variable/1/'}]} || level-up version_group=scarlet-violet known_move=hyper-drill evolved_pokemon_form=dudunsparce-three-segment condition_expression={'expression': 'EC 100 % 0 ==', 'percentage_chance': 1, 'variables': [{'name': 'encryption-constant', 'url': 'https://pokeapi.co/api/v2/evolution-variable/1/'}]}"
+983,Kingambit,FASE 3,Rojo,2.0,120.0,no,no,ESPECIAL,Ataque,three-defeated-bisharp version_group=scarlet-violet
+984,Colmilargo,ÚNICA,Azul,2.2,320.0,no,no,NINGUNO,Ataque + Defensa,
+985,Colagrito,ÚNICA,Rojo,1.2,8.0,no,no,NINGUNO,PS + Def. Esp.,
+986,Furioseta,ÚNICA,Verde,1.2,21.0,no,no,NINGUNO,Ataque,
+987,Melenaleteo,ÚNICA,Azul,1.4,4.0,no,no,NINGUNO,NO TIENE,
+988,Reptalada,ÚNICA,Blanco,3.2,92.0,no,no,NINGUNO,Ataque,
+989,Pelarena,ÚNICA,Negro,2.3,60.0,no,no,NINGUNO,At. Esp.,
+990,Ferrodada,ÚNICA,Negro,0.9,240.0,no,no,NINGUNO,Defensa,
+991,Ferrosaco,ÚNICA,Azul,0.6,11.0,no,no,NINGUNO,Velocidad,
+992,Ferropalmas,ÚNICA,Amarillo,1.8,380.7,no,no,NINGUNO,PS,
+993,Ferrocuello,ÚNICA,Rosa,1.3,111.0,no,no,NINGUNO,At. Esp.,
+994,Ferropolilla,ÚNICA,Rojo,1.2,36.0,no,no,NINGUNO,At. Esp.,
+995,Ferropúas,ÚNICA,Negro,1.6,303.0,no,no,NINGUNO,Ataque,
+996,Frigibax,FASE 1,Blanco,0.5,17.0,su evolución,no,NINGUNO,Ataque,
+997,Arctibax,FASE 2,Azul,0.8,30.0,su evolución,no,NIVEL,Ataque,level-up version_group=scarlet-violet min_level=35
+998,Baxcalibur,FASE 3,Azul,2.1,210.0,sí,no,NIVEL,Ataque,level-up version_group=scarlet-violet min_level=54
+999,Gimmighoul,FASE 1,Amarillo,0.3,5.0,no,no,NINGUNO,At. Esp.,
+1000,Gholdengo,FASE 2,Rojo,1.2,30.0,no,no,ESPECIAL,At. Esp.,gimmighoul-coins version_group=scarlet-violet
+1001,Wo-Chien,ÚNICA,Negro,1.5,74.2,no,no,NINGUNO,Def. Esp.,
+1002,Chien-Pao,ÚNICA,Azul,1.9,152.2,no,no,NINGUNO,Velocidad,
+1003,Ting-Lu,ÚNICA,Verde,2.7,699.7,no,no,NINGUNO,PS,
+1004,Chi-Yu,ÚNICA,Verde,0.4,4.9,no,no,NINGUNO,At. Esp.,
+1005,Bramaluna,ÚNICA,Rojo,2.0,380.0,no,no,NINGUNO,Ataque,
+1006,Ferropaladín,ÚNICA,Verde,1.4,35.0,no,no,NINGUNO,Ataque,
+1007,Koraidon,ÚNICA,Gris,2.5,303.0,no,no,NINGUNO,Ataque + Velocidad,
+1008,Miraidon,ÚNICA,Morado,3.5,240.0,no,no,NINGUNO,At. Esp. + Velocidad,
+1009,Ondulagua,ÚNICA,Rosa,3.5,280.0,no,no,NINGUNO,At. Esp.,
+1010,Ferroverdor,ÚNICA,ninguno,1.5,125.0,no,no,NINGUNO,Ataque,
+1011,Dipplin,FASE 2,Rojo,0.4,9.7,no,no,OBJETO,Defensa,use-item version_group=the-teal-mask item=syrupy-apple
+1012,Poltchageist,FASE 1,Gris,0.1,1.1,no,no,NINGUNO,At. Esp.,
+1013,Sinistcha,FASE 2,Amarillo,0.2,2.2,no,no,OBJETO,At. Esp.,use-item version_group=the-teal-mask item=unremarkable-teacup required_pokemon_form=poltchageist-counterfeit evolved_pokemon_form=sinistcha-unremarkable || use-item version_group=the-teal-mask item=masterpiece-teacup required_pokemon_form=poltchageist-artisan evolved_pokemon_form=sinistcha-masterpiece
+1014,Okidogi,ÚNICA,Verde,1.8,92.2,no,no,NINGUNO,Ataque,
+1015,Munkidori,ÚNICA,Azul,1.0,12.2,no,no,NINGUNO,At. Esp.,
+1016,Fezandipiti,ÚNICA,Rosa,1.4,30.1,no,no,NINGUNO,Def. Esp.,
+1017,Ogerpon,ÚNICA,ninguno,1.2,39.8,no,no,NINGUNO,Ataque,
+1018,Archaludon,FASE 2,Gris,2.0,60.0,no,no,OBJETO,Defensa,use-item version_group=the-indigo-disk item=metal-alloy
+1019,Hydrapple,FASE 3,Rojo,1.8,93.0,no,no,MOVIMIENTO,At. Esp.,level-up version_group=the-indigo-disk known_move=dragon-cheer
+1020,Flamariete,ÚNICA,Amarillo,3.5,590.0,no,no,NINGUNO,Defensa,
+1021,Electrofuria,ÚNICA,Morado,5.2,480.0,no,no,NINGUNO,At. Esp.,
+1022,Ferromole,ÚNICA,Negro,1.5,162.5,no,no,NINGUNO,Velocidad,
+1023,Ferrotesta,ÚNICA,Verde,1.6,156.0,no,no,NINGUNO,At. Esp.,
+1024,Terapagos,ÚNICA,Morado,0.2,6.5,no,no,NINGUNO,PS,
+1025,Pecharunt,ÚNICA,Rosa,0.3,0.3,no,no,NINGUNO,Defensa,
