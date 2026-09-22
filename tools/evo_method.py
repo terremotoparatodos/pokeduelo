@@ -39,6 +39,40 @@ def summary(d):
     keys = [k for k, v in d.items() if v not in (None, False, '', []) and k not in ('trigger', 'is_default')]
     return d['trigger']['name'] + ' ' + ' '.join(f'{k}={name(d[k])}' for k in keys)
 
+# Un "+" indica que, además del método principal, la especie exige otra condición
+# relevante (por ejemplo NIVEL + lluvia o AMISTAD + momento del día).
+PLUS_OVERRIDES = {
+    350: True,  # Milotic: intercambio + Escama Bella según el override vigente.
+}
+PLUS_IGNORE = {'version_group', 'required_pokemon_form', 'evolved_pokemon_form',
+               'region', 'allowed_natures', 'condition_expression'}
+PLUS_PRIMARY = {
+    'NIVEL': {'min_level'},
+    'AMISTAD': {'min_happiness', 'min_affection'},
+    'PIEDRA': {'item'},
+    'OBJETO': {'item', 'held_item'},
+    'MOVIMIENTO': {'known_move', 'known_move_type', 'used_move'},
+    'INTERCAMBIO': set(),
+}
+
+def has_extra_condition(method, details, species_id=None):
+    if species_id in PLUS_OVERRIDES:
+        return PLUS_OVERRIDES[species_id]
+    if method in ('NINGUNO', 'ESPECIAL') or not details:
+        return False
+    genders = {d.get('gender') for d in details if d.get('gender') not in (None, False, '')}
+    primary = PLUS_PRIMARY.get(method, set())
+    for d in details:
+        for key, value in d.items():
+            if key in ('trigger', 'is_default') or key in PLUS_IGNORE or key in primary:
+                continue
+            if value in (None, False, '', []):
+                continue
+            if key == 'gender' and genders == {1, 2}:
+                continue
+            return True
+    return False
+
 # Correcciones manuales: el dato "más reciente" de PokeAPI es el último método
 # introducido, no el vigente en los últimos juegos.
 OVERRIDES = {

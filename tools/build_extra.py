@@ -1,4 +1,4 @@
-"""Genera la cadena EXTRA del juego: altura|peso|mega|regional|método|mejor stat|fase|2º color por especie (#1-#1025).
+"""Genera la cadena EXTRA del juego: altura|peso|mega|regional|método|mejor stat|fase|2º color|método+ por especie (#1-#1025).
 Ejecutar desde la carpeta que contiene cache/ después de fetch_pokeapi.py."""
 import json, re, sys
 sys.argv = ['x']
@@ -43,6 +43,7 @@ for i in range(1, 1026):
         if m and 'cap' not in n and 'totem' not in n: reg |= 1 << REGIONS.index(m.group(1))
     method = result[i][0]
     assert method in METHODS, (i, method)
+    extra_method = 1 if has_extra_condition(method, result[i][1], i) else 0
     # Mejor stat: bits en el orden de STATS; con 3 o más empatadas queda 0 (NO TIENE).
     base = {x['stat']['name']: x['base_stat'] for x in p['stats']}
     top = [k for k in STATS if base[k] == max(base.values())]
@@ -50,7 +51,7 @@ for i in range(1, 1026):
     # 2º color experimental (desde el sprite): 0 = ninguno; si no, índice del color + 1.
     c2 = second_color(f'sprites/{i}.png', s['color']['name'])[0]
     color2 = COLORS.index(c2) + 1 if c2 else 0
-    rows.append(f"{p['height']}|{p['weight']}|{mega}|{reg}|{METHODS.index(method)}|{best}|{phase[i]}|{color2}")
+    rows.append(f"{p['height']}|{p['weight']}|{mega}|{reg}|{METHODS.index(method)}|{best}|{phase[i]}|{color2}|{extra_method}")
 open('extra.txt', 'w').write(';'.join(rows))
 print(len(rows), 'filas;', sum(r.split('|')[2] == '1' for r in rows), 'con mega;', sum(r.split('|')[2] == '2' for r in rows), 'con mega en su evolución;',
       sum(r.split('|')[3] != '0' for r in rows), 'con forma regional')
