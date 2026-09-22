@@ -399,8 +399,10 @@ function evaluate(p, t){
 /* ▲ = el secreto tiene más; ▼ = tiene menos. */
 const arrow = (a,b) => a===b ? '' : `<span class="arrow">${b > a ? '▲' : '▼'}</span>`;
 const text = (value, cls='big') => `<div class="${cls} outline">${value}</div>`;
+const initialFor = p => (norm(p.name).charAt(0) || '').toUpperCase();
 const CATS = {
   gen:      {label:'GEN',      cell:(p,t)=>({ok:p.gen===t.gen, html:text(p.gen)})},
+  inicial:  {label:'INICIAL',  option:'LETRA INICIAL', cell:(p,t)=>({ok:initialFor(p)===initialFor(t), html:text(initialFor(p))})},
   fase:     {label:'FASE',     cell:(p,t)=>({ok:phaseFor(p)===phaseFor(t), html:text(phaseFor(p))})},
   color:    {label:'COLOR',    cell:(p,t)=>({ok:p.col===t.col, html:`<div class="sw" style="background:${COLORS[p.col].c}"></div>${text(COLORS[p.col].n.toUpperCase(),'cname')}`})},
   /* Experimental: no es un dato oficial, sale del color que más ocupa el sprite después del oficial. */
