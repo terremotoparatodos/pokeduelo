@@ -263,8 +263,9 @@ function findPoke(q){
 
 /* ─────────── ESTADO + SINCRONIZACIÓN ENTRE PESTAÑAS ─────────── */
 const KEY = 'pokeduelo-state-v1';
+const PLAYER_NAMES = ['SKY','GUTI'];
 const DEFAULT_CATS = ['gen','fase','color']; // categorías junto a TIPOS (ver CATS)
-const fresh = () => ({names:['JUGADOR 1','JUGADOR 2'], secret:[null,null], guesses:[[],[]], cats:[...DEFAULT_CATS], v:0});
+const fresh = () => ({names:[...PLAYER_NAMES], secret:[null,null], guesses:[[],[]], cats:[...DEFAULT_CATS], v:0});
 let S = fresh();
 try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.guesses) S = s; }catch(e){}
 
@@ -349,8 +350,8 @@ function showShareLinks(){
   if(!box || !gameId) return;
   box.hidden = false;
   box.innerHTML = `<h3>Partida en línea</h3><p>Compartí un enlace con cada persona:</p>
-    <p><a href="${shareUrl(1)}" target="_blank" rel="noopener">Abrir vista Jugador 1</a></p>
-    <p><a href="${shareUrl(2)}" target="_blank" rel="noopener">Abrir vista Jugador 2</a></p>`;
+    <p><a href="${shareUrl(1)}" target="_blank" rel="noopener">Abrir vista SKY</a></p>
+    <p><a href="${shareUrl(2)}" target="_blank" rel="noopener">Abrir vista GUTI</a></p>`;
 }
 async function initOnline(){
   if(!onlineReady()) return;
@@ -457,11 +458,11 @@ dl.innerHTML = DEX.map(p=>`<option value="${p.name} #${p.id}">`).join('');
 const psides = document.getElementById('panel-sides');
 psides.innerHTML = [0,1].map(i=>`
   <section data-p="${i}">
-    <h3>Jugador ${i+1} · ${i?'derecha':'izquierda'}</h3>
-    <label>Pokémon secreto de J${i+1} (lo adivina J${2-i})</label>
+    <h3>${PLAYER_NAMES[i]} · ${i?'derecha':'izquierda'}</h3>
+    <label>Pokémon secreto de ${PLAYER_NAMES[i]} (lo adivina ${PLAYER_NAMES[1-i]})</label>
     <div class="line"><input data-k="secret" list="dex" placeholder="Nombre o número"><button data-k="set-secret">Fijar</button></div>
     <div class="card hide" data-k="card" title="Clic para ver/ocultar"></div>
-    <label>Intento de J${i+1}</label>
+    <label>Intento de ${PLAYER_NAMES[i]}</label>
     <div class="line"><input data-k="guess" list="dex" placeholder="Nombre o número + Enter"><button class="primary" data-k="go">Validar</button></div>
     <div class="msg" data-k="msg"></div>
     <div class="btns"><button data-k="undo">↶ Deshacer</button><button data-k="clear">Borrar intentos</button></div>
@@ -505,7 +506,7 @@ const say = (i,txt) => { q(i,'msg').textContent = txt; };
   const go = ()=>{
     const p = findPoke(q(i,'guess').value);
     if(!p){ say(i,'Pokémon no encontrado.'); return; }
-    if(!S.secret[1-i]){ say(i,`Falta fijar el secreto de J${2-i}.`); return; }
+    if(!S.secret[1-i]){ say(i,`Falta fijar el secreto de ${PLAYER_NAMES[1-i]}.`); return; }
     if(S.guesses[i].includes(p.id)){ say(i,`${p.name} ya fue intentado.`); return; }
     S.guesses[i].push(p.id); q(i,'guess').value=''; say(i,''); commit();
   };
@@ -513,7 +514,7 @@ const say = (i,txt) => { q(i,'msg').textContent = txt; };
   q(i,'guess').addEventListener('keydown', e=>{ if(e.key==='Enter') go(); });
 
   q(i,'undo').onclick = ()=>{ S.guesses[i].pop(); commit(); };
-  q(i,'clear').onclick = ()=>{ if(confirm(`¿Borrar los intentos de J${i+1}?`)){ S.guesses[i]=[]; commit(); } };
+  q(i,'clear').onclick = ()=>{ if(confirm(`¿Borrar los intentos de ${PLAYER_NAMES[i]}?`)){ S.guesses[i]=[]; commit(); } };
   q(i,'card').onclick = e=> e.currentTarget.classList.toggle('hide');
 });
 
