@@ -386,10 +386,10 @@ const halves = [...document.querySelectorAll('.half')];
 const phaseFor = p => p.phase ? `FASE ${p.phase}` : 'ÚNICA';
 
 function evaluate(p, t){
-  /* Cada tipo ocupa su propia casilla; un hueco de tipo secundario queda neutro. */
+  /* La ausencia de segundo tipo también se compara como una respuesta. */
   const types = [0,1].map(slot=>{
     const ty = p.ty[slot];
-    if(ty === undefined) return {ok:null, html:`<div class="none outline">—</div>`};
+    if(ty === undefined) return {ok:t.ty[slot] === undefined, html:`<div class="none outline">—</div>`};
     return {ok:t.ty.includes(ty), html:`<div class="tb" style="background:${TYPES[ty].c}">${TYPES[ty].n.toUpperCase()}</div>`};
   });
   return {types, cells:activeCats().map(k=>CATS[k].cell(p,t))};
