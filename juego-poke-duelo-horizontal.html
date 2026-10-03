@@ -342,7 +342,8 @@ try{ bc = new BroadcastChannel('pokeduelo'); bc.onmessage = e => receive(e.data)
 addEventListener('storage', e => { if(e.key===KEY && e.newValue){ try{ receive(JSON.parse(e.newValue)); }catch(_){} } });
 
 function commit(){
-  S.v = Date.now();
+  /* El cambio debe ser más nuevo aunque el reloj de esta PC esté atrasado. */
+  S.v = Math.max(Date.now(), (S.v || 0) + 1);
   try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){}
   try{ bc && bc.postMessage(S); }catch(e){}
   saveOnline();
@@ -440,11 +441,22 @@ async function initOnline(){
   if(data && data.state){ S = data.state; renderAll(); }
   else {
     const {error: createError} = await db.from('pokeduelo_games').insert({id:gameId, state:S});
-    if(createError){ setOnlineMessage(`No se pudo crear la partida: ${createError.message}`); return; }
+    if(createError){
+      if(createError.code !== '23505'){ setOnlineMessage(`No se pudo crear la partida: ${createError.message}`); return; }
+      /* Otra vista pudo crear la misma partida mientras esta la abría. */
+      const {data: existing, error: readError} = await db.from('pokeduelo_games').select('state').eq('id', gameId).maybeSingle();
+      if(readError || !existing?.state){ setOnlineMessage(`No se pudo abrir la partida: ${readError?.message || 'partida no encontrada'}`); return; }
+      S = existing.state; renderAll();
+    }
   }
   db.channel(`pokeduelo-${gameId}`)
     .on('postgres_changes', {event:'UPDATE', schema:'public', table:'pokeduelo_games', filter:`id=eq.${gameId}`}, payload=>receive(payload.new.state))
-    .subscribe();
+    .subscribe(async status=>{
+      if(status !== 'SUBSCRIBED') return;
+      /* Recuperar cambios ocurridos antes de conectarse o al reconectarse. */
+      const {data, error} = await db.from('pokeduelo_games').select('state').eq('id', gameId).maybeSingle();
+      if(!error && data?.state) receive(data.state);
+    });
   if(playerView === null && !spectatorView) showShareLinks();
   showViewMenu();
 }
@@ -631,7 +643,7 @@ const say = (i,txt) => { q(i,'msg').textContent = txt; };
 
 document.getElementById('btn-reset').onclick = ()=>{
   if(!confirm('¿Iniciar una nueva ronda? Se borran los secretos e intentos de ambos jugadores.')) return;
-  S = {...fresh(), cats:[...activeCats()]}; // la nueva ronda conserva las categorías
+  S = {...fresh(), v:S.v, cats:[...activeCats()]}; // conserva categorías y versión al reiniciar
   lastShown[0] = lastShown[1] = undefined;
   lastAnimatedGuess[0] = lastAnimatedGuess[1] = null;
   commit();
