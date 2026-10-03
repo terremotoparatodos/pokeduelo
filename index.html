@@ -262,10 +262,12 @@ function findPoke(q){
 }
 
 /* ─────────── ESTADO + SINCRONIZACIÓN ENTRE PESTAÑAS ─────────── */
-const KEY = 'pokeduelo-state-v1';
+const pageParams = new URLSearchParams(location.search);
+let gameId = pageParams.get('game') || '';
+let KEY = 'pokeduelo-state-v1:'+(gameId || 'local');
 const PLAYER_NAMES = ['SKY','GUTI'];
 const DEFAULT_CATS = ['gen','fase','color']; // categorías junto a TIPOS (ver CATS)
-const fresh = () => ({names:[...PLAYER_NAMES], secret:[null,null], guesses:[[],[]], cats:[...DEFAULT_CATS], v:0});
+const fresh = () => ({names:[...PLAYER_NAMES], secret:[null,null], guesses:[[],[]], cats:[...DEFAULT_CATS], round:0, v:0});
 let S = fresh();
 try{ const s = JSON.parse(localStorage.getItem(KEY)); if(s && s.guesses) S = s; }catch(e){}
 
@@ -275,25 +277,78 @@ const SUPABASE_CONFIG = {
   url: 'https://avelmhozelpzyqrwynos.supabase.co',
   anonKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF2ZWxtaG96ZWxwenlxcnd5bm9zIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODg5MTI5NzAsImV4cCI6MjEwNDQ4ODk3MH0.JR8_MyTsoIiEv6Wyop9BLZZVXQYpVSM5j0h7blfoaEc'
 };
-const pageParams = new URLSearchParams(location.search);
 const playerParam = Number(pageParams.get('player'));
 const playerView = playerParam === 1 || playerParam === 2 ? playerParam - 1 : null;
-let gameId = pageParams.get('game') || '';
 let db = null;
+let onlineState = null, onlineInitialized = false, saveRunning = false;
+const pendingActions = [];
 
 let bc = null;
-try{ bc = new BroadcastChannel('pokeduelo'); bc.onmessage = e => receive(e.data); }catch(e){}
+function connectLocal(){
+  try{ bc && bc.close(); bc = new BroadcastChannel(KEY); bc.onmessage = e => receive(e.data); }catch(e){}
+}
+connectLocal();
 addEventListener('storage', e => { if(e.key===KEY && e.newValue){ try{ receive(JSON.parse(e.newValue)); }catch(_){} } });
 
-function commit(){
-  /* El cambio debe ser más nuevo aunque el reloj de esta PC esté atrasado. */
-  S.v = Math.max(Date.now(), (S.v || 0) + 1);
-  try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){}
-  try{ bc && bc.postMessage(S); }catch(e){}
-  saveOnline();
+function copyState(state){ return JSON.parse(JSON.stringify(state)); }
+function applyAction(state, action){
+  let next = copyState(state);
+  if(action.type !== 'reset' && (action.round || 0) !== (next.round || 0)){
+    throw new Error('La ronda cambió. Volvé a realizar tu acción en la ronda actual.');
+  }
+  switch(action.type){
+    case 'secret': next.secret[action.player] = action.id; break;
+    case 'guess':
+      if(!next.secret[1-action.player]) throw new Error('El rival todavía no fijó su Pokémon secreto.');
+      if(!next.guesses[action.player].includes(action.id)) next.guesses[action.player].push(action.id);
+      break;
+    case 'undo': next.guesses[action.player].pop(); break;
+    case 'clear': next.guesses[action.player] = []; break;
+    case 'cats': next.cats = [...action.cats]; break;
+    case 'reset':
+      next = {...fresh(), cats:[...(next.cats || DEFAULT_CATS)], round:(next.round || 0)+1, v:next.v};
+      break;
+  }
+  return next;
+}
+function publishLocal(state){
+  try{ localStorage.setItem(KEY, JSON.stringify(state)); }catch(e){}
+  try{ bc && bc.postMessage(state); }catch(e){}
+}
+function renderPending(){
+  S = copyState(onlineState);
+  pendingActions.forEach(action=>{
+    try{ S = applyAction(S, action); }catch(e){}
+  });
   renderAll();
 }
-function receive(ns){ if(!ns || ns.v <= S.v) return; S = ns; renderAll(); }
+function commit(action){
+  action = {...action, round:S.round || 0};
+  if(onlineReady()){
+    if(!onlineInitialized){ setOnlineMessage('Conectando la partida. Esperá un momento antes de jugar.'); return false; }
+    pendingActions.push(action);
+    renderPending();
+    saveOnline();
+  }else{
+    S = applyAction(S, action);
+    S.v = Math.max(Date.now(), (S.v || 0)+1);
+    publishLocal(S);
+    renderAll();
+  }
+  return true;
+}
+function receive(ns){
+  if(!ns) return;
+  if(onlineInitialized){
+    if(ns.v <= onlineState.v) return;
+    onlineState = copyState(ns);
+    renderPending();
+  }else{
+    if(ns.v <= S.v) return;
+    S = copyState(ns); renderAll();
+  }
+  try{ localStorage.setItem(KEY, JSON.stringify(ns)); }catch(e){}
+}
 
 /* ─────────── SONIDO ─────────── */
 let audioCtx = null;
@@ -330,11 +385,46 @@ function updateSoundButton(){
 }
 
 function onlineReady(){ return !!(SUPABASE_CONFIG.url && SUPABASE_CONFIG.anonKey && window.supabase); }
-function saveOnline(){
-  if(!db || !gameId) return;
-  db.from('pokeduelo_games').upsert({id:gameId, state:S}).then(({error})=>{
-    if(error) setOnlineMessage(`No se pudo guardar: ${error.message}`);
-  });
+async function readOnlineState(){
+  const {data, error} = await db.from('pokeduelo_games').select('state').eq('id', gameId).maybeSingle();
+  if(error || !data?.state) throw new Error(error?.message || 'partida no encontrada');
+  return data.state;
+}
+async function saveOnline(){
+  if(!db || !gameId || !onlineInitialized || saveRunning) return;
+  saveRunning = true;
+  try{
+    while(pendingActions.length){
+      const action = pendingActions[0];
+      try{
+        let saved = false;
+        for(let attempt=0; attempt<8; attempt++){
+          const base = copyState(onlineState);
+          const next = applyAction(base, action);
+          next.v = (base.v || 0)+1;
+          /* Guardar sólo si nadie cambió la partida desde que la leímos. */
+          const {data, error} = await db.from('pokeduelo_games')
+            .update({state:next}).eq('id', gameId).eq('state->>v', String(base.v || 0))
+            .select('state').maybeSingle();
+          if(error) throw new Error(error.message);
+          if(data?.state){
+            pendingActions.shift();
+            if(data.state.v >= onlineState.v) onlineState = copyState(data.state);
+            renderPending();
+            publishLocal(onlineState);
+            saved = true; break;
+          }
+          /* Otro jugador guardó primero: conservarlo y reintentar nuestra acción. */
+          receive(await readOnlineState());
+        }
+        if(!saved) throw new Error('La partida está recibiendo muchos cambios. Volvé a intentar.');
+      }catch(error){
+        pendingActions.shift();
+        renderPending();
+        setOnlineMessage('No se pudo guardar tu acción: '+error.message);
+      }
+    }
+  }finally{ saveRunning = false; }
 }
 function setOnlineMessage(text){
   const box = document.getElementById('online-session');
@@ -359,6 +449,8 @@ async function initOnline(){
   db = window.supabase.createClient(SUPABASE_CONFIG.url, SUPABASE_CONFIG.anonKey);
   if(!gameId){
     gameId = crypto.randomUUID();
+    KEY = 'pokeduelo-state-v1:'+gameId;
+    S = fresh(); connectLocal();
     const url = new URL(location.href);
     url.searchParams.set('game', gameId);
     history.replaceState(null, '', url);
@@ -376,6 +468,7 @@ async function initOnline(){
       S = existing.state; renderAll();
     }
   }
+  onlineState = copyState(S); onlineInitialized = true;
   db.channel(`pokeduelo-${gameId}`)
     .on('postgres_changes', {event:'UPDATE', schema:'public', table:'pokeduelo_games', filter:`id=eq.${gameId}`}, payload=>receive(payload.new.state))
     .subscribe(async status=>{
@@ -435,7 +528,7 @@ function renderSide(i){
   const g = S.guesses[i];
   const t = BY[S.secret[1-i]];
   const p = t && g.length ? BY[g[g.length-1]] : null;
-  const key = p ? `${g.length}:${p.id}:${t.id}:${activeCats()}` : `-:${activeCats()}`;
+  const key = p ? `${g.length}:${p.id}:${t.id}:${activeCats()}` : `-:${t?.id || 0}:${activeCats()}`;
   const guessKey = p ? `${g.length}:${p.id}` : null;
   if(key === lastShown[i]) return;
   /* Cada intento nuevo —incluido el primero— revela el Pokémon y las casillas. */
@@ -490,7 +583,7 @@ catSelects.addEventListener('change', e=>{
   const cats = [...activeCats()], other = cats.indexOf(value);
   if(other !== -1) cats[other] = cats[slot];
   cats[slot] = value;
-  S.cats = cats; commit();
+  commit({type:'cats', cats});
 });
 function renderCats(){
   activeCats().forEach((k,slot)=>{ catSelects.querySelector(`[data-slot="${slot}"]`).value = k; });
@@ -510,7 +603,7 @@ const say = (i,txt) => { q(i,'msg').textContent = txt; };
   const setSecret = ()=>{
     const p = findPoke(q(i,'secret').value);
     if(!p){ say(i,'Pokémon secreto no encontrado.'); return; }
-    S.secret[i] = p.id; q(i,'secret').value=''; say(i,''); commit();
+    if(commit({type:'secret', player:i, id:p.id})){ q(i,'secret').value=''; say(i,''); }
   };
   q(i,'set-secret').onclick = setSecret;
   q(i,'secret').addEventListener('keydown', e=>{ if(e.key==='Enter') setSecret(); });
@@ -520,19 +613,19 @@ const say = (i,txt) => { q(i,'msg').textContent = txt; };
     if(!p){ say(i,'Pokémon no encontrado.'); return; }
     if(!S.secret[1-i]){ say(i,`Falta fijar el secreto de ${PLAYER_NAMES[1-i]}.`); return; }
     if(S.guesses[i].includes(p.id)){ say(i,`${p.name} ya fue intentado.`); return; }
-    S.guesses[i].push(p.id); q(i,'guess').value=''; say(i,''); commit();
+    if(commit({type:'guess', player:i, id:p.id})){ q(i,'guess').value=''; say(i,''); }
   };
   q(i,'go').onclick = go;
   q(i,'guess').addEventListener('keydown', e=>{ if(e.key==='Enter') go(); });
 
-  q(i,'undo').onclick = ()=>{ S.guesses[i].pop(); commit(); };
-  q(i,'clear').onclick = ()=>{ if(confirm(`¿Borrar los intentos de ${PLAYER_NAMES[i]}?`)){ S.guesses[i]=[]; commit(); } };
+  q(i,'undo').onclick = ()=>commit({type:'undo', player:i});
+  q(i,'clear').onclick = ()=>{ if(confirm(`¿Borrar los intentos de ${PLAYER_NAMES[i]}?`)) commit({type:'clear', player:i}); };
   q(i,'card').onclick = e=> e.currentTarget.classList.toggle('hide');
 });
 
 document.getElementById('btn-reset').onclick = ()=>{
   if(!confirm('¿Nuevo juego? Se borran secretos e intentos.')) return;
-  S = {...fresh(), v:S.v, cats:[...activeCats()]}; commit(); // conserva categorías y versión al reiniciar
+  commit({type:'reset'});
 };
 document.getElementById('btn-sound').onclick = ()=>{
   soundMuted = !soundMuted;
